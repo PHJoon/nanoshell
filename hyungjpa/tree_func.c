@@ -33,7 +33,7 @@ t_node	*insert(t_node *root, char *str)
 	return (root);
 }
 
-t_node	*fmin(t_node *root)
+t_node	*min_node(t_node *root)
 {
 	t_node	*min;
 
@@ -47,7 +47,7 @@ t_node	*delete_else(t_node *root, t_node *tmproot, char *str)
 {
 	if (root->left != NULL && root->right != NULL)
 	{
-		tmproot = fmin(root->right);
+		tmproot = min_node(root->right);
 		root->type = tmproot->type;
 		root->right = delete(root->right, tmproot->str);
 		return (root);

@@ -50,7 +50,7 @@ typedef struct s_node
 # define PIPE 3
 
 t_node	*insert(t_node *root, char *str);
-t_node	*fMin(t_node *root);
+t_node	*min_node(t_node *root);
 t_node	*delete(t_node *root, char *str);
 void	print(t_node *root);
 void	preorderprint(t_node *root);
