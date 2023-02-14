@@ -20,12 +20,12 @@ t_node	*insert(t_node *root, char *str)
 		root->right = NULL;
 		root->left = NULL;
 		root->str = str;
-		root->type = check_av(str);
+		root->type = check_str(str);
 		return (root);
 	}
 	else
 	{
-		if (check_av(str) < root->type)
+		if (check_str(str) < root->type)
 			root->left = insert(root->left, str);
 		else
 			root->right = insert(root->right, str);
@@ -70,32 +70,11 @@ t_node	*delete(t_node *root, char *str)
 	tmproot = NULL;
 	if (root == NULL)
 		return (NULL);
-	if (check_av(str) < root->type)
+	if (check_str(str) < root->type)
 		root->left = delete(root->left, str);
-	else if (check_av(str) > root->type)
+	else if (check_str(str) > root->type)
 		root->right = delete(root->right, str);
 	else
 		return (delete_else(root, tmproot, str));
 	return (root);
-}
-
-void	print(t_node *root)
-{
-	if (root == NULL)
-	{
-		printf("\n");
-		return ;
-	}
-	printf("%s:%d ", root->str, root->type);
-	print(root->left);
-	print(root->right);
-}
-
-void	preorderprint(t_node *root)
-{
-	if (root == NULL)
-		return ;
-	printf("%s:%d ", root->str, root->type);
-	print(root->left);
-	print(root->right);
 }

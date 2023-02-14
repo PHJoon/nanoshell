@@ -1,7 +1,7 @@
 SRC = test.c \
-tree_check.c tree_func.c \
-builtin_echo.c builtin_pwd.c builtin_exit.c \
-line_list_1.c line_list_2.c
+parsing_list_func.c parsing_list_main.c parsing_list_to_tree.c parsing_tree_check.c \
+parsing_tree_func_1.c parsing_tree_func_2.c \
+builtin_echo.c builtin_pwd.c builtin_exit.c builtin_env.c\
 
 OBJ = ${SRC:.c=.o}
 

@@ -1,45 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sigtest.c                                          :+:      :+:    :+:   */
+/*   builtin_env.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hyungjpa <hyungjpa@student.42seoul.>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/14 16:22:49 by hyungjpa          #+#    #+#             */
-/*   Updated: 2023/02/14 16:22:51 by hyungjpa         ###   ########.fr       */
+/*   Created: 2023/02/14 17:24:44 by hyungjpa          #+#    #+#             */
+/*   Updated: 2023/02/14 17:24:46 by hyungjpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "test.h"
 
-void	free_split(char **tmp, int i)
+void	do_env(char **envp)
 {
-	while (i > 0)
+	while (*envp)
 	{
-		free(tmp[i]);
-		tmp[i] = NULL;
-		i--;
+		printf("%s\n", *envp);
+		envp++;
 	}
-	free(tmp);
-	tmp = NULL;
-}
-
-int	main(int ac, char **av, char **envp)
-{
-	char	*str;
-	t_node	*root;
-
-	root = NULL;
-	while (1)
-	{
-		str = readline(">$ : ");
-		root = list_to_tree(str);
-		preorderprint(root);
-		printf("\n");
-		printf("str: %s\n", str);
-		add_history(str);
-		free(str);
-		root = NULL;
-	}
-	return (0);
 }

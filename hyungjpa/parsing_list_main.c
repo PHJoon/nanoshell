@@ -51,25 +51,47 @@ void	quote_and_str(char *str, int sign, size_t *cnt, size_t j)
 	}
 }
 
+char	*check_string(char *tmp, int sign)
+{
+	char	*tmp_trim;
+	size_t	i;
+
+	i = 0;
+	if (sign == 1)
+		tmp_trim = ft_strtrim(tmp, "\"");
+	if (sign == 2)
+		tmp_trim = ft_strtrim(tmp, "\'");
+	if (!ft_strncmp(tmp_trim, "<", 1) || !ft_strncmp(tmp_trim, "<<", 2) || \
+	!ft_strncmp(tmp_trim, ">", 1) || !ft_strncmp(tmp_trim, ">>", 2) || \
+	!ft_strncmp(tmp_trim, "|", 1))
+	{
+		free(tmp_trim);
+		return (tmp);
+	}
+	free(tmp);
+	return (tmp_trim);
+}
+
 void	not_space(t_lst_info *info, char *str, int sign, size_t *i)
 {
 	size_t	cnt;
 	size_t	j;
+	char	*tmp;
 
 	cnt = 1;
 	j = *i + 1;
-	if (sign > 3)
-	{
-		if (str[j] && (check_ascii(str[j]) == sign))
-			cnt++;
-	}
+	if (sign > 3 && str[j] && (check_ascii(str[j]) == sign))
+		cnt++;
 	else
 		quote_and_str(str, sign, &cnt, j);
-	add_next(info, ft_substr(str, *i, cnt));
+	tmp = ft_substr(str, *i, cnt);
+	if (sign == 1 || sign == 2)
+		tmp = check_string(tmp, sign);
+	add_next(info, tmp);
 	*i += cnt;
 }
 
-t_lst_info	*line_parsing(char *str)
+t_lst_info	*rl_to_list(char *str)
 {
 	t_lst_info	*info;
 	size_t		i;
