@@ -1,4 +1,4 @@
-SRC = sigtest.c \
+SRC = test.c \
 tree_check.c tree_func.c \
 builtin_echo.c builtin_pwd.c builtin_exit.c \
 line_list_1.c line_list_2.c
