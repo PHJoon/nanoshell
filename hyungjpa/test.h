@@ -3,73 +3,72 @@
 /*                                                        :::      ::::::::   */
 /*   test.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hyungjpa <hyungjpa@student.42seoul.>       +#+  +:+       +#+        */
+/*   By: chanson <chanson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/14 16:22:37 by hyungjpa          #+#    #+#             */
-/*   Updated: 2023/02/14 16:22:39 by hyungjpa         ###   ########.fr       */
+/*   Created: 2023/02/12 15:59:58 by chanson           #+#    #+#             */
+/*   Updated: 2023/02/15 17:13:19 by chanson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef TEST_H
 # define TEST_H
 
-# include <unistd.h>
+# define TRUE 1
+# define FALSE 0
+
 # include <stdio.h>
-# include <stdlib.h>
-# include <signal.h>
-# include <sys/types.h>
-# include <sys/stat.h>
-# include <dirent.h>
 # include <readline/readline.h>
-# include <errno.h>
-# include "./libft/libft.h"
+# include <readline/history.h>
+# include <unistd.h>
+# include <stdlib.h>
 
-typedef struct s_lst
+enum e_token
 {
-	char			*data;
-	struct s_lst	*next;
-}	t_lst;
+	TK_STR,
+	TK_IRD,
+	TK_ORD,
+	TK_HRD,
+	TK_ARD,
+	TK_PIPE,
+	TK_AND,
+	TK_OR,
+	TK_LPT,
+	TK_RPT,
+	TK_INVALID,
+	TK_EXPANDED_STR,
+	TK_QUOTED_STR
+};
 
-typedef struct s_lst_info
+typedef struct s_token
 {
-	struct s_lst	*head;
-	struct s_lst	*tail;
-}	t_lst_info;
+	char			*val;
+	struct s_token	*parent;
+	struct s_token	*left;
+	struct s_token	*right;
+	struct s_token	*next;
+	enum e_token	type;
+}	t_token;
 
-typedef struct s_node
+typedef struct s_tree
 {
-	int				type;
-	char			*str;
-	struct s_node	*left;
-	struct s_node	*right;
-}	t_node;
+	t_token		*top;
+}	t_tree;
 
-# define WORD 1
-# define REDIR 2
-# define PIPE 3
+// utils
+char	*ft_strcjoin(char *s, char c);
+char	**ft_strsjoin(char **str1, char *str);
+void	ft_free_str(char **str);
+char	**ft_split(char *s);
+char	*ft_strcpy(char *str);
+int		ft_split_and(char ***temp, char *str, int idx);
+int		ft_split_par(char ***temp, char *str, int idx);
+int		ft_strscmp(char *str1, char *str2);
 
-t_node		*insert(t_node *root, char *str);
-t_node		*min_node(t_node *root);
-t_node		*delete(t_node *root, char *str);
-void		print(t_node *root);
-void		preorderprint(t_node *root);
+//syntax_check
+int		syntax_check(char **temp);
+int		check_pattern(char **temp, int *type_list, int idx);
+int		check_str_valid(char *str);
 
-int			check_wnull(char *str);
-int			check_redir(char *str);
-int			check_pipe(char *str);
-int			check_str(char *str);
-void		free_split(char **tmp, int i);
+t_token	*split_to_tree(char **temp);
 
-void		do_echo(int argc, char **argv);
-
-void		do_pwd(int argc, char **argv);
-
-void		do_env(char **envp);
-
-t_lst_info	*rl_to_list(char *str);
-
-t_lst		*new_list(char *str);
-void		add_next(t_lst_info *info, char *str);
-t_lst_info	*init_lst_info(void);
-t_node		*list_to_tree(char *str);
 #endif
