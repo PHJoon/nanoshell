@@ -1,31 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   test.c                                             :+:      :+:    :+:   */
+/*   make_tree.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: chanson <chanson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/10 18:56:44 by chanson           #+#    #+#             */
-/*   Updated: 2023/02/15 21:22:05 by chanson          ###   ########.fr       */
+/*   Created: 2023/02/15 20:53:51 by chanson           #+#    #+#             */
+/*   Updated: 2023/02/15 20:57:00 by chanson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "test.h"
+#include "../test.h"
 
-int	main(void)
+t_tree	*make_tree(char **temp)
 {
-	char	*str;
-	char	**temp;
-	//int		i;
-	//t_tree	*tree;
+	int		*type_list;
+	int		i;
 
-	str = readline("> ");
-	temp = ft_split(str);
-	if (syntax_check(temp) == FALSE)
-	{
-		printf("syntax error\n");
-		return (1);
-	}
-	//tree = make_tree(temp);
-	return (0);
+	i = 0;
+	while (temp[i])
+		i++;
+	type_list = (int *)malloc(sizeof(int) * i);
+	make_type_list()
 }

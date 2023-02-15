@@ -6,7 +6,7 @@
 /*   By: chanson <chanson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 13:03:46 by chanson           #+#    #+#             */
-/*   Updated: 2023/02/15 20:35:48 by chanson          ###   ########.fr       */
+/*   Updated: 2023/02/15 21:22:45 by chanson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,26 +32,26 @@ int	ft_split_and(char ***temp, char *str, int idx)
 int	ft_split_par(char ***temp, char *str, int idx)
 {
 	char	*buff;
+	int		par_flag;
 	int		cnt;
-	int		end;
 
+	par_flag = 1;
 	cnt = 0;
 	buff = NULL;
 	buff = ft_strcjoin(buff, str[idx++]);
-	while (str[idx + cnt])
+	while (1)
 	{
-		if (str[idx] == ')')
-			end = idx + cnt;
-		cnt++;
-	}
-	cnt = 0;
-	while (str[idx])
-	{
+		if (str[idx] == '(')
+			par_flag++;
+		else if (str[idx] == ')')
+			par_flag--;
 		buff = ft_strcjoin(buff, str[idx]);
-		if (idx == end)
+		if (par_flag == 0)
 			break ;
-		idx++;
+		if (str[idx] == '\0')
+			break ;
 		cnt++;
+		idx++;
 	}
 	*temp = ft_strsjoin(*temp, buff);
 	return (cnt + 1);
