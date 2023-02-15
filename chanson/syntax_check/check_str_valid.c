@@ -6,7 +6,7 @@
 /*   By: chanson <chanson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 17:05:13 by chanson           #+#    #+#             */
-/*   Updated: 2023/02/15 17:12:18 by chanson          ###   ########.fr       */
+/*   Updated: 2023/02/15 17:24:08 by chanson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ int	check_str_valid(char *str)
 			double_quote_flag++;
 		idx++;
 	}
+	printf("valid: %d\n", parentheses_flag);
 	if (parentheses_flag != 0 || single_quote_flag % 2 != 0 \
 		|| double_quote_flag % 2 != 0)
 		return (FALSE);
