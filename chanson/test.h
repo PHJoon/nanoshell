@@ -6,7 +6,7 @@
 /*   By: chanson <chanson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/12 15:59:58 by chanson           #+#    #+#             */
-/*   Updated: 2023/02/15 14:24:26 by chanson          ###   ########.fr       */
+/*   Updated: 2023/02/15 17:13:19 by chanson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,4 +63,7 @@ int		ft_split_par(char ***temp, char *str, int idx);
 int		ft_strscmp(char *str1, char *str2);
 
 //syntax_check
+int		syntax_check(char **temp);
+int		check_pattern(char **temp, int *type_list, int idx);
+int		check_str_valid(char *str);
 #endif

@@ -6,7 +6,7 @@
 /*   By: chanson <chanson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 18:56:44 by chanson           #+#    #+#             */
-/*   Updated: 2023/02/15 14:23:19 by chanson          ###   ########.fr       */
+/*   Updated: 2023/02/15 17:13:55 by chanson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	main(void)
 
 	str = readline("> ");
 	temp = ft_split(str);
-	if (!syntax_check(temp))
+	if (syntax_check(temp) == FALSE)
 	{
 		printf("syntax error\n");
 		return (1);
