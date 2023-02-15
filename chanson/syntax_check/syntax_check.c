@@ -6,7 +6,7 @@
 /*   By: chanson <chanson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 14:23:35 by chanson           #+#    #+#             */
-/*   Updated: 2023/02/15 17:15:00 by chanson          ###   ########.fr       */
+/*   Updated: 2023/02/15 19:48:52 by chanson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,18 +97,17 @@ int	syntax_check(char **temp)
 	if (!type_list)
 		return (FALSE);
 	make_type_list(type_list, temp);
-	idx = 0;
-	while (temp[idx])
+	idx = -1;
+	while (temp[++idx])
 	{
 		if (idx == 0 && check_first(type_list, temp) == FALSE)
 			return (free_type(type_list));
-		if (idx == cnt - 2 && check_last(type_list, temp, idx) == FALSE)
+		if (idx == cnt - 1 && check_last(type_list, temp, idx) == FALSE)
 			return (free_type(type_list));
-		if (idx != cnt - 2 && check_pattern(temp, type_list, idx) == FALSE)
+		if (idx != cnt - 1 && check_pattern(temp, type_list, idx) == FALSE)
 			return (free_type(type_list));
 		if (type_list[idx] == TK_STR && check_str_valid(temp[idx]) == FALSE)
 			return (free_type(type_list));
-		idx++;
 	}
 	free(type_list);
 	return (TRUE);
