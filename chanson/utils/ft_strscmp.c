@@ -1,29 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   test.c                                             :+:      :+:    :+:   */
+/*   ft_strscmp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: chanson <chanson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/10 18:56:44 by chanson           #+#    #+#             */
-/*   Updated: 2023/02/15 14:23:19 by chanson          ###   ########.fr       */
+/*   Created: 2023/02/15 14:16:27 by chanson           #+#    #+#             */
+/*   Updated: 2023/02/15 14:18:25 by chanson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "test.h"
+#include "../test.h"
 
-int	main(void)
+int	ft_strscmp(char *str1, char *str2)
 {
-	char	*str;
-	char	**temp;
-	int		i;
+	int	i;
 
-	str = readline("> ");
-	temp = ft_split(str);
-	if (!syntax_check(temp))
+	while (str1[i] && str2[i])
 	{
-		printf("syntax error\n");
-		return (1);
+		if (str1[i] != str2[i])
+			return (FALSE);
+		i++;
 	}
-	return (0);
+	return (TRUE);
 }

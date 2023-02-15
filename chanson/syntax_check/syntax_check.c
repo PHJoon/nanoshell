@@ -1,29 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   test.c                                             :+:      :+:    :+:   */
+/*   syntax_check.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: chanson <chanson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/10 18:56:44 by chanson           #+#    #+#             */
-/*   Updated: 2023/02/15 14:23:19 by chanson          ###   ########.fr       */
+/*   Created: 2023/02/15 14:23:35 by chanson           #+#    #+#             */
+/*   Updated: 2023/02/15 14:30:53 by chanson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "test.h"
+#include "../test.h"
 
-int	main(void)
+static void	make_type_list(int *type_list, int end)
 {
-	char	*str;
-	char	**temp;
-	int		i;
+	enum e_token	type;
+	int				i;
 
-	str = readline("> ");
-	temp = ft_split(str);
-	if (!syntax_check(temp))
+	i = 0;
+	while (i < end)
 	{
-		printf("syntax error\n");
-		return (1);
+		
 	}
-	return (0);
+}
+
+int	syntax_check(char **temp)
+{
+	int		idx;
+
+	idx = 0;
+	while (temp[idx])
+		idx++;
+	type_list = (int *)malloc(sizeof(int) * (idx));
+	make_type_list(type_list, idx);
 }
