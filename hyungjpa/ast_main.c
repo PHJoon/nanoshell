@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "ast.h"
-#include <string.h>
 
 t_node	*trans_to_list(char **temp)
 {
@@ -28,39 +27,35 @@ t_node	*trans_to_list(char **temp)
 	i = 0;
 	while (temp[i])
 	{
-		head = add_back(head, strdup(temp[i]), type_list[i]);
+		head = add_back(head, ft_strdup(temp[i]), type_list[i]);
 		i++;
 	}
 	return (head);
 }
 
-t_node	*node_dup(t_node *head, int i)
+t_ast	*list_to_ast(t_ast *root, t_node *head, int type)
 {
-	t_node	*dup;
-	t_node	*tmp;
+	t_node	*left;
+	t_node	*right;
+	t_node	*res;
+	int		type_pos;
 
-	dup = NULL;
-	tmp = head;
-	while (i && tmp)
+	printf("%d\n", type);
+	type_pos = node_size(head) - 1;
+	if (type == 0)
+		return (make_new_ast(head));
+	if (check_type_place(head, type, &type_pos))
+		return (list_to_ast(root, head, type - 1));
+	res = split_node(head, &left, &right, type_pos);
+	root = make_new_ast(res);
+	if (left)
 	{
-		dup = add_back(dup, strdup(tmp->data), tmp->type);
-		tmp = tmp->next;
-		i--;
+		if (!check_left(left, type))
+			root->left = list_to_ast(root->left, left, type - 1);
+		else
+			root->left = list_to_ast(root->left, left, type);
 	}
-	return (dup);
-}
-
-int	node_size(t_node *head)
-{
-	t_node	*tmp;
-	int		i;
-
-	i = 0;
-	tmp = head;
-	while (tmp)
-	{
-		i++;
-		tmp = tmp->next;
-	}
-	return (i);
+	if (right)
+		root->right = list_to_ast(root->right, right, type - 1);
+	return (root);
 }

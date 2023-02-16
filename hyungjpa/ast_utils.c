@@ -39,53 +39,23 @@ void	make_type_list(int *type_list, char **temp)
 	}
 }
 
-t_node	*make_new(char *str, int t)
+char	*ft_strdup(const char *s1)
 {
-	t_node	*new;
-
-	new = (t_node *)malloc(sizeof(t_node));
-	if (!new)
-		return (NULL);
-	new->next = NULL;
-	new->type = t;
-	new->data = str;
-	return (new);
-}
-
-t_node	*add_back(t_node *head, char *str, int t)
-{
-	t_node	*new;
-	t_node	*tmp;
-
-	new = make_new(str, t);
-	tmp = head;
-	if (head == NULL)
-		head = new;
-	else
-	{
-		while (tmp->next)
-			tmp = tmp->next;
-		tmp->next = new;
-	}
-	return (head);
-}
-
-char	**ft_split_substr(char **temp, size_t start, size_t end)
-{
-	char	**res;
-	size_t	len;
-	size_t	i;
+	char	*ptr;
+	int		i;
 
 	i = 0;
-	len = end - start + 2;
-	res = (char **)malloc(sizeof(char *) * len);
-	if (!res)
-		return (NULL);
-	while (i < len)
-	{
-		res[i] = temp[start];
+	while (s1[i])
 		i++;
-		start++;
+	ptr = (char *)malloc(sizeof(char) * (i + 1));
+	if (!ptr)
+		return (0);
+	i = 0;
+	while (s1[i])
+	{
+		ptr[i] = s1[i];
+		i++;
 	}
-	return (res);
+	ptr[i] = '\0';
+	return (ptr);
 }

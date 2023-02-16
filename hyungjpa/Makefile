@@ -11,7 +11,11 @@ SRCS =  ./test.c \
 		./syntax_check/syntax_check.c \
 		./syntax_check/check_pattern.c \
 		./syntax_check/check_str_valid.c \
-		ast.c ast_2.c ast_3.c
+		ast_ast_func.c \
+		ast_list_func_1.c \
+		ast_list_func_2.c \
+		ast_main.c \
+		ast_utils.c \
 
 OBJS = $(SRCS:.c=.o)
 

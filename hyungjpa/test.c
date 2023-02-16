@@ -24,7 +24,7 @@ int	main(void)
 	temp = ft_split(str);
 	i = 0;
 	head = trans_to_list(temp);
-	root = list_to_ast(root, head, 8);
+	root = list_to_ast(root, head, 7);
 	inorderprint(root);
 	// printf("---res---\n");
 	// print_list(res);
