@@ -6,7 +6,7 @@
 /*   By: chanson <chanson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/12 15:59:58 by chanson           #+#    #+#             */
-/*   Updated: 2023/02/15 17:13:19 by chanson          ###   ########.fr       */
+/*   Updated: 2023/02/16 16:48:48 by chanson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,14 @@ typedef struct s_token
 typedef struct s_tree
 {
 	t_token		*top;
+	t_token		*last;
 }	t_tree;
+
+typedef struct s_list
+{
+	t_token	*first;
+	t_token	*last;
+}	t_list;
 
 // utils
 char	*ft_strcjoin(char *s, char c);
@@ -66,4 +73,9 @@ int		ft_strscmp(char *str1, char *str2);
 int		syntax_check(char **temp);
 int		check_pattern(char **temp, int *type_list, int idx);
 int		check_str_valid(char *str);
+
+//tree
+t_tree	*init_tree(char **temp);
+int		make_list(char **temp, t_list *list);
+int		decide_type(char *str);
 #endif

@@ -11,6 +11,9 @@ SRCS =  ./test.c \
 		./syntax_check/syntax_check.c \
 		./syntax_check/check_pattern.c \
 		./syntax_check/check_str_valid.c \
+		./tree/make_tree.c \
+		./tree/decide_type.c \
+		./tree/make_list.c \
 
 OBJS = $(SRCS:.c=.o)
 

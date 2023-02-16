@@ -6,7 +6,7 @@
 /*   By: chanson <chanson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 18:56:44 by chanson           #+#    #+#             */
-/*   Updated: 2023/02/15 21:22:05 by chanson          ###   ########.fr       */
+/*   Updated: 2023/02/16 14:03:00 by chanson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,7 @@ int	main(void)
 {
 	char	*str;
 	char	**temp;
-	//int		i;
-	//t_tree	*tree;
+	t_tree	*tree;
 
 	str = readline("> ");
 	temp = ft_split(str);
@@ -26,6 +25,6 @@ int	main(void)
 		printf("syntax error\n");
 		return (1);
 	}
-	//tree = make_tree(temp);
+	tree = init_tree(temp);
 	return (0);
 }
