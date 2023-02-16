@@ -97,58 +97,6 @@ static int	ft_split_quote(char ***temp, char *str, int idx)
 	return (cnt + 1);
 }
 
-int	check_symbol(char c)
-{
-	if (c == ' ')
-		return (1);
-	if (c == '|')
-		return (2);
-	if (c == '\'')
-		return (3);
-	if (c == '\"')
-		return (4);
-	if (c == '&')
-		return (5);
-	if (c == '>')
-		return (6);
-	if (c == '<')
-		return (7);
-	if (c == '(')
-		return (8);
-	if (c == ')')
-		return (9);
-	if (c == '\0')
-		return (-1);
-	return (0);
-}
-
-void	do_split(char **temp, char *buff, char *s, int *i)
-{
-	int	check;
-
-	check = check_symbol(s[*i]);
-	if (!check)
-		buff = ft_strcjoin(buff, s[*i]);
-	else
-	{
-		if (buff != NULL)
-			temp = ft_strsjoin(temp, buff);
-		buff = NULL;
-		if (check == 2)
-			*i += ft_split_pipe(&temp, s, *i);
-		else if (check == 3 || check == 4)
-			*i += ft_split_quote(&temp, s, *i);
-		else if (check == 5)
-			*i += ft_split_and(&temp, s, *i);
-		else if (check == 6 || check == 7)
-			*i += ft_split_redirection(&temp, s, *i);
-		else if (check == 8)
-			*i += ft_split_par(&temp, s, *i);
-	}
-	if (check == -1)
-		(*i)++;
-}
-
 char	**ft_split(char *s)
 {
 	char	**temp;
@@ -159,10 +107,31 @@ char	**ft_split(char *s)
 	buff = NULL;
 	temp = NULL;
 	while (s[i])
-		do_split(temp, buff, s, &i);
+	{
+		if (s[i] != '|' && s[i] != '\'' && s[i] != '\"' && s[i] != ' ' && \
+			s[i] != '&' && s[i] != '>' && s[i] != '<' && s[i] != '(')
+			buff = ft_strcjoin(buff, s[i]);
+		else
+		{
+			if (buff != NULL)
+				temp = ft_strsjoin(temp, buff);
+			buff = NULL;
+			if (s[i] == '|')
+				i += ft_split_pipe(&temp, s, i);
+			else if (s[i] == '\'' || s[i] == '\"')
+				i += ft_split_quote(&temp, s, i);
+			else if (s[i] == '>' || s[i] == '<')
+				i += ft_split_redirection(&temp, s, i);
+			else if (s[i] == '&')
+				i += ft_split_and(&temp, s, i);
+			else if (s[i] == '(')
+				i += ft_split_par(&temp, s, i);
+		}
+		if (s[i] != '\0')
+			i++;
+	}
 	if (buff != NULL)
 		temp = ft_strsjoin(temp, buff);
-	dispaly_str(temp);
 	return (temp);
 }
 

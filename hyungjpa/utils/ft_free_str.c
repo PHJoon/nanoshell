@@ -1,29 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strrchr.c                                       :+:      :+:    :+:   */
+/*   ft_free_str.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hyungjpa <hyungjpa@student.42seoul.>       +#+  +:+       +#+        */
+/*   By: chanson <chanson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/10 14:27:40 by hyungjpa          #+#    #+#             */
-/*   Updated: 2022/11/10 14:44:22 by hyungjpa         ###   ########.fr       */
+/*   Created: 2023/02/13 14:47:02 by chanson           #+#    #+#             */
+/*   Updated: 2023/02/13 14:50:56 by chanson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../test.h"
 
-char	*ft_strrchr(const char *s, int c)
+void	ft_free_str(char **str)
 {
 	int	i;
 
 	i = 0;
-	while (s[i] != '\0')
-		i++;
-	while (i != -1)
+	if (str == NULL)
+		return ;
+	while (str[i])
 	{
-		if (s[i] == (char)c)
-			return ((char *)(s + i));
-		i--;
+		free(str[i]);
+		i++;
 	}
-	return (0);
+	free(str);
 }

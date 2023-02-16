@@ -69,6 +69,4 @@ int		syntax_check(char **temp);
 int		check_pattern(char **temp, int *type_list, int idx);
 int		check_str_valid(char *str);
 
-t_token	*split_to_tree(char **temp);
-
 #endif

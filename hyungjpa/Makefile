@@ -1,34 +1,35 @@
-SRC = test.c \
-parsing_list_func.c parsing_list_main.c parsing_list_to_tree.c parsing_tree_check.c \
-parsing_tree_func_1.c parsing_tree_func_2.c \
-builtin_echo.c builtin_pwd.c builtin_exit.c builtin_env.c\
+NAME = test
 
-OBJ = ${SRC:.c=.o}
+SRCS =  ./test.c \
+		./utils/ft_split.c \
+		./utils/ft_split_2.c \
+		./utils/ft_free_str.c \
+		./utils/ft_strcjoin.c \
+		./utils/ft_strsjoin.c \
+		./utils/ft_strcpy.c \
+		./utils/ft_strscmp.c \
+		./syntax_check/syntax_check.c \
+		./syntax_check/check_pattern.c \
+		./syntax_check/check_str_valid.c \
+		ast.c ast_2.c ast_3.c
 
-INCLUDE_LIBFT = -L ./libft -lft
+OBJS = $(SRCS:.c=.o)
 
-INCLUDE = -I ./
+CC = cc
 
-INCLUDE_READLINE = -lreadline
+FLAGS = -Wall -Wextra -Werror -lreadline -g3
 
-LIBFT_DIR = ./libft/
+all:		$(NAME)
 
-NAME = a.out
+$(NAME):	$(OBJS)
+			@$(CC) $(FLAGS) $(OBJS) -o $(NAME)
 
-all : ${NAME}
+clean:		
+			rm -rf $(OBJS)
 
-${NAME} : ${OBJ}
-	make -C ${LIBFT_DIR} all
-	cc ${INCLUDE} ${INCLUDE_LIBFT} ${INCLUDE_READLINE} $^ -o $@
+fclean:		clean
+			rm -rf $(NAME)
 
-clean :
-	make -C ${LIBFT_DIR} clean
-	rm -rf ${OBJ}
+re:			fclean all
 
-fclean : clean
-	make -C ${LIBFT_DIR} fclean
-	rm -rf ${NAME}
-
-re : fclean all
-
-.PHONY : all clean fclean re
+.PHONEY:	all re fclean

@@ -1,31 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memcmp.c                                        :+:      :+:    :+:   */
+/*   ft_strcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hyungjpa <hyungjpa@student.42seoul.>       +#+  +:+       +#+        */
+/*   By: chanson <chanson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/10 15:08:25 by hyungjpa          #+#    #+#             */
-/*   Updated: 2022/11/10 15:40:03 by hyungjpa         ###   ########.fr       */
+/*   Created: 2023/02/13 17:26:21 by chanson           #+#    #+#             */
+/*   Updated: 2023/02/13 17:28:52 by chanson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../test.h"
 
-int	ft_memcmp(const void *s1, const void *s2, size_t n)
+char	*ft_strcpy(char *str)
 {
-	const unsigned char	*r_s1;
-	const unsigned char	*r_s2;
-	size_t				i;
+	char	*temp;
+	int		i;
 
-	r_s1 = s1;
-	r_s2 = s2;
 	i = 0;
-	while (i != n)
+	while (str[i])
+		i++;
+	temp = (char *)malloc(sizeof(char) * (i + 1));
+	temp[i] = '\0';
+	i = 0;
+	while (str[i])
 	{
-		if (r_s1[i] != r_s2[i])
-			return ((int)(r_s1[i] - r_s2[i]));
+		temp[i] = str[i];
 		i++;
 	}
-	return (0);
+	return (temp);
 }
