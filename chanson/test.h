@@ -6,7 +6,7 @@
 /*   By: chanson <chanson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/12 15:59:58 by chanson           #+#    #+#             */
-/*   Updated: 2023/02/16 16:48:48 by chanson          ###   ########.fr       */
+/*   Updated: 2023/02/16 19:23:24 by chanson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,9 @@ char	*ft_strcpy(char *str);
 int		ft_split_and(char ***temp, char *str, int idx);
 int		ft_split_par(char ***temp, char *str, int idx);
 int		ft_strscmp(char *str1, char *str2);
+void	show_list(t_list	*list);
+void	display_str(char **str);
+void	display_tree(t_token *root, char c);
 
 //syntax_check
 int		syntax_check(char **temp);

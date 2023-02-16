@@ -6,13 +6,11 @@
 /*   By: chanson <chanson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 14:02:12 by chanson           #+#    #+#             */
-/*   Updated: 2023/02/15 13:40:37 by chanson          ###   ########.fr       */
+/*   Updated: 2023/02/16 17:49:30 by chanson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../test.h"
-
-void dispaly_str(char **str);
 
 static int	ft_split_pipe(char ***temp, char *str, int idx)
 {
@@ -132,18 +130,5 @@ char	**ft_split(char *s)
 	}
 	if (buff != NULL)
 		temp = ft_strsjoin(temp, buff);
-	dispaly_str(temp);
 	return (temp);
-}
-
-void dispaly_str(char **str)
-{
-	int	i;
-
-	i = 0;
-	while (str[i])
-	{
-		printf("display: %s\n", str[i]);
-		i++;
-	}
 }

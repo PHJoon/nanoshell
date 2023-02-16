@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ast_3.c                                            :+:      :+:    :+:   */
+/*   ast_ast_func.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hyungjpa <hyungjpa@student.42seoul.>       +#+  +:+       +#+        */
+/*   By: chanson <chanson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/16 13:35:05 by hyungjpa          #+#    #+#             */
-/*   Updated: 2023/02/16 13:35:07 by hyungjpa         ###   ########.fr       */
+/*   Updated: 2023/02/16 19:29:24 by chanson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,11 +54,11 @@ void	inorderprint(t_ast *root)
 {
 	if (root == NULL)
 		return ;
-	inorderprint(root->left);
 	while (root->node)
 	{
 		printf("%s : %d\n", root->node->data, root->node->type);
 		root->node = root->node->next;
 	}
+	inorderprint(root->left);
 	inorderprint(root->right);
 }

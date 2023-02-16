@@ -8,6 +8,7 @@ SRCS =  ./test.c \
 		./utils/ft_strsjoin.c \
 		./utils/ft_strcpy.c \
 		./utils/ft_strscmp.c \
+		./utils/display.c \
 		./syntax_check/syntax_check.c \
 		./syntax_check/check_pattern.c \
 		./syntax_check/check_str_valid.c \

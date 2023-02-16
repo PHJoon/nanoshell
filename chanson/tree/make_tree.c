@@ -6,23 +6,11 @@
 /*   By: chanson <chanson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 20:53:51 by chanson           #+#    #+#             */
-/*   Updated: 2023/02/16 16:58:05 by chanson          ###   ########.fr       */
+/*   Updated: 2023/02/16 19:22:58 by chanson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../test.h"
-
-void	display_list(t_list *list)
-{
-	t_token	*temp;
-
-	temp = list->first;
-	while (temp)
-	{
-		printf("%s %d\n", temp->val, temp->type);
-		temp = temp->right;
-	}
-}
 
 int	find_top(t_list *list)
 {
@@ -40,11 +28,11 @@ int	find_top(t_list *list)
 		if (type <= temp->type && temp->type != TK_STR)
 		{
 			if (temp->type >= TK_IRD && temp->type <= TK_ARD)
-				type = 4;
+				type = 1;
 			if (temp->type == TK_PIPE)
 				type = 5;
 			if (temp->type == TK_AND || temp->type == TK_OR)
-				type = 7;
+				type = 6;
 			index = i;
 		}
 		temp = temp->right;
@@ -55,6 +43,7 @@ int	find_top(t_list *list)
 
 void	link_tree(t_list *list, t_tree *tree, t_token *temp, int d)
 {
+	//show_list(list);
 	if (tree->top == NULL)
 	{
 		tree->top = temp;
@@ -91,6 +80,7 @@ static void	_make_tree(t_list *list, t_tree *tree, int d)
 	temp->left->right = NULL;
 	_make_tree(list, tree, 1);
 	list->first = temp->right;
+	list->first->left = NULL;
 	_make_tree(list, tree, 0);
 }
 
@@ -110,5 +100,6 @@ t_tree	*init_tree(char **temp)
 	if (make_list(temp, list) == FALSE)
 		return (FALSE);
 	_make_tree(list, tree, 1);
+	display_tree(tree->top, 's');
 	return (tree);
 }

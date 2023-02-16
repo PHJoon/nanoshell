@@ -6,7 +6,7 @@
 /*   By: chanson <chanson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 16:41:16 by chanson           #+#    #+#             */
-/*   Updated: 2023/02/15 20:11:21 by chanson          ###   ########.fr       */
+/*   Updated: 2023/02/16 17:20:19 by chanson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,7 @@ static int	_check_pattern_true(int rt, int rtb)
 static int	_check_pattern_false(int rt, int rtb)
 {
 	if (rt == TK_STR && rtb == TK_LPT)
-	{
-		printf("flag\n");
 		return (FALSE);
-	}
 	if (rt == TK_PIPE && (rtb == TK_PIPE || \
 	rtb == TK_AND || rtb == TK_OR || rtb == TK_RPT))
 		return (FALSE);
