@@ -111,10 +111,10 @@ void	inorderprint(t_ast *root)
 	if (root == NULL)
 		return ;
 	inorderprint(root->left);
-	inorderprint(root->right);
 	while (root->node)
 	{
 		printf("%s : %d\n", root->node->data, root->node->type);
 		root->node = root->node->next;
 	}
+	inorderprint(root->right);
 }
