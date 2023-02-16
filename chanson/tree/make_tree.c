@@ -6,7 +6,7 @@
 /*   By: chanson <chanson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 20:53:51 by chanson           #+#    #+#             */
-/*   Updated: 2023/02/16 16:49:19 by chanson          ###   ########.fr       */
+/*   Updated: 2023/02/16 16:58:05 by chanson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,13 +37,13 @@ int	find_top(t_list *list)
 	type = temp->type;
 	while (temp)
 	{
-		if (type <= temp->type && temp->tyep != TK_STR)
+		if (type <= temp->type && temp->type != TK_STR)
 		{
 			if (temp->type >= TK_IRD && temp->type <= TK_ARD)
 				type = 4;
 			if (temp->type == TK_PIPE)
 				type = 5;
-			if (temp->type == TK_AND || temp->tyep == TK_OR)
+			if (temp->type == TK_AND || temp->type == TK_OR)
 				type = 7;
 			index = i;
 		}
@@ -60,12 +60,19 @@ void	link_tree(t_list *list, t_tree *tree, t_token *temp, int d)
 		tree->top = temp;
 		tree->last = temp;
 	}
-	else if (tree->last_left == NULL && d == 1)
-		tree->last_left = temp;
-	else if (tree->las)
+	else if (d == 1)
+	{
+		tree->last->left = temp;
+		tree->last = temp;
+	}
+	else if (d == 0)
+	{
+		tree->last->right = temp;
+		tree->last = temp;
+	}
 }
 
-void	_make_tree(t_list *list, t_tree *tree, int d)
+static void	_make_tree(t_list *list, t_tree *tree, int d)
 {
 	int		i;
 	int		idx;
@@ -82,9 +89,9 @@ void	_make_tree(t_list *list, t_tree *tree, int d)
 		temp = temp->right;
 	link_tree(list, tree, temp, d);
 	temp->left->right = NULL;
-	_make_tree(list, tree);
+	_make_tree(list, tree, 1);
 	list->first = temp->right;
-	_make_tree(list, tree);
+	_make_tree(list, tree, 0);
 }
 
 t_tree	*init_tree(char **temp)
@@ -103,5 +110,5 @@ t_tree	*init_tree(char **temp)
 	if (make_list(temp, list) == FALSE)
 		return (FALSE);
 	_make_tree(list, tree, 1);
-	return (NULL);
+	return (tree);
 }
