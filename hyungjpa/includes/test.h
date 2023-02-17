@@ -24,6 +24,7 @@
 
 # include "ast.h"
 # include "signal_handler.h"
+# include "env.h"
 
 enum e_token
 {

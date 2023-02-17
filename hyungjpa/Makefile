@@ -17,6 +17,8 @@ SRCS_NAME = ./test \
 			./syntax_tree/ast_main \
 			./syntax_tree/ast_utils \
 			./signal_handle/signal_handler \
+			./env \
+			
 
 
 SRCS = $(addsuffix .c, $(SRCS_NAME))
