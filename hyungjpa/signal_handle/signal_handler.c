@@ -24,9 +24,9 @@ void	sig_handler(int signo)
 {
 	if (signo == SIGINT)
 	{
+		printf("\n");
 		rl_on_new_line();
 		rl_replace_line("", 1);
-		printf("\n");
 		rl_redisplay();
 	}
 	else if (signo == SIGQUIT)
