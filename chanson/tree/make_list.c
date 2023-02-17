@@ -6,7 +6,7 @@
 /*   By: chanson <chanson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/16 13:37:02 by chanson           #+#    #+#             */
-/*   Updated: 2023/02/16 13:51:21 by chanson          ###   ########.fr       */
+/*   Updated: 2023/02/17 14:25:40 by chanson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,12 +31,9 @@ static int	append_node_list(char *str, int type, t_list *list)
 	}
 	else
 	{
+		token->left = list->last;
+		list->last->right = token;
 		list->last = token;
-		temp = list->first;
-		while (temp->right)
-			temp = temp->right;
-		temp->right = token;
-		token->left = temp;
 	}
 	return (TRUE);
 }

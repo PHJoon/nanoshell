@@ -6,7 +6,7 @@
 /*   By: chanson <chanson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/16 17:48:49 by chanson           #+#    #+#             */
-/*   Updated: 2023/02/16 19:22:49 by chanson          ###   ########.fr       */
+/*   Updated: 2023/02/17 17:13:05 by chanson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,11 @@ void	show_list(t_list	*list)
 	t_token	*temp;
 	int		i;
 
+	if (!list)
+	{
+		printf("%s\n", NULL);
+		return ;
+	}
 	temp = list->first;
 	i = 0;
 	printf("------------------display list------------------------\n\n");
@@ -27,6 +32,19 @@ void	show_list(t_list	*list)
 		temp = temp->right;
 	}
 	printf("---------------------end------------------------------\n\n");
+}
+
+void	show_node_list(t_token *token)
+{
+	t_token	*temp;
+
+	temp = token;
+	while (temp)
+	{
+		printf("%s ", temp->val);
+		temp = temp->right;
+	}
+	printf("\n");
 }
 
 void	display_str(char **str)
@@ -41,30 +59,18 @@ void	display_str(char **str)
 	}
 }
 
-static void	_display_tree(t_token *root)
-{
-	t_token	*temp;
-
-	temp = root;
-	while (temp->left)
-		temp = temp->left;
-	while (temp->right)
-	{
-		printf("%s ", temp->val);
-		temp = temp->right;
-	}
-	printf("\n");
-}
-
 void	display_tree(t_token *root, char c)
 {
-	if (root->type == TK_STR)
-	{
-		printf("flag %c\n", c);
-		_display_tree(root);
+	if (root == NULL)
 		return ;
+	if (root->type != TK_STR)
+		printf("%s\n", root->val);
+	else if (root->type == TK_STR)
+	{
+		show_node_list(root);
 	}
-	printf("%s\n", root->val);
+	if (root->type == TK_STR || root == NULL)
+		return ;
 	display_tree(root->left, 'l');
 	display_tree(root->right, 'r');
 }
