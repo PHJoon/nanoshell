@@ -1,43 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ast_5.c                                            :+:      :+:    :+:   */
+/*   builtin_env.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hyungjpa <hyungjpa@student.42seoul.>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/16 18:16:25 by hyungjpa          #+#    #+#             */
-/*   Updated: 2023/02/16 18:16:26 by hyungjpa         ###   ########.fr       */
+/*   Created: 2023/02/14 17:24:44 by hyungjpa          #+#    #+#             */
+/*   Updated: 2023/02/14 17:24:46 by hyungjpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ast.h"
+#include "../includes/test.h"
 
-int	node_size(t_node *head)
+void	do_env(char **envp)
 {
-	t_node	*tmp;
-	int		i;
-
-	i = 0;
-	tmp = head;
-	while (tmp)
+	while (*envp)
 	{
-		i++;
-		tmp = tmp->next;
+		printf("%s\n", *envp);
+		envp++;
 	}
-	return (i);
 }
-
-int	check_left(t_node *head, int type)
-{
-	t_node	*tmp;
-
-	tmp = head;
-	while (tmp)
-	{
-		if (tmp->type == type)
-			return (1);
-		tmp = tmp->next;
-	}
-	return (0);
-}
-

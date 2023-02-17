@@ -10,9 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../test.h"
+#include "../includes/test.h"
 
-void dispaly_str(char **str);
+void	dispaly_str(char **str);
 
 static int	ft_split_pipe(char ***temp, char *str, int idx)
 {
@@ -34,7 +34,6 @@ static int	ft_split_pipe(char ***temp, char *str, int idx)
 static int	ft_split_redirection(char ***temp, char *str, int idx)
 {
 	char	*buff;
-	int		cnt;
 
 	buff = NULL;
 	buff = ft_strcjoin(buff, str[idx]);

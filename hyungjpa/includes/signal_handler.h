@@ -1,28 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_free_str.c                                      :+:      :+:    :+:   */
+/*   signal_handler.h                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chanson <chanson@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hyungjpa <hyungjpa@student.42seoul.>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/13 14:47:02 by chanson           #+#    #+#             */
-/*   Updated: 2023/02/13 14:50:56 by chanson          ###   ########.fr       */
+/*   Created: 2023/02/16 19:16:06 by hyungjpa          #+#    #+#             */
+/*   Updated: 2023/02/16 19:16:08 by hyungjpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/test.h"
+#ifndef SIGNAL_HANDLER_H
+# define SIGNAL_HANDLER_H
 
-void	ft_free_str(char **str)
-{
-	int	i;
+# include <signal.h>
+# include <termios.h>
 
-	i = 0;
-	if (str == NULL)
-		return ;
-	while (str[i])
-	{
-		free(str[i]);
-		i++;
-	}
-	free(str);
-}
+void	off_catch_signals(void);
+void	sig_handler(int signo);
+void	signal_handle(void);
+void	signal_sigterm(char *str);
+
+#endif

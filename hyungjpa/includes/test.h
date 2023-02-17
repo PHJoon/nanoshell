@@ -22,6 +22,9 @@
 # include <unistd.h>
 # include <stdlib.h>
 
+# include "ast.h"
+# include "signal_handler.h"
+
 enum e_token
 {
 	TK_STR,
@@ -68,5 +71,6 @@ int		ft_strscmp(char *str1, char *str2);
 int		syntax_check(char **temp);
 int		check_pattern(char **temp, int *type_list, int idx);
 int		check_str_valid(char *str);
+void	make_type_list(int *type_list, char **temp);
 
 #endif

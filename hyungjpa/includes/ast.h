@@ -12,7 +12,6 @@
 
 #ifndef AST_H
 # define AST_H
-# include "test.h"
 
 // list;
 typedef struct s_node
@@ -29,7 +28,6 @@ typedef struct s_ast
 	struct s_ast	*left;
 	struct s_ast	*right;
 }	t_ast;
-
 
 // ast_ast_func.c
 t_ast	*make_new_ast(t_node *res);

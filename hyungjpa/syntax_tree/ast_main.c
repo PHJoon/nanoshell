@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ast.h"
+#include "../includes/test.h"
 
 t_node	*trans_to_list(char **temp)
 {
@@ -40,7 +40,6 @@ t_ast	*list_to_ast(t_ast *root, t_node *head, int type)
 	t_node	*res;
 	int		type_pos;
 
-	printf("%d\n", type);
 	type_pos = node_size(head) - 1;
 	if (type == 0)
 		return (make_new_ast(head));

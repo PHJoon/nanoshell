@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../test.h"
+#include "../includes/test.h"
 
 int	check_str_valid(char *str)
 {

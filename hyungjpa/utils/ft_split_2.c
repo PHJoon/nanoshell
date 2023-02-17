@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../test.h"
+#include "../includes/test.h"
 
 int	ft_split_and(char ***temp, char *str, int idx)
 {

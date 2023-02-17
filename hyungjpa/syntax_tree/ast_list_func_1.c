@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ast.h"
+#include "../includes/test.h"
 
 t_node	*make_new(char *str, int t)
 {

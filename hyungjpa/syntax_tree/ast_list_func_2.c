@@ -1,28 +1,43 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_free_str.c                                      :+:      :+:    :+:   */
+/*   ast_5.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chanson <chanson@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hyungjpa <hyungjpa@student.42seoul.>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/13 14:47:02 by chanson           #+#    #+#             */
-/*   Updated: 2023/02/13 14:50:56 by chanson          ###   ########.fr       */
+/*   Created: 2023/02/16 18:16:25 by hyungjpa          #+#    #+#             */
+/*   Updated: 2023/02/16 18:16:26 by hyungjpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/test.h"
 
-void	ft_free_str(char **str)
+int	node_size(t_node *head)
 {
-	int	i;
+	t_node	*tmp;
+	int		i;
 
 	i = 0;
-	if (str == NULL)
-		return ;
-	while (str[i])
+	tmp = head;
+	while (tmp)
 	{
-		free(str[i]);
 		i++;
+		tmp = tmp->next;
 	}
-	free(str);
+	return (i);
 }
+
+int	check_left(t_node *head, int type)
+{
+	t_node	*tmp;
+
+	tmp = head;
+	while (tmp)
+	{
+		if (tmp->type == type)
+			return (1);
+		tmp = tmp->next;
+	}
+	return (0);
+}
+

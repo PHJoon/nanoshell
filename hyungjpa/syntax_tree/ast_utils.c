@@ -10,34 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ast.h"
-
-void	make_type_list(int *type_list, char **temp)
-{
-	enum e_token	type;
-	int				i;
-
-	i = -1;
-	while (temp[++i])
-	{
-		if (ft_strscmp(temp[i], "<") == TRUE)
-			type_list[i] = TK_IRD;
-		else if (ft_strscmp(temp[i], ">") == TRUE)
-			type_list[i] = TK_ORD;
-		else if (ft_strscmp(temp[i], "<<") == TRUE)
-			type_list[i] = TK_HRD;
-		else if (ft_strscmp(temp[i], ">>") == TRUE)
-			type_list[i] = TK_ARD;
-		else if (ft_strscmp(temp[i], "|") == TRUE)
-			type_list[i] = TK_PIPE;
-		else if (ft_strscmp(temp[i], "&&") == TRUE)
-			type_list[i] = TK_AND;
-		else if (ft_strscmp(temp[i], "||") == TRUE)
-			type_list[i] = TK_OR;
-		else
-			type_list[i] = TK_STR;
-	}
-}
+#include "../includes/test.h"
 
 char	*ft_strdup(const char *s1)
 {

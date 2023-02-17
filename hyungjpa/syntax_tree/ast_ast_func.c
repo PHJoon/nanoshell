@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ast.h"
+#include "../includes/test.h"
 
 t_ast	*make_new_ast(t_node *res)
 {
@@ -34,7 +34,6 @@ int	check_type_place(t_node *head, int type, int *type_pos)
 	t_node	*tmp;
 
 	i = 0;
-
 	pos_tmp = node_size(head) - 1;
 	tmp = head;
 	while (tmp)

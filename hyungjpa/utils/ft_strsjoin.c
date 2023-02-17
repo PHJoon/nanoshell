@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../test.h"
+#include "../includes/test.h"
 
 char	**ft_strsjoin(char **str1, char *str)
 {

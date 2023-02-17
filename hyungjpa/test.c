@@ -10,35 +10,26 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ast.h"
+#include "./includes/test.h"
 
 int	main(void)
 {
 	char	*str;
 	char	**temp;
-	int		i;
 	t_node	*head;
 	t_ast	*root;
 
-	str = readline("> ");
-	temp = ft_split(str);
-	i = 0;
-	head = trans_to_list(temp);
-	root = list_to_ast(root, head, 7);
-	inorderprint(root);
-	// printf("---res---\n");
-	// print_list(res);
-	// printf("---res---\n");
-	// printf("---left---\n");
-	// print_list(left);
-	// printf("---left---\n");
-	// printf("---right---\n");
-	// print_list(right);
-	// printf("---right---\n");
-	// if (syntax_check(temp) == FALSE)
-	// {
-	// 	printf("syntax error\n");
-	// 	return (1);
-	// }
+	off_catch_signals();
+	signal_handle();
+	root = NULL;
+	while (1)
+	{
+		str = readline("nanoshell$ ");
+		signal_sigterm(str);
+		temp = ft_split(str);
+		head = trans_to_list(temp);
+		root = list_to_ast(root, head, 7);
+		free(str);
+	}
 	return (0);
 }

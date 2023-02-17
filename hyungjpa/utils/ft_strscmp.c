@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../test.h"
+#include "../includes/test.h"
 
 int	ft_strscmp(char *str1, char *str2)
 {

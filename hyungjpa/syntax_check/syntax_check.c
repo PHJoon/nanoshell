@@ -10,11 +10,10 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../test.h"
+#include "../includes/test.h"
 
-static void	make_type_list(int *type_list, char **temp)
+void	make_type_list(int *type_list, char **temp)
 {
-	enum e_token	type;
 	int				i;
 
 	i = -1;
