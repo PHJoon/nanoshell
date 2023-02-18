@@ -21,6 +21,9 @@ typedef struct s_env_list
 	struct s_env_list	*next;
 }	t_env_list;
 
+// builtin_echo.
+void		do_echo(char **str);
+
 // builtin_env.c
 t_env_list	*make_env_list(char **envp);
 void		do_env(t_env_list	*env_list);
