@@ -1,40 +1,44 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pwd.c                                              :+:      :+:    :+:   */
+/*   builtin_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hyungjpa <hyungjpa@student.42seoul.>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/11 23:43:25 by hyungjpa          #+#    #+#             */
-/*   Updated: 2023/02/11 23:43:26 by hyungjpa         ###   ########.fr       */
+/*   Created: 2023/02/18 16:27:35 by hyungjpa          #+#    #+#             */
+/*   Updated: 2023/02/18 16:27:36 by hyungjpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/test.h"
 
-int	check_pwd(char **argv)
+size_t	ft_strlen(const char *s)
 {
-	if (!ft_strncmp(argv[1], "pwd", 4))
-		return (1);
-	return (0);
+	size_t	i;
+
+	i = 0;
+	while (s[i] != '\0')
+	{
+		i++;
+	}
+	return (i);
 }
 
-void	do_pwd(int argc, char **argv)
+int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {
-	char	path[1024];
+	size_t	i;
 
-	if (!check_pwd(argv))
-		return ;
-	if (argc > 2)
+	i = 0;
+	if (n == 0)
+		return (0);
+	while (s1[i] != '\0' && s2[i] != '\0' && i < n)
 	{
-		perror(argv[2]);
-		return ;
+		if (s1[i] != s2[i])
+			return ((unsigned char)s1[i] - (unsigned char)s2[i]);
+		i++;
 	}
-	if (getcwd(path, 1024) == NULL)
-	{
-		perror("getcwd error!");
-		return ;
-	}
-	printf("%s\n", path);
-	return ;
+	if (i == n)
+		return (0);
+	else
+		return ((unsigned char)s1[i] - (unsigned char)s2[i]);
 }

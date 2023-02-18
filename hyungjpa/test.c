@@ -19,6 +19,7 @@ int	main(int argc, char **argv, char **envp)
 	t_node		*head;
 	t_ast		*root;
 	// t_env_list	*env_list;
+	t_env_list	*export_list;
 
 	(void)argc;
 	(void)argv;
@@ -26,13 +27,11 @@ int	main(int argc, char **argv, char **envp)
 	off_catch_signals();
 	signal_handle();
 	// env_list = make_env_list(envp);
-	// do_export(env_list);
+	// do_env(env_list);
 	// env_list = do_unset(env_list, "PATH");
-	// while (env_list)
-	// {
-	// 	printf("%s : %s\n", env_list->key, env_list->value);
-	// 	env_list = env_list->next;
-	// }
+	// do_env(env_list);
+	export_list = make_export_list(envp);
+	do_export(export_list);
 	while (1)
 	{
 		root = NULL;

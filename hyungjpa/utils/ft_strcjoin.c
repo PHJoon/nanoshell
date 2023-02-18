@@ -12,16 +12,6 @@
 
 #include "../includes/test.h"
 
-static int	ft_strlen(char *s)
-{
-	int	i;
-
-	i = 0;
-	while (s[i])
-		i++;
-	return (i);
-}
-
 char	*ft_strcjoin(char *s, char c)
 {
 	char	*temp;

@@ -17,9 +17,10 @@ SRCS_NAME = ./test \
 			./syntax_tree/ast_main \
 			./syntax_tree/ast_utils \
 			./signal_handle/signal_handler \
-			./builtin_env \
-			./builtin_unset \
-			./bulitin_export \
+			./builtin/builtin_env \
+			./builtin/builtin_unset \
+			./builtin/builtin_export \
+			./builtin/builtin_utils	\
 			./display \
 
 
