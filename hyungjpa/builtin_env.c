@@ -21,6 +21,7 @@ t_env_list	*make_new_env_list(char *key, char *value)
 		return (NULL);
 	new->key = key;
 	new->value = value;
+	new->prev = NULL;
 	new->next = NULL;
 	return (new);
 }
@@ -36,6 +37,7 @@ t_env_list	*add_env_list(t_env_list *env_list, char *key, char *value)
 		return (new);
 	while (tmp->next)
 		tmp = tmp->next;
+	new->prev = tmp;
 	tmp->next = new;
 	return (env_list);
 }

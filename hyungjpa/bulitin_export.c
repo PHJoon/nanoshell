@@ -1,25 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   env.h                                              :+:      :+:    :+:   */
+/*   bulitin_export.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hyungjpa <hyungjpa@student.42seoul.>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/17 15:52:06 by hyungjpa          #+#    #+#             */
-/*   Updated: 2023/02/17 15:52:10 by hyungjpa         ###   ########.fr       */
+/*   Created: 2023/02/17 16:49:56 by hyungjpa          #+#    #+#             */
+/*   Updated: 2023/02/17 16:49:57 by hyungjpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ENV_H
-# define ENV_H
+#include "./includes/test.h"
 
-typedef struct s_env_list
+void	do_export(t_env_list *env_list)
 {
-	char				*key;
-	char				*value;
-	struct s_env_list	*next;
-}	t_env_list;
+	t_env_list	*tmp;
 
-t_env_list	*make_env_list(char **envp);
-
-#endif
+	tmp = env_list;
+	while (tmp)
+	{
+		printf("%s=%s\n", tmp->key, tmp->value);
+		tmp = tmp->next;
+	}
+}

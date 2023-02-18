@@ -17,8 +17,12 @@ SRCS_NAME = ./test \
 			./syntax_tree/ast_main \
 			./syntax_tree/ast_utils \
 			./signal_handle/signal_handler \
-			./env \
-			
+			./builtin_env \
+			./builtin_unset \
+			./bulitin_export \
+			./display \
+
+
 
 
 SRCS = $(addsuffix .c, $(SRCS_NAME))
@@ -43,14 +47,14 @@ $(NAME):	$(OBJS)
 			@$(CC) $(FLAGS) $(RL_FLAGS) $(RL) $(RL_INCLUDE) $(INCLUDES) $(OBJS) -o $(NAME)
 
 %.o : %.c
-	${CC} ${FLAGS} $(RL_INCLUDE) $(INCLUDES) -c $< -o $@
+			@${CC} ${FLAGS} $(RL_INCLUDE) $(INCLUDES) -c $< -o $@
 
 
 clean:		
-			rm -rf $(OBJS)
+			@rm -rf $(OBJS)
 
 fclean:		clean
-			rm -rf $(NAME)
+			@rm -rf $(NAME)
 
 re:			fclean all
 

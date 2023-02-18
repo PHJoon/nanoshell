@@ -32,3 +32,35 @@ char	*ft_strdup(const char *s1)
 	ptr[i] = '\0';
 	return (ptr);
 }
+
+void	free_node(t_node *list)
+{
+	t_node	*tmp;
+	t_node	*tmp_next;
+
+	if (!list)
+		return ;
+	tmp = list;
+	while (tmp)
+	{
+		free(tmp->data);
+		tmp->data = NULL;
+		tmp_next = tmp->next;
+		free(tmp);
+		tmp = NULL;
+		tmp = tmp_next;
+	}
+}
+
+void	free_ast(t_ast *ast)
+{
+	if (ast == NULL)
+		return ;
+	free_ast(ast->left);
+	ast->left = NULL;
+	free_ast(ast->right);
+	ast->right = NULL;
+	free_node(ast->node);
+	ast->node = NULL;
+	free(ast);
+}

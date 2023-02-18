@@ -96,6 +96,7 @@ static int	ft_split_quote(char ***temp, char *str, int idx)
 	return (cnt + 1);
 }
 
+
 char	**ft_split(char *s)
 {
 	char	**temp;
@@ -132,16 +133,4 @@ char	**ft_split(char *s)
 	if (buff != NULL)
 		temp = ft_strsjoin(temp, buff);
 	return (temp);
-}
-
-void dispaly_str(char **str)
-{
-	int	i;
-
-	i = 0;
-	while (str[i])
-	{
-		printf("display: %s\n", str[i]);
-		i++;
-	}
 }

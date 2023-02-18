@@ -48,3 +48,15 @@ int	ft_split_par(char ***temp, char *str, int idx)
 	*temp = ft_strsjoin(*temp, buff);
 	return (cnt + 1);
 }
+
+void dispaly_str(char **str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i])
+	{
+		printf("display: %s\n", str[i]);
+		i++;
+	}
+}

@@ -24,7 +24,7 @@
 
 # include "ast.h"
 # include "signal_handler.h"
-# include "env.h"
+# include "builtin.h"
 
 enum e_token
 {
@@ -68,10 +68,14 @@ int		ft_split_and(char ***temp, char *str, int idx);
 int		ft_split_par(char ***temp, char *str, int idx);
 int		ft_strscmp(char *str1, char *str2);
 
-//syntax_check
+// syntax_check
 int		syntax_check(char **temp);
 int		check_pattern(char **temp, int *type_list, int idx);
 int		check_str_valid(char *str);
 void	make_type_list(int *type_list, char **temp);
+
+// display
+void	display_node(t_node *head);
+void	display_ast(t_ast *root);
 
 #endif

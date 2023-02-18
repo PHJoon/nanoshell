@@ -1,0 +1,7 @@
+{
+	"files.associations": {
+		"history.h": "c",
+		"test.h": "c",
+		"ios": "c"
+	}
+}

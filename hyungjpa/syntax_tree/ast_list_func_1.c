@@ -59,7 +59,6 @@ t_node	*split_node(t_node *head, t_node **left, t_node **right, int i)
 	*left = node_dup(head, i);
 	*right = node_dup(tmp->next, node_size(tmp->next));
 	res = node_dup(tmp, 1);
-	// free node(head);
 	return (res);
 }
 
