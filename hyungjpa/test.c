@@ -20,18 +20,21 @@ int	main(int argc, char **argv, char **envp)
 	t_ast		*root;
 	// t_env_list	*env_list;
 	t_env_list	*export_list;
+	char		*pwd[2] = {"pwd", 0};
+	char		*cd[3] = {"cd", "././../utils/", 0};
+	char		*export[3] = {"export", "a=b", 0};
 
 	(void)argc;
 	(void)argv;
 	(void)envp;
 	off_catch_signals();
 	signal_handle();
-	// env_list = make_env_list(envp);
-	// do_env(env_list);
-	// env_list = do_unset(env_list, "PATH");
-	// do_env(env_list);
+	do_pwd(pwd);
+	do_cd(cd);
 	export_list = make_export_list(envp);
-	do_export(export_list);
+	do_export(export, export_list);
+	// env_list = make_env_list(envp);
+	// env_list = do_unset(env_list, "PATH");
 	while (1)
 	{
 		root = NULL;

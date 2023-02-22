@@ -73,15 +73,3 @@ t_env_list	*make_env_list(char **envp)
 	}
 	return (env_list);
 }
-
-void	do_env(t_env_list *env_list)
-{
-	t_env_list	*tmp;
-
-	tmp = env_list;
-	while (tmp)
-	{
-		printf("%s=%s\n", tmp->key, tmp->value);
-		tmp = tmp->next;
-	}
-}

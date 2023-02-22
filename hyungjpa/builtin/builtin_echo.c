@@ -12,19 +12,6 @@
 
 #include "../includes/test.h"
 
-size_t	str_size(char **str)
-{
-	size_t	i;
-
-	i = 0;
-	while (*str)
-	{
-		i++;
-		str++;
-	}
-	return (i);
-}
-
 int	check_echo(char *str)
 {
 	if (!ft_strncmp(str, "echo", 5))
@@ -59,8 +46,8 @@ void	do_echo(char **str)
 	size_t	i;
 
 	flag = 1;
-	i = 2;
-	if (!check_echo(str[1]))
+	i = 1;
+	if (!check_echo(str[0]))
 		return ;
 	while (echo_option(str[i]) == 1)
 	{

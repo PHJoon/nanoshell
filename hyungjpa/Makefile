@@ -17,11 +17,17 @@ SRCS_NAME = ./test \
 			./syntax_tree/ast_main \
 			./syntax_tree/ast_utils \
 			./signal_handle/signal_handler \
+			./builtin/builtin_cd \
 			./builtin/builtin_echo \
-			./builtin/builtin_env \
+			./builtin/builtin_env_1 \
+			./builtin/builtin_env_2 \
+			./builtin/builtin_exit \
+			./builtin/builtin_export_1 \
+			./builtin/builtin_export_2 \
+			./builtin/builtin_pwd \
 			./builtin/builtin_unset \
-			./builtin/builtin_export \
-			./builtin/builtin_utils \
+			./builtin/builtin_utils_1 \
+			./builtin/builtin_utils_2 \
 			./display \
 
 

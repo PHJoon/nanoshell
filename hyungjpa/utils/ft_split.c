@@ -96,7 +96,6 @@ static int	ft_split_quote(char ***temp, char *str, int idx)
 	return (cnt + 1);
 }
 
-
 char	**ft_split(char *s)
 {
 	char	**temp;

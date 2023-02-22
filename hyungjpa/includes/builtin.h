@@ -21,22 +21,40 @@ typedef struct s_env_list
 	struct s_env_list	*next;
 }	t_env_list;
 
-// builtin_echo.
+// builtin_cd.c
+void		do_cd(char **str);
+
+// builtin_echo.c
 void		do_echo(char **str);
 
-// builtin_env.c
+// builtin_env_1.c
+void		do_env(char **str, t_env_list *env_list);
+
+// builtin_env_2.c
+t_env_list	*add_env_list(t_env_list *env_list, char *key, char *value);
 t_env_list	*make_env_list(char **envp);
-void		do_env(t_env_list	*env_list);
+
+// builtin_export_1.c
+void		do_export(char **str, t_env_list *export_list);
+
+// builtin_export_2.c
+t_env_list	*sort_export_list(t_env_list *export_list);
+t_env_list	*make_export_list(char **envp);
+
+// builtin_pwd.c
+void		do_pwd(char **str);
 
 // builtin_unset.c
-t_env_list	*do_unset(t_env_list *env_list, char *key);
+t_env_list	*do_unset(char **str, t_env_list *env_list);
 
-// builtin_export.c
-t_env_list	*make_export_list(char **envp);
-void		do_export(t_env_list *export_list);
-
-// builtin_utils.c
+// builtin_utils_1.c
 size_t		ft_strlen(const char *s);
+size_t		str_size(char **str);
 int			ft_strncmp(const char *s1, const char *s2, size_t n);
+size_t		ft_strchr(const char *s, int c);
+size_t		ft_strrchr(const char *s, int c);
+
+// builtin_utils_2.c
+char		*ft_substr(char const *s, unsigned int start, size_t len);
 
 #endif

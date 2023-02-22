@@ -49,7 +49,7 @@ int	ft_split_par(char ***temp, char *str, int idx)
 	return (cnt + 1);
 }
 
-void dispaly_str(char **str)
+void	dispaly_str(char **str)
 {
 	int	i;
 

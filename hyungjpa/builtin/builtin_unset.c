@@ -12,6 +12,13 @@
 
 #include "../includes/test.h"
 
+int	check_unset(char *str)
+{
+	if (!ft_strncmp(str, "unset", 6))
+		return (1);
+	return (0);
+}
+
 void	relink_env_list(t_env_list *tmp)
 {
 	if (tmp->prev)
@@ -31,20 +38,26 @@ void	relink_env_list(t_env_list *tmp)
 	}
 }
 
-t_env_list	*do_unset(t_env_list *env_list, char *key)
+t_env_list	*do_unset(char **str, t_env_list *env_list)
 {
 	t_env_list	*tmp;
+	size_t		i;
 
+	if (!check_unset(str[0]))
+		return (env_list);
 	tmp = env_list;
 	while (tmp)
 	{
-		if (ft_strscmp(tmp->key, key))
+		i = 1;
+		while (str[i])
 		{
-			relink_env_list(tmp);
-			free(tmp->key);
-			free(tmp->value);
-			free(tmp);
-			return (env_list);
+			if (ft_strncmp(tmp->key, str[i], ft_strlen(str[i]) + 1))
+			{
+				relink_env_list(tmp);
+				free(tmp->key);
+				free(tmp->value);
+				free(tmp);
+			}
 		}
 		tmp = tmp->next;
 	}

@@ -1,44 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   builtin_utils.c                                    :+:      :+:    :+:   */
+/*   builtin_utils_2.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hyungjpa <hyungjpa@student.42seoul.>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/18 16:27:35 by hyungjpa          #+#    #+#             */
-/*   Updated: 2023/02/18 16:27:36 by hyungjpa         ###   ########.fr       */
+/*   Created: 2023/02/21 16:35:17 by hyungjpa          #+#    #+#             */
+/*   Updated: 2023/02/21 16:35:19 by hyungjpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/test.h"
 
-size_t	ft_strlen(const char *s)
+char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
+	char	*sub;
 	size_t	i;
 
 	i = 0;
-	while (s[i] != '\0')
+	if (start >= ft_strlen(s))
 	{
-		i++;
+		sub = (char *)malloc(sizeof(char) * 1);
+		if (!sub)
+			return (0);
+		sub[0] = '\0';
+		return (sub);
 	}
-	return (i);
-}
-
-int	ft_strncmp(const char *s1, const char *s2, size_t n)
-{
-	size_t	i;
-
-	i = 0;
-	if (n == 0)
+	if (ft_strlen(s) < len + start)
+		len = ft_strlen(s) - start;
+	sub = (char *)malloc(sizeof(char) * (len + 1));
+	if (!sub)
 		return (0);
-	while (s1[i] != '\0' && s2[i] != '\0' && i < n)
-	{
-		if (s1[i] != s2[i])
-			return ((unsigned char)s1[i] - (unsigned char)s2[i]);
-		i++;
-	}
-	if (i == n)
-		return (0);
-	else
-		return ((unsigned char)s1[i] - (unsigned char)s2[i]);
+	while (len-- != 0 && start < ft_strlen(s))
+		sub[i++] = s[start++];
+	sub[i] = '\0';
+	return (sub);
 }
