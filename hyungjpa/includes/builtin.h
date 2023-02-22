@@ -47,14 +47,4 @@ void		do_pwd(char **str);
 // builtin_unset.c
 t_env_list	*do_unset(char **str, t_env_list *env_list);
 
-// builtin_utils_1.c
-size_t		ft_strlen(const char *s);
-size_t		str_size(char **str);
-int			ft_strncmp(const char *s1, const char *s2, size_t n);
-size_t		ft_strchr(const char *s, int c);
-size_t		ft_strrchr(const char *s, int c);
-
-// builtin_utils_2.c
-char		*ft_substr(char const *s, unsigned int start, size_t len);
-
 #endif

@@ -50,7 +50,6 @@ t_node	*trans_to_list(char **temp);
 t_ast	*list_to_ast(t_ast *root, t_node *head, int type);
 
 // ast_utils.c
-char	*ft_strdup(const char *s1);
 void	free_node(t_node *list);
 void	free_ast(t_ast *ast);
 

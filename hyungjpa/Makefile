@@ -1,21 +1,28 @@
 NAME = test
 
 SRCS_NAME = ./test \
-			./utils/ft_split \
-			./utils/ft_split_2 \
 			./utils/ft_free_str \
+			./utils/ft_str_size \
+			./utils/ft_strchr \
 			./utils/ft_strcjoin \
-			./utils/ft_strsjoin \
-			./utils/ft_strcpy \
+			./utils/ft_strdup \
+			./utils/ft_strlen \
+			./utils/ft_strncmp \
+			./utils/ft_strrchr \
 			./utils/ft_strscmp \
+			./utils/ft_strsjoin \
+			./utils/ft_substr \
+			./utils/syntax_ft_split_1 \
+			./utils/syntax_ft_split_2 \
+			./utils/syntax_ft_split_3 \
 			./syntax_check/syntax_check \
 			./syntax_check/check_pattern \
 			./syntax_check/check_str_valid \
 			./syntax_tree/ast_ast_func \
+			./syntax_tree/ast_free \
 			./syntax_tree/ast_list_func_1 \
 			./syntax_tree/ast_list_func_2 \
 			./syntax_tree/ast_main \
-			./syntax_tree/ast_utils \
 			./signal_handle/signal_handler \
 			./builtin/builtin_cd \
 			./builtin/builtin_echo \
@@ -26,8 +33,6 @@ SRCS_NAME = ./test \
 			./builtin/builtin_export_2 \
 			./builtin/builtin_pwd \
 			./builtin/builtin_unset \
-			./builtin/builtin_utils_1 \
-			./builtin/builtin_utils_2 \
 			./display \
 
 

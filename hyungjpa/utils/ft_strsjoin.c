@@ -32,7 +32,7 @@ char	**ft_strsjoin(char **str1, char *str)
 	temp[cnt + 1] = NULL;
 	idx = -1;
 	while (++idx < cnt)
-		temp[idx] = ft_strcpy(str1[idx]);
+		temp[idx] = ft_strdup(str1[idx]);
 	temp[idx] = str;
 	ft_free_str(str1);
 	return (temp);

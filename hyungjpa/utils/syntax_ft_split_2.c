@@ -1,20 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_split.c                                         :+:      :+:    :+:   */
+/*   syntax_ft_split_3.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chanson <chanson@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hyungjpa <hyungjpa@student.42seoul.>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/13 14:02:12 by chanson           #+#    #+#             */
-/*   Updated: 2023/02/15 13:40:37 by chanson          ###   ########.fr       */
+/*   Created: 2023/02/22 20:08:42 by hyungjpa          #+#    #+#             */
+/*   Updated: 2023/02/22 20:08:44 by hyungjpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/test.h"
 
-void	dispaly_str(char **str);
-
-static int	ft_split_pipe(char ***temp, char *str, int idx)
+int	ft_split_pipe(char ***temp, char *str, int idx)
 {
 	char	*buff;
 	int		cnt;
@@ -31,7 +29,7 @@ static int	ft_split_pipe(char ***temp, char *str, int idx)
 	return (cnt);
 }
 
-static int	ft_split_redirection(char ***temp, char *str, int idx)
+int	ft_split_redirection(char ***temp, char *str, int idx)
 {
 	char	*buff;
 
@@ -53,7 +51,7 @@ static int	ft_split_redirection(char ***temp, char *str, int idx)
 	return (0);
 }
 
-static int	_ft_split_quote(char *str, int idx, char **buff)
+int	_ft_split_quote(char *str, int idx, char **buff)
 {
 	int		cnt;
 
@@ -70,7 +68,7 @@ static int	_ft_split_quote(char *str, int idx, char **buff)
 	return (cnt);
 }
 
-static int	ft_split_quote(char ***temp, char *str, int idx)
+int	ft_split_quote(char ***temp, char *str, int idx)
 {
 	char	*buff;
 	int		cnt;
@@ -94,42 +92,4 @@ static int	ft_split_quote(char ***temp, char *str, int idx)
 	cnt = _ft_split_quote(str, idx, &buff);
 	*temp = ft_strsjoin(*temp, buff);
 	return (cnt + 1);
-}
-
-char	**ft_split(char *s)
-{
-	char	**temp;
-	char	*buff;
-	int		i;
-
-	i = 0;
-	buff = NULL;
-	temp = NULL;
-	while (s[i])
-	{
-		if (s[i] != '|' && s[i] != '\'' && s[i] != '\"' && s[i] != ' ' && \
-			s[i] != '&' && s[i] != '>' && s[i] != '<' && s[i] != '(')
-			buff = ft_strcjoin(buff, s[i]);
-		else
-		{
-			if (buff != NULL)
-				temp = ft_strsjoin(temp, buff);
-			buff = NULL;
-			if (s[i] == '|')
-				i += ft_split_pipe(&temp, s, i);
-			else if (s[i] == '\'' || s[i] == '\"')
-				i += ft_split_quote(&temp, s, i);
-			else if (s[i] == '>' || s[i] == '<')
-				i += ft_split_redirection(&temp, s, i);
-			else if (s[i] == '&')
-				i += ft_split_and(&temp, s, i);
-			else if (s[i] == '(')
-				i += ft_split_par(&temp, s, i);
-		}
-		if (s[i] != '\0')
-			i++;
-	}
-	if (buff != NULL)
-		temp = ft_strsjoin(temp, buff);
-	return (temp);
 }
