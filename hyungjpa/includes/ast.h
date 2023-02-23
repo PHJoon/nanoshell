@@ -31,8 +31,8 @@ typedef struct s_ast
 
 // ast_ast_func.c
 t_ast	*make_new_ast(t_node *res);
-int		check_type_place(t_node *head, int type, int *type_pos);
-void	inorderprint(t_ast *root);
+t_ast	*ast_left_side(t_ast *root, t_node *left, int type);
+t_ast	*ast_right_side(t_ast *root, t_node *right, int type);
 
 // ast_list_func_1.c
 t_node	*make_new(char *str, int t);
@@ -43,13 +43,14 @@ t_node	*node_dup(t_node *head, int i);
 // ast_list_func_2.c
 int		node_size(t_node *head);
 int		check_left(t_node *head, int type);
+int		check_type_place(t_node *head, int type, int *type_pos);
 
 // ast_main.c
 t_node	*trans_to_list(char **temp);
 t_ast	*list_to_ast(t_ast *root, t_node *head, int type);
 
 // ast_utils.c
-void	make_type_list(int *type_list, char **temp);
-char	*ft_strdup(const char *s1);
+void	free_node(t_node *list);
+void	free_ast(t_ast *ast);
 
 #endif

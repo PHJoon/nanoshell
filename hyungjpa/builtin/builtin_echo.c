@@ -40,28 +40,27 @@ int	echo_option(char *str)
 	return (0);
 }
 
-void	do_echo(int argc, char **argv)
+void	do_echo(char **str)
 {
-	char	**tmp;
 	int		flag;
 	size_t	i;
 
 	flag = 1;
-	i = 2;
-	if (!check_echo(argv[1]))
+	i = 1;
+	if (!check_echo(str[0]))
 		return ;
-	while (echo_option(argv[i]) == 1)
+	while (echo_option(str[i]) == 1)
 	{
 		i++;
 		flag = 0;
 	}
-	if (echo_option(argv[i]) == -1)
+	if (echo_option(str[i]) == -1)
 		return ;
-	while (argv[i])
+	while (str[i])
 	{
-		printf("%s", argv[i]);
+		printf("%s", str[i]);
 		i++;
-		if (i != argc)
+		if (i != str_size(str))
 			printf(" ");
 	}
 	if (flag)

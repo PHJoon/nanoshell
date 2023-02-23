@@ -30,6 +30,7 @@ t_node	*trans_to_list(char **temp)
 		head = add_back(head, ft_strdup(temp[i]), type_list[i]);
 		i++;
 	}
+	free(type_list);
 	return (head);
 }
 
@@ -41,20 +42,18 @@ t_ast	*list_to_ast(t_ast *root, t_node *head, int type)
 	int		type_pos;
 
 	type_pos = node_size(head) - 1;
-	if (type == 0)
-		return (make_new_ast(head));
+	if (type == 0 || type_pos == 0)
+	{
+		res = node_dup(head, node_size(head));
+		return (make_new_ast(res));
+	}
 	if (check_type_place(head, type, &type_pos))
 		return (list_to_ast(root, head, type - 1));
 	res = split_node(head, &left, &right, type_pos);
 	root = make_new_ast(res);
-	if (left)
-	{
-		if (!check_left(left, type))
-			root->left = list_to_ast(root->left, left, type - 1);
-		else
-			root->left = list_to_ast(root->left, left, type);
-	}
-	if (right)
-		root->right = list_to_ast(root->right, right, type - 1);
+	root = ast_left_side(root, left, type);
+	root = ast_right_side(root, right, type);
+	free_node(left);
+	free_node(right);
 	return (root);
 }

@@ -1,25 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   env.h                                              :+:      :+:    :+:   */
+/*   ft_str_size.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hyungjpa <hyungjpa@student.42seoul.>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/17 15:52:06 by hyungjpa          #+#    #+#             */
-/*   Updated: 2023/02/17 15:52:10 by hyungjpa         ###   ########.fr       */
+/*   Created: 2023/02/22 19:26:03 by hyungjpa          #+#    #+#             */
+/*   Updated: 2023/02/22 19:26:05 by hyungjpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ENV_H
-# define ENV_H
+#include "../includes/test.h"
 
-typedef struct s_env_list
+size_t	str_size(char **str)
 {
-	char				*key;
-	char				*value;
-	struct s_env_list	*next;
-}	t_env_list;
+	size_t	i;
 
-t_env_list	*make_env_list(char **envp);
-
-#endif
+	i = 0;
+	while (*str)
+	{
+		i++;
+		str++;
+	}
+	return (i);
+}

@@ -1,30 +1,45 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   builtin_exit.c                                     :+:      :+:    :+:   */
+/*   ast_2.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hyungjpa <hyungjpa@student.42seoul.>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/22 14:40:02 by hyungjpa          #+#    #+#             */
-/*   Updated: 2023/02/22 14:40:04 by hyungjpa         ###   ########.fr       */
+/*   Created: 2023/02/16 13:23:47 by hyungjpa          #+#    #+#             */
+/*   Updated: 2023/02/16 13:23:50 by hyungjpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/test.h"
 
-int	check_exit(char *str)
+void	free_node(t_node *list)
 {
-	if (!ft_strncmp(str, "exit", 5))
-		return (1);
-	return (0);
+	t_node	*tmp;
+	t_node	*tmp_next;
+
+	if (!list)
+		return ;
+	tmp = list;
+	while (tmp)
+	{
+		free(tmp->data);
+		tmp->data = NULL;
+		tmp_next = tmp->next;
+		free(tmp);
+		tmp = NULL;
+		tmp = tmp_next;
+	}
 }
 
-void	do_exit(char **str)
+void	free_ast(t_ast *ast)
 {
-	if (!check_exit(str[0]))
+	if (ast == NULL)
 		return ;
-	printf("exit\n");
-	if (str[1])
-		perror(str[1]);
-	exit(0);
+	free_ast(ast->left);
+	ast->left = NULL;
+	free_ast(ast->right);
+	ast->right = NULL;
+	free_node(ast->node);
+	ast->node = NULL;
+	free(ast);
 }

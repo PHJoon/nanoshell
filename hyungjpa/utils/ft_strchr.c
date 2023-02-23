@@ -1,22 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   builtin_env.c                                      :+:      :+:    :+:   */
+/*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hyungjpa <hyungjpa@student.42seoul.>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/14 17:24:44 by hyungjpa          #+#    #+#             */
-/*   Updated: 2023/02/14 17:24:46 by hyungjpa         ###   ########.fr       */
+/*   Created: 2023/02/22 19:26:31 by hyungjpa          #+#    #+#             */
+/*   Updated: 2023/02/22 19:26:31 by hyungjpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/test.h"
 
-void	do_env(char **envp)
+size_t	ft_strchr(const char *s, int c)
 {
-	while (*envp)
+	size_t	i;
+
+	i = 0;
+	while (s[i])
 	{
-		printf("%s\n", *envp);
-		envp++;
+		if (s[i] == (char)c)
+			return (i);
+		i++;
 	}
+	return (0);
 }

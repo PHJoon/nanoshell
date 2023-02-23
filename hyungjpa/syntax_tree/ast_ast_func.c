@@ -27,37 +27,21 @@ t_ast	*make_new_ast(t_node *res)
 	return (new);
 }
 
-int	check_type_place(t_node *head, int type, int *type_pos)
+t_ast	*ast_left_side(t_ast *root, t_node *left, int type)
 {
-	int		i;
-	int		pos_tmp;
-	t_node	*tmp;
-
-	i = 0;
-	pos_tmp = node_size(head) - 1;
-	tmp = head;
-	while (tmp)
+	if (left)
 	{
-		if (tmp->type == type)
-			pos_tmp = i;
-		i++;
-		tmp = tmp->next;
+		if (!check_left(left, type))
+			root->left = list_to_ast(root->left, left, type - 1);
+		else
+			root->left = list_to_ast(root->left, left, type);
 	}
-	if (*type_pos == pos_tmp)
-		return (1);
-	*type_pos = pos_tmp;
-	return (0);
+	return (root);
 }
 
-void	inorderprint(t_ast *root)
+t_ast	*ast_right_side(t_ast *root, t_node *right, int type)
 {
-	if (root == NULL)
-		return ;
-	while (root->node)
-	{
-		printf("%s : %d\n", root->node->data, root->node->type);
-		root->node = root->node->next;
-	}
-	inorderprint(root->left);
-	inorderprint(root->right);
+	if (right)
+		root->right = list_to_ast(root->right, right, type - 1);
+	return (root);
 }

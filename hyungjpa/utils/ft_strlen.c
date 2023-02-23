@@ -1,32 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strcpy.c                                        :+:      :+:    :+:   */
+/*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chanson <chanson@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hyungjpa <hyungjpa@student.42seoul.>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/13 17:26:21 by chanson           #+#    #+#             */
-/*   Updated: 2023/02/13 17:28:52 by chanson          ###   ########.fr       */
+/*   Created: 2023/02/22 19:25:51 by hyungjpa          #+#    #+#             */
+/*   Updated: 2023/02/22 19:25:52 by hyungjpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/test.h"
 
-char	*ft_strcpy(char *str)
+size_t	ft_strlen(const char *s)
 {
-	char	*temp;
-	int		i;
+	size_t	i;
 
 	i = 0;
-	while (str[i])
-		i++;
-	temp = (char *)malloc(sizeof(char) * (i + 1));
-	temp[i] = '\0';
-	i = 0;
-	while (str[i])
+	while (s[i] != '\0')
 	{
-		temp[i] = str[i];
 		i++;
 	}
-	return (temp);
+	return (i);
 }

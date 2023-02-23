@@ -1,30 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   builtin_exit.c                                     :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hyungjpa <hyungjpa@student.42seoul.>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/22 14:40:02 by hyungjpa          #+#    #+#             */
-/*   Updated: 2023/02/22 14:40:04 by hyungjpa         ###   ########.fr       */
+/*   Created: 2023/02/22 19:32:40 by hyungjpa          #+#    #+#             */
+/*   Updated: 2023/02/22 19:32:43 by hyungjpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/test.h"
 
-int	check_exit(char *str)
+char	*ft_strdup(const char *s1)
 {
-	if (!ft_strncmp(str, "exit", 5))
-		return (1);
-	return (0);
-}
+	char	*ptr;
+	int		i;
 
-void	do_exit(char **str)
-{
-	if (!check_exit(str[0]))
-		return ;
-	printf("exit\n");
-	if (str[1])
-		perror(str[1]);
-	exit(0);
+	i = 0;
+	while (s1[i])
+		i++;
+	ptr = (char *)malloc(sizeof(char) * (i + 1));
+	if (!ptr)
+		return (0);
+	i = 0;
+	while (s1[i])
+	{
+		ptr[i] = s1[i];
+		i++;
+	}
+	ptr[i] = '\0';
+	return (ptr);
 }

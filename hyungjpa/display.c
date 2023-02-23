@@ -1,30 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   builtin_exit.c                                     :+:      :+:    :+:   */
+/*   display.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hyungjpa <hyungjpa@student.42seoul.>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/22 14:40:02 by hyungjpa          #+#    #+#             */
-/*   Updated: 2023/02/22 14:40:04 by hyungjpa         ###   ########.fr       */
+/*   Created: 2023/02/18 15:38:15 by hyungjpa          #+#    #+#             */
+/*   Updated: 2023/02/18 15:38:17 by hyungjpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/test.h"
+#include "./includes/test.h"
 
-int	check_exit(char *str)
+void	display_node(t_node *head)
 {
-	if (!ft_strncmp(str, "exit", 5))
-		return (1);
-	return (0);
+	t_node	*tmp;
+
+	tmp = head;
+	while (tmp)
+	{
+		printf("%s : %d \n", tmp->data, tmp->type);
+		tmp = tmp->next;
+	}
 }
 
-void	do_exit(char **str)
+void	display_ast(t_ast *root)
 {
-	if (!check_exit(str[0]))
+	t_ast	*tmp;
+
+	tmp = root;
+	if (tmp == NULL)
 		return ;
-	printf("exit\n");
-	if (str[1])
-		perror(str[1]);
-	exit(0);
+	display_node(tmp->node);
+	display_ast(tmp->left);
+	display_ast(tmp->right);
 }

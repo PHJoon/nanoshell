@@ -1,30 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   builtin_exit.c                                     :+:      :+:    :+:   */
+/*   ft_strrchr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hyungjpa <hyungjpa@student.42seoul.>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/22 14:40:02 by hyungjpa          #+#    #+#             */
-/*   Updated: 2023/02/22 14:40:04 by hyungjpa         ###   ########.fr       */
+/*   Created: 2023/02/22 19:26:41 by hyungjpa          #+#    #+#             */
+/*   Updated: 2023/02/22 19:26:42 by hyungjpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/test.h"
 
-int	check_exit(char *str)
+size_t	ft_strrchr(const char *s, int c)
 {
-	if (!ft_strncmp(str, "exit", 5))
-		return (1);
-	return (0);
-}
+	size_t	i;
 
-void	do_exit(char **str)
-{
-	if (!check_exit(str[0]))
-		return ;
-	printf("exit\n");
-	if (str[1])
-		perror(str[1]);
-	exit(0);
+	i = ft_strlen(s) - 1;
+	while (i >= 0)
+	{
+		if (s[i] == (char)c)
+			return (i);
+		i--;
+	}
+	return (0);
 }
