@@ -62,3 +62,15 @@ t_env_list	*make_export_list(char **envp)
 	export_list = sort_export_list(export_list);
 	return (export_list);
 }
+
+void	print_export(t_env_list *export_list)
+{
+	t_env_list	*tmp;
+
+	tmp = export_list;
+	while (tmp)
+	{
+		printf("%s=%s\n", tmp->key, tmp->value);
+		tmp = tmp->next;
+	}
+}

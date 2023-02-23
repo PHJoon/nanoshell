@@ -49,7 +49,7 @@ char	**ft_strsjoin(char **str1, char *str);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
 
 // ./utils/syntax_ft_split_1
-char	**ft_split(char *s);
+char	**ft_split_syntax(char *s);
 
 // ./utils/syntax_ft_split_2
 int		ft_split_pipe(char ***temp, char *str, int idx);
@@ -61,5 +61,14 @@ int		ft_split_quote(char ***temp, char *str, int idx);
 int		ft_split_and(char ***temp, char *str, int idx);
 int		ft_split_par(char ***temp, char *str, int idx);
 void	dispaly_str(char **str);
+
+// ./utils/ft_strtrim
+char	*_ft_strtrim(char *str, int i, int j, int cnt);
+char	*ft_strtrim_couple(char *str, char c1, char c2);
+char	*ft_strtrim(char *str, char c);
+char	*ft_strtrim_couple_check(char *str, char c1, char c2);
+
+// ./utils/ft_strcpy_index.c
+char	*ft_strcpy_index(char *str, int start, int end);
 
 #endif

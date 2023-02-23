@@ -26,6 +26,8 @@
 # include "signal_handler.h"
 # include "builtin.h"
 # include "utils.h"
+# include "get_next_line.h"
+# include "pipex.h"
 
 enum e_token
 {
@@ -59,16 +61,6 @@ typedef struct s_tree
 	t_token		*top;
 }	t_tree;
 
-// utils
-char	*ft_strcjoin(char *s, char c);
-char	**ft_strsjoin(char **str1, char *str);
-void	ft_free_str(char **str);
-char	**ft_split(char *s);
-char	*ft_strcpy(char *str);
-int		ft_split_and(char ***temp, char *str, int idx);
-int		ft_split_par(char ***temp, char *str, int idx);
-int		ft_strscmp(char *str1, char *str2);
-
 // syntax_check
 int		syntax_check(char **temp);
 int		check_pattern(char **temp, int *type_list, int idx);
@@ -78,5 +70,9 @@ void	make_type_list(int *type_list, char **temp);
 // display
 void	display_node(t_node *head);
 void	display_ast(t_ast *root);
+
+
+char	**remove_quote(char **temp);
+int		check_remove_quote(char *str);
 
 #endif

@@ -25,7 +25,7 @@ typedef struct s_env_list
 void		do_cd(char **str);
 
 // builtin_echo.c
-void		do_echo(char **str);
+void	do_echo(char **str, t_env_list *env_list);
 
 // builtin_env_1.c
 void		do_env(char **str, t_env_list *env_list);
@@ -35,11 +35,13 @@ t_env_list	*add_env_list(t_env_list *env_list, char *key, char *value);
 t_env_list	*make_env_list(char **envp);
 
 // builtin_export_1.c
-void		do_export(char **str, t_env_list *export_list);
+void		do_export(char **str, t_env_list **export_list, \
+t_env_list **env_list);
 
 // builtin_export_2.c
 t_env_list	*sort_export_list(t_env_list *export_list);
 t_env_list	*make_export_list(char **envp);
+void		print_export(t_env_list *export_list);
 
 // builtin_pwd.c
 void		do_pwd(char **str);

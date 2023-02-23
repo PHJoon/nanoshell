@@ -3,6 +3,7 @@
 		"history.h": "c",
 		"test.h": "c",
 		"ios": "c",
-		"readline.h": "c"
+		"readline.h": "c",
+		"types.h": "c"
 	}
 }

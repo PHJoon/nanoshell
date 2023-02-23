@@ -12,13 +12,6 @@
 
 #include "../includes/test.h"
 
-int	check_echo(char *str)
-{
-	if (!ft_strncmp(str, "echo", 5))
-		return (1);
-	return (0);
-}
-
 int	echo_option(char *str)
 {
 	size_t	i;
@@ -40,14 +33,84 @@ int	echo_option(char *str)
 	return (0);
 }
 
-void	do_echo(char **str)
+void	find_value_print(t_env_list *env_list, char *key)
+{
+	t_env_list	*tmp;
+
+	tmp = env_list;
+	while (tmp)
+	{
+		if (ft_strscmp(tmp->key, key))
+		{
+			printf("%s", tmp->value);
+			return ;
+		}
+		tmp = tmp->next;
+	}
+}
+
+void	print_env_var(char *str, t_env_list *env_list)
+{
+	size_t	i;
+	size_t	j;
+	char	*tmp;
+
+	i = 0;
+	while (str[i])
+	{
+		if (str[i] == '$')
+		{
+			i++;
+			j = 0;
+			while (str[i + j] && str[i + j] != '$' && \
+			str[i + j] != '\'' && str[i + j] != '"')
+				j++;
+			tmp = ft_strcpy_index(str, i, i + j - 1);
+			find_value_print(env_list, tmp);
+			free(tmp);
+			i += j;
+		}
+		else
+		{
+			printf("%c", str[i]);
+			i++;
+		}
+	}
+}
+
+void	check_env_var(char *str, t_env_list *env_list)
+{
+	char	*tmp;
+
+	if (check_remove_quote(str) == -1)
+	{
+		if (str[0] == '\'')
+		{
+			tmp = ft_strtrim(str, '\'');
+			printf("%s", tmp);
+			free(tmp);
+		}
+		else if (str[0] == '"')
+		{
+			tmp = ft_strtrim(str, '"');
+			print_env_var(tmp, env_list);
+			free(tmp);
+		}
+		else
+			print_env_var(str, env_list);
+	}
+	else
+		printf("%s", str);
+}
+
+void	do_echo(char **str, t_env_list *env_list)
 {
 	int		flag;
 	size_t	i;
 
 	flag = 1;
 	i = 1;
-	if (!check_echo(str[0]))
+	if (!ft_strscmp(str[0], "echo"))
 		return ;
 	while (echo_option(str[i]) == 1)
 	{
@@ -58,7 +121,7 @@ void	do_echo(char **str)
 		return ;
 	while (str[i])
 	{
-		printf("%s", str[i]);
+		check_env_var(str[i], env_list);
 		i++;
 		if (i != str_size(str))
 			printf(" ");

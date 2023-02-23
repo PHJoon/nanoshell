@@ -1,23 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_str_size.c                                      :+:      :+:    :+:   */
+/*   ft_strcpy_index.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hyungjpa <hyungjpa@student.42seoul.>       +#+  +:+       +#+        */
+/*   By: chanson <chanson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/22 19:26:03 by hyungjpa          #+#    #+#             */
-/*   Updated: 2023/02/22 19:26:05 by hyungjpa         ###   ########.fr       */
+/*   Created: 2023/02/23 14:54:20 by chanson           #+#    #+#             */
+/*   Updated: 2023/02/23 14:58:16 by chanson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/test.h"
 
-size_t	str_size(char **str)
+char	*ft_strcpy_index(char *str, int start, int end)
 {
-	size_t	i;
+	char	*temp;
+	int		i;
 
+	temp = (char *)malloc(sizeof(char) * (end - start + 2));
+	temp[end - start + 1] = '\0';
 	i = 0;
-	while (str[i])
+	while (start + i <= end)
+	{
+		temp[i] = str[start + i];
 		i++;
-	return (i);
+	}
+	return (temp);
 }

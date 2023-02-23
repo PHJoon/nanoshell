@@ -12,16 +12,9 @@
 
 #include "../includes/test.h"
 
-int	check_exit(char *str)
-{
-	if (!ft_strncmp(str, "exit", 5))
-		return (1);
-	return (0);
-}
-
 void	do_exit(char **str)
 {
-	if (!check_exit(str[0]))
+	if (!ft_strscmp(str[0], "exit"))
 		return ;
 	printf("exit\n");
 	if (str[1])

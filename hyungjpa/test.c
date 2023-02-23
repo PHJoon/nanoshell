@@ -16,37 +16,42 @@ int	main(int argc, char **argv, char **envp)
 {
 	char		*str;
 	char		**temp;
-	t_node		*head;
-	t_ast		*root;
-	// t_env_list	*env_list;
+	// t_node		*head;
+	// t_ast		*root;
+	t_env_list	*env_list;
 	t_env_list	*export_list;
-	char		*pwd[2] = {"pwd", 0};
-	char		*cd[3] = {"cd", "././../utils/", 0};
-	char		*export[3] = {"export", "a=b", 0};
+	// char		*pwd[2] = {"pwd", 0};
+	// char		*cd[3] = {"cd", "././../utils/", 0};
+	// char		*export[2] = {"export", 0};
 
 	(void)argc;
 	(void)argv;
 	(void)envp;
 	off_catch_signals();
 	signal_handle();
-	do_pwd(pwd);
-	do_cd(cd);
+	// do_pwd(pwd);
+	// do_cd(cd);
 	export_list = make_export_list(envp);
-	do_export(export, export_list);
-	// env_list = make_env_list(envp);
+	env_list = make_env_list(envp);
+	// do_export(export, &export_list, &env_list);
 	// env_list = do_unset(env_list, "PATH");
 	while (1)
 	{
-		root = NULL;
+		// root = NULL;
 		str = readline("nanoshell$ ");
 		signal_sigterm(str);
-		temp = ft_split(str);
-		head = trans_to_list(temp);
-		root = list_to_ast(root, head, 7);
-		display_ast(root);
-		free_ast(root);
-		free_node(head);
-		ft_free_str(temp);
+		temp = ft_split_syntax(str);
+		temp = do_here_doc(temp);
+		temp = remove_quote(temp);
+		do_echo(temp, env_list);
+		dispaly_str(temp);
+		// head = trans_to_list(temp);
+		// root = list_to_ast(root, head, 7);
+		// display_ast(root);
+		// free_ast(root);
+		// free_node(head);
+		// ft_free_str(temp);
+		add_history(str);
 		free(str);
 	}
 	return (0);

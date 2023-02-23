@@ -12,18 +12,11 @@
 
 #include "../includes/test.h"
 
-int	check_env(char *str)
-{
-	if (!ft_strncmp(str, "env", 4))
-		return (1);
-	return (0);
-}
-
 void	do_env(char **str, t_env_list *env_list)
 {
 	t_env_list	*tmp;
 
-	if (!check_env(str[0]))
+	if (!ft_strscmp(str[0], "env"))
 		return ;
 	if (str[1])
 	{

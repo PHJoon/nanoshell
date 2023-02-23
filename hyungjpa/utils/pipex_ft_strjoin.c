@@ -1,37 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strcjoin.c                                      :+:      :+:    :+:   */
+/*   ft_strjoin_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: chanson <chanson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/13 14:39:23 by chanson           #+#    #+#             */
-/*   Updated: 2023/02/13 16:23:41 by chanson          ###   ########.fr       */
+/*   Created: 2023/01/15 19:29:16 by chanson           #+#    #+#             */
+/*   Updated: 2023/01/15 19:29:52 by chanson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/test.h"
 
-char	*ft_strcjoin(char *s, char c)
+char	*ft_strjoin(char *str1, char *str2)
 {
 	char	*temp;
 	int		i;
+	int		j;
 
-	if (s == NULL)
-	{
-		temp = (char *)malloc(sizeof(char) * 2);
-		temp[0] = c;
-		temp[1] = '\0';
-	}
-	else
-	{
-		temp = (char *)malloc(sizeof(char) * (ft_strlen(s) + 2));
-		i = -1;
-		while (s[++i])
-			temp[i] = s[i];
-		temp[i++] = c;
-		temp[i] = '\0';
-	}
-	free(s);
+	i = ft_strlen(str1);
+	j = ft_strlen(str2);
+	if (!i || !j)
+		return (0);
+	temp = (char *)malloc(i + j + 1);
+	i = -1;
+	while (str1[++i])
+		temp[i] = str1[i];
+	j = -1;
+	while (str2[++j])
+		temp[i + j] = str2[j];
+	temp[i + j] = '\0';
 	return (temp);
 }

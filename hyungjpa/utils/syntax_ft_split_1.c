@@ -29,7 +29,7 @@ static int	check_ascii(char c)
 	return (0);
 }
 
-static int	do_ft_split(char ***temp, char **buff, char *s, int i)
+static int	do_ft_split_syntax(char ***temp, char **buff, char *s, int i)
 {
 	int	check;
 
@@ -55,7 +55,7 @@ static int	do_ft_split(char ***temp, char **buff, char *s, int i)
 	return (i);
 }
 
-char	**ft_split(char *s)
+char	**ft_split_syntax(char *s)
 {
 	char	**temp;
 	char	*buff;
@@ -66,7 +66,7 @@ char	**ft_split(char *s)
 	temp = NULL;
 	while (s[i])
 	{
-		i = do_ft_split(&temp, &buff, s, i);
+		i = do_ft_split_syntax(&temp, &buff, s, i);
 		if (s[i] != '\0')
 			i++;
 	}

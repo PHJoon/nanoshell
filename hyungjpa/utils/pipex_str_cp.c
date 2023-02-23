@@ -1,23 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_str_size.c                                      :+:      :+:    :+:   */
+/*   str_cp_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hyungjpa <hyungjpa@student.42seoul.>       +#+  +:+       +#+        */
+/*   By: chanson <chanson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/22 19:26:03 by hyungjpa          #+#    #+#             */
-/*   Updated: 2023/02/22 19:26:05 by hyungjpa         ###   ########.fr       */
+/*   Created: 2023/01/13 20:44:49 by chanson           #+#    #+#             */
+/*   Updated: 2023/01/13 20:48:33 by chanson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/test.h"
 
-size_t	str_size(char **str)
+char	*str_cp_limit(char *str, size_t idx)
 {
 	size_t	i;
+	char	*temp;
 
+	temp = (char *)malloc(sizeof(char) * (idx + 1));
+	temp[idx + 1] = '\0';
 	i = 0;
-	while (str[i])
+	while (i <= idx)
+	{
+		temp[i] = str[i];
 		i++;
-	return (i);
+	}
+	return (temp);
 }

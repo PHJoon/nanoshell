@@ -12,13 +12,6 @@
 
 #include "../includes/test.h"
 
-int	check_cd(char *str)
-{
-	if (!ft_strncmp(str, "cd", 3))
-		return (1);
-	return (0);
-}
-
 char	*cd_dot_dot(char	*buf_tmp, size_t *i)
 {
 	size_t	slash_idx;
@@ -92,7 +85,7 @@ void	do_cd(char **str)
 	char	*cwd_buf;
 
 	i = 1;
-	if (!check_cd(str[0]))
+	if (!ft_strscmp(str[0], "cd"))
 		return ;
 	if (str_size(str) > 2)
 		return ;

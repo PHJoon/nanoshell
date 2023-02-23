@@ -15,6 +15,8 @@ SRCS_NAME = ./test \
 			./utils/syntax_ft_split_1 \
 			./utils/syntax_ft_split_2 \
 			./utils/syntax_ft_split_3 \
+			./get_next_line/get_next_line_utils \
+			./get_next_line/get_next_line \
 			./syntax_check/syntax_check \
 			./syntax_check/check_pattern \
 			./syntax_check/check_str_valid \
@@ -34,6 +36,14 @@ SRCS_NAME = ./test \
 			./builtin/builtin_pwd \
 			./builtin/builtin_unset \
 			./display \
+			./pipex \
+			./utils/pipex_ft_strjoin \
+			./utils/pipex_str_cp \
+			./utils/ft_strtrim \
+			./remove_quote \
+			./utils/ft_strcpy_index \
+			
+
 
 
 

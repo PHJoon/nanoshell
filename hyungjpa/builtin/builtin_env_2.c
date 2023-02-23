@@ -45,18 +45,14 @@ t_env_list	*add_env_list(t_env_list *env_list, char *key, char *value)
 t_env_list	*split_env(t_env_list *env_list, char *str)
 {
 	size_t	i;
-	char	*str_tmp;
 	char	*key;
 	char	*value;
 
 	i = 0;
-	str_tmp = ft_strdup(str);
-	while (str_tmp[i] != '=')
+	while (str[i] != '=')
 		i++;
-	str_tmp[i] = '\0';
-	key = ft_strdup(str_tmp);
-	value = ft_strdup(&str_tmp[i + 1]);
-	free(str_tmp);
+	key = ft_strcpy_index(str, 0, i - 1);
+	value = ft_strcpy_index(str, i + 1, ft_strlen(str));
 	env_list = add_env_list(env_list, key, value);
 	return (env_list);
 }

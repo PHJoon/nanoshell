@@ -12,20 +12,13 @@
 
 #include "../includes/test.h"
 
-int	check_pwd(char *str)
-{
-	if (!ft_strncmp(str, "pwd", 4))
-		return (1);
-	return (0);
-}
-
 void	do_pwd(char **str)
 {
 	size_t	i;
 	char	*cwd_buf;
 
 	i = 1;
-	if (!check_pwd(str[0]))
+	if (ft_strscmp(str[0], "pwd"))
 		return ;
 	if (str_size(str) > 1)
 		return ;
