@@ -14,6 +14,10 @@ SRCS =  ./test.c \
 		./utils/ft_str_change.c \
 		./utils/ft_strlen.c \
 		./utils/ft_itoa.c \
+		./utils/ft_str_find_c.c \
+		./utils/ft_strcpy_index.c \
+		./utils/ft_strfind.c \
+		./utils/ft_strinsert.c \
 		./parsing/syntax_check/syntax_check.c \
 		./parsing/syntax_check/check_pattern.c \
 		./parsing/syntax_check/check_str_valid.c \
@@ -24,6 +28,8 @@ SRCS =  ./test.c \
 		./execute/pipe.c \
 		./execute/heredoc.c \
 		./execute/heredoc_cnt.c \
+		./get_next_line/get_next_line.c \
+		./get_next_line/get_next_line_utils.c \
 
 OBJS = $(SRCS:.c=.o)
 

@@ -6,7 +6,7 @@
 /*   By: chanson <chanson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 18:56:44 by chanson           #+#    #+#             */
-/*   Updated: 2023/02/23 13:47:15 by chanson          ###   ########.fr       */
+/*   Updated: 2023/02/23 15:03:07 by chanson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	tree_execute_heredoc(t_token *node, t_tree *tree)
 		return ;
 }
 
-int	main(void)
+int	main(int argc, char **argv, char **envp)
 {
 	char	*str;
 	char	**temp;
@@ -39,7 +39,7 @@ int	main(void)
 	cnt_heredoc(tree->top, tree);
 	tree->here_documets = (char **)malloc(sizeof(char *) * \
 		(tree->here_doc_cnt));
-	tree->infile = (int *)malloc(sizeof(int) * (tree->here_doc_cnt));
+	tree->envp_val = envp;
 	execute_heredoc(tree->top, tree, 's');
 	printf("---------------------------\n\n");
 	display_tree(tree->top, 's');

@@ -6,7 +6,7 @@
 /*   By: chanson <chanson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 20:53:51 by chanson           #+#    #+#             */
-/*   Updated: 2023/02/22 20:59:20 by chanson          ###   ########.fr       */
+/*   Updated: 2023/02/23 15:57:43 by chanson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,11 +34,11 @@ static void	set_tree(t_tree *tree)
 	tree->top = NULL;
 	tree->last = NULL;
 	tree->here_documets = NULL;
-	tree->here_doc = FALSE;
+	tree->here_doc = 0;
 	tree->here_doc_cnt = 0;
 	tree->pipe_cnt = 0;
-	tree->infile = NULL;
-	tree->outfile = NULL;
+	tree->infile = 0;
+	tree->outfile = 0;
 }
 
 t_tree	*init_tree(char **temp)

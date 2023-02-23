@@ -6,7 +6,7 @@
 /*   By: chanson <chanson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/12 15:59:58 by chanson           #+#    #+#             */
-/*   Updated: 2023/02/23 13:47:25 by chanson          ###   ########.fr       */
+/*   Updated: 2023/02/23 16:29:30 by chanson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,7 @@
 # include <fcntl.h>
 # include <sys/types.h>
 # include <sys/wait.h>
-
-int		siganl;
+# include "get_next_line.h"
 
 enum e_token
 {
@@ -66,26 +65,31 @@ typedef struct s_tree
 	int			pipe_cnt;
 	int			here_doc;
 	int			here_doc_cnt;
-	int			*infile;
-	int			*outfile;
+	int			infile;
+	int			outfile;
 	char		**here_documets;
+	char		**envp_val;
 }	t_tree;
 
 // utils
 char	*ft_strcjoin(char *s, char c);
 char	*ft_str_change(char *old, char *new);
-char	**ft_strsjoin(char **str1, char *str);
-char	**ft_split(char *s);
+char	*ft_strcpy_index(char *str, int start, int end);
 char	*ft_strcpy(char *str);
 char	*ft_strstr(char *str_origin, char *str_new);
 char	*ft_strtrim_couple(char *str, char c1, char c2);
 char	*ft_strtrim(char *str, char c);
 char	*ft_strtrim_couple_check(char *str, char c1, char c2);
 char	*ft_itoa(int num);
+char	*ft_strfind(char **strs, char *find);
+char	*ft_strinsert(char *str, char *insert, int start, int end);
+char	**ft_strsjoin(char **str1, char *str);
+char	**ft_split(char *s);
 int		ft_split_and(char ***temp, char *str, int idx);
 int		ft_split_par(char ***temp, char *str, int idx);
 int		ft_strscmp(char *str1, char *str2);
 int		ft_strlen(char *str);
+int		ft_str_find_c(char *str, char c);
 void	show_list(t_list	*list);
 void	display_str(char **str);
 void	display_tree(t_token *root, char c);
