@@ -9,12 +9,21 @@ SRCS =  ./test.c \
 		./utils/ft_strcpy.c \
 		./utils/ft_strscmp.c \
 		./utils/display.c \
-		./syntax_check/syntax_check.c \
-		./syntax_check/check_pattern.c \
-		./syntax_check/check_str_valid.c \
-		./tree/make_tree.c \
-		./tree/decide_type.c \
-		./tree/make_list.c \
+		./utils/ft_strstr.c \
+		./utils/ft_strtrim.c \
+		./utils/ft_str_change.c \
+		./utils/ft_strlen.c \
+		./utils/ft_itoa.c \
+		./parsing/syntax_check/syntax_check.c \
+		./parsing/syntax_check/check_pattern.c \
+		./parsing/syntax_check/check_str_valid.c \
+		./parsing/tree/make_tree.c \
+		./parsing/tree/decide_type.c \
+		./parsing/tree/make_list.c \
+		./parsing/tree/add_node_to_tree.c \
+		./execute/pipe.c \
+		./execute/heredoc.c \
+		./execute/heredoc_cnt.c \
 
 OBJS = $(SRCS:.c=.o)
 
@@ -22,10 +31,14 @@ CC = cc
 
 FLAGS = -Wall -Wextra -Werror -lreadline -g3
 
+LDFLAGS = -L/Users/chanson/.brew/opt/readline/lib
+
+CPPFLAGS = -I/Users/chanson/.brew/opt/readline/include
+
 all:		$(NAME)
 
 $(NAME):	$(OBJS)
-			@$(CC) $(FLAGS) $(OBJS) -o $(NAME)
+			@$(CC) $(FLAGS) $(LDFLAGS) $(CPPFLAGS) $(OBJS) -o $(NAME)
 
 clean:		
 			rm -rf $(OBJS)

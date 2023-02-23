@@ -6,7 +6,7 @@
 /*   By: chanson <chanson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/16 17:48:49 by chanson           #+#    #+#             */
-/*   Updated: 2023/02/17 17:13:05 by chanson          ###   ########.fr       */
+/*   Updated: 2023/02/22 18:53:30 by chanson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,13 +64,17 @@ void	display_tree(t_token *root, char c)
 	if (root == NULL)
 		return ;
 	if (root->type != TK_STR)
+	{
+		printf("%c: ", c);
 		printf("%s\n", root->val);
+	}
 	else if (root->type == TK_STR)
 	{
+		printf("%c: ", c);
 		show_node_list(root);
 	}
-	if (root->type == TK_STR || root == NULL)
-		return ;
 	display_tree(root->left, 'l');
+	if (root->type == TK_STR)
+		return ;
 	display_tree(root->right, 'r');
 }

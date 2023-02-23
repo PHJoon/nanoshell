@@ -6,11 +6,11 @@
 /*   By: chanson <chanson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 14:23:35 by chanson           #+#    #+#             */
-/*   Updated: 2023/02/15 20:57:57 by chanson          ###   ########.fr       */
+/*   Updated: 2023/02/22 12:29:54 by chanson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../test.h"
+#include "../../test.h"
 
 static void	make_type_list(int *type_list, char **temp)
 {

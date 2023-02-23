@@ -6,11 +6,11 @@
 /*   By: chanson <chanson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/16 13:07:29 by chanson           #+#    #+#             */
-/*   Updated: 2023/02/16 13:12:42 by chanson          ###   ########.fr       */
+/*   Updated: 2023/02/22 12:30:03 by chanson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../test.h"
+#include "../../test.h"
 
 int	decide_type(char *str)
 {

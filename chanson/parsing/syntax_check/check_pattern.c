@@ -6,11 +6,11 @@
 /*   By: chanson <chanson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 16:41:16 by chanson           #+#    #+#             */
-/*   Updated: 2023/02/16 17:20:19 by chanson          ###   ########.fr       */
+/*   Updated: 2023/02/22 12:29:36 by chanson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../test.h"
+#include "../../test.h"
 
 static int	_check_pattern_true(int rt, int rtb)
 {

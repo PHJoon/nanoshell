@@ -1,37 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strcjoin.c                                      :+:      :+:    :+:   */
+/*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: chanson <chanson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/13 14:39:23 by chanson           #+#    #+#             */
-/*   Updated: 2023/02/22 17:11:30 by chanson          ###   ########.fr       */
+/*   Created: 2023/02/22 20:18:48 by chanson           #+#    #+#             */
+/*   Updated: 2023/02/22 20:27:55 by chanson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/test.h"
+#include "../test.h"
 
-char	*ft_strcjoin(char *s, char c)
+char	*ft_itoa(int num)
 {
-	char	*temp;
-	int		i;
+	char	*str;
+	char	*num_str;
+	int		n;
 
-	if (s == NULL)
+	num_str = "0123456789";
+	if (num <= 0)
+		return (0);
+	str = NULL;
+	while (num)
 	{
-		temp = (char *)malloc(sizeof(char) * 2);
-		temp[0] = c;
-		temp[1] = '\0';
+		n = num / 10;
+		if (n == 0)
+		{
+			str = ft_strcjoin(str, num_str[num]);
+			break ;
+		}
+		str = ft_strcjoin(str, num_str[n]);
+		num /= 10;
 	}
-	else
-	{
-		temp = (char *)malloc(sizeof(char) * (ft_strlen(s) + 2));
-		i = -1;
-		while (s[++i])
-			temp[i] = s[i];
-		temp[i++] = c;
-		temp[i] = '\0';
-	}
-	free(s);
-	return (temp);
+	return (str);
 }

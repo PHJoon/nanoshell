@@ -1,37 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strcjoin.c                                      :+:      :+:    :+:   */
+/*   ft_str_change.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: chanson <chanson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/13 14:39:23 by chanson           #+#    #+#             */
-/*   Updated: 2023/02/22 17:11:30 by chanson          ###   ########.fr       */
+/*   Created: 2023/02/22 16:09:25 by chanson           #+#    #+#             */
+/*   Updated: 2023/02/22 16:15:12 by chanson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/test.h"
+#include "../test.h"
 
-char	*ft_strcjoin(char *s, char c)
+char	*ft_str_change(char *old, char *new)
 {
 	char	*temp;
 	int		i;
 
-	if (s == NULL)
-	{
-		temp = (char *)malloc(sizeof(char) * 2);
-		temp[0] = c;
-		temp[1] = '\0';
-	}
-	else
-	{
-		temp = (char *)malloc(sizeof(char) * (ft_strlen(s) + 2));
-		i = -1;
-		while (s[++i])
-			temp[i] = s[i];
-		temp[i++] = c;
-		temp[i] = '\0';
-	}
-	free(s);
+	if (new == NULL)
+		return (old);
+	if (old != NULL)
+		free(old);
+	i = 0;
+	while (new[i])
+		i++;
+	temp = (char *)malloc(sizeof(char) * (i + 1));
+	temp[i] = '\0';
+	i = -1;
+	while (new[++i])
+		temp[i] = new[i];
 	return (temp);
 }
