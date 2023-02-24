@@ -6,7 +6,7 @@
 /*   By: chanson <chanson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 16:29:35 by chanson           #+#    #+#             */
-/*   Updated: 2023/02/24 16:54:30 by chanson          ###   ########.fr       */
+/*   Updated: 2023/02/24 21:48:07 by chanson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,32 +78,6 @@ int	ft_heredoc(t_tree *tree, char *limit)
 	return (index);
 }
 
-void	mini_heredoc(t_token *node, t_tree *tree)
-{
-	char	*str;
-	char	**str_arr;
-	int		i;
-
-	str = ft_strtrim_couple_check(node->val, '(', ')');
-	if (str[0] == '(')
-	{
-		free(str);
-		return ;
-	}
-	str_arr = ft_split(str);
-	if (syntax_check(str_arr) == FALSE)
-	{
-		ft_free_str(str_arr);
-		free(str);
-		return ;
-	}
-	i = 0;
-	while (node->val[i])
-	{
-		if ()
-	}
-}
-
 void	execute_heredoc(t_token *node, t_tree *tree, char c)
 {
 	int	cnt;
@@ -124,7 +98,7 @@ void	execute_heredoc(t_token *node, t_tree *tree, char c)
 	}
 	if (node->type == TK_STR)
 	{
-		if (node->val[0] == '(')
+		if (node->val[0] == '(' && node->val[1] != '(')
 			mini_heredoc(node, tree);
 		return ;
 	}

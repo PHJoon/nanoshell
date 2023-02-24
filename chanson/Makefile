@@ -21,6 +21,7 @@ SRCS_NAME =  ./test \
 		./parsing/syntax_check/syntax_check \
 		./parsing/syntax_check/check_pattern \
 		./parsing/syntax_check/check_str_valid \
+		./parsing/syntax_check/syntax_check_err \
 		./parsing/tree/make_tree \
 		./parsing/tree/decide_type \
 		./parsing/tree/make_list \
@@ -29,6 +30,7 @@ SRCS_NAME =  ./test \
 		./execute/heredoc/heredoc \
 		./execute/heredoc/heredoc_cnt \
 		./execute/heredoc/heredoc_env \
+		./execute/heredoc/mini_heredoc \
 		./get_next_line/get_next_line \
 		./get_next_line/get_next_line_utils \
 
@@ -47,7 +49,7 @@ CPPFLAGS = -I/Users/chanson/.brew/opt/readline/include
 all:		$(NAME)
 ######################################################### srcs objs로 바바꾸꾸기
 $(NAME):	$(OBJS)
-			@$(CC) $(FLAGS) $(LDFLAGS) $(CPPFLAGS) $(SRCS) -o $(NAME)
+			@$(CC) $(FLAGS) $(LDFLAGS) $(CPPFLAGS) $(OBJS) -o $(NAME)
 
 %.o : %.c
 			@$(CC) $(FLAGS) $(CPPFLAGS) -c $< -o $@
