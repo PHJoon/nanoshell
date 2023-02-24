@@ -6,7 +6,7 @@
 /*   By: chanson <chanson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/16 17:48:49 by chanson           #+#    #+#             */
-/*   Updated: 2023/02/22 18:53:30 by chanson          ###   ########.fr       */
+/*   Updated: 2023/02/24 14:48:18 by chanson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	show_list(t_list	*list)
 	printf("------------------display list------------------------\n\n");
 	while (temp)
 	{
-		printf("list[%d]: %s	%d\n", i, temp->val, temp->type);
+		printf("list[%d]: %s	type: %d\n", i, temp->val, temp->type);
 		i++;
 		temp = temp->right;
 	}
@@ -77,4 +77,22 @@ void	display_tree(t_token *root, char c)
 	if (root->type == TK_STR)
 		return ;
 	display_tree(root->right, 'r');
+}
+
+void	display_acc_str(char *str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i])
+	{
+		if (str[i] == '\n')
+			printf("\\n");
+		else if (str[i] > 32 && str[i] <= 126)
+			printf("%c", str[i]);
+		else
+			printf("\\e");
+		i++;
+	}
+	printf("\n");
 }

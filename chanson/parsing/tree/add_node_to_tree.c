@@ -6,7 +6,7 @@
 /*   By: chanson <chanson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 12:41:09 by chanson           #+#    #+#             */
-/*   Updated: 2023/02/22 14:24:23 by chanson          ###   ########.fr       */
+/*   Updated: 2023/02/24 16:39:42 by chanson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static int	find_top(t_list *list)
 	type = temp->type;
 	while (temp)
 	{
-		if (type <= temp->type && temp->type != TK_STR)
+		if (type <= (int)(temp->type) && temp->type != TK_STR)
 		{
 			if (temp->type >= TK_IRD && temp->type <= TK_ARD)
 				type = 1;

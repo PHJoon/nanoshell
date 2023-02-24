@@ -6,7 +6,7 @@
 /*   By: chanson <chanson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/12 15:59:58 by chanson           #+#    #+#             */
-/*   Updated: 2023/02/23 16:29:30 by chanson          ###   ########.fr       */
+/*   Updated: 2023/02/24 15:38:32 by chanson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,11 +90,14 @@ int		ft_split_par(char ***temp, char *str, int idx);
 int		ft_strscmp(char *str1, char *str2);
 int		ft_strlen(char *str);
 int		ft_str_find_c(char *str, char c);
+void	ft_free_str(char **str);
+
+// utils->display.c
 void	show_list(t_list	*list);
 void	display_str(char **str);
 void	display_tree(t_token *root, char c);
+void	display_acc_str(char *str);
 void	show_node_list(t_token *token);
-void	ft_free_str(char **str);
 
 //parsing/syntax_check
 int		syntax_check(char **temp);
@@ -107,8 +110,12 @@ t_token	*add_node(t_list *list, t_tree *tree, int d, t_token **pre);
 int		make_list(char **temp, t_list *list);
 int		decide_type(char *str);
 
-//execute
+//execute/pipe
 int		count_pipe(char **temp);
+
+//execute/heredoc
 void	cnt_heredoc(t_token *node, t_tree *tree);
 void	execute_heredoc(t_token *node, t_tree *tree, char c);
+void	*change_env(char **envp, char *temp);
+int		ft_heredoc(t_tree *tree, char *limit);
 #endif

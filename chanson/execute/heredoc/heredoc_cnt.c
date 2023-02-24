@@ -6,11 +6,11 @@
 /*   By: chanson <chanson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 19:24:30 by chanson           #+#    #+#             */
-/*   Updated: 2023/02/22 19:24:50 by chanson          ###   ########.fr       */
+/*   Updated: 2023/02/23 19:44:18 by chanson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../test.h"
+#include "../../test.h"
 
 static void	_cnt_heredoc_par(char *str, t_tree *tree)
 {

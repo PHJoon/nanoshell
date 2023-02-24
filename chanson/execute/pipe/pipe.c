@@ -6,11 +6,11 @@
 /*   By: chanson <chanson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 15:06:18 by chanson           #+#    #+#             */
-/*   Updated: 2023/02/22 16:38:56 by chanson          ###   ########.fr       */
+/*   Updated: 2023/02/23 19:44:34 by chanson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../test.h"
+#include "../../test.h"
 
 static int	_count_pipe_parentheses(char *str)
 {

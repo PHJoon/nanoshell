@@ -6,7 +6,7 @@
 /*   By: chanson <chanson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 14:02:12 by chanson           #+#    #+#             */
-/*   Updated: 2023/02/16 17:49:30 by chanson          ###   ########.fr       */
+/*   Updated: 2023/02/24 16:36:18 by chanson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ static int	ft_split_pipe(char ***temp, char *str, int idx)
 static int	ft_split_redirection(char ***temp, char *str, int idx)
 {
 	char	*buff;
-	int		cnt;
 
 	buff = NULL;
 	buff = ft_strcjoin(buff, str[idx]);

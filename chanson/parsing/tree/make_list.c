@@ -6,7 +6,7 @@
 /*   By: chanson <chanson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/16 13:37:02 by chanson           #+#    #+#             */
-/*   Updated: 2023/02/22 12:30:08 by chanson          ###   ########.fr       */
+/*   Updated: 2023/02/24 16:36:35 by chanson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 static int	append_node_list(char *str, int type, t_list *list)
 {
 	t_token	*token;
-	t_token	*temp;
 
 	token = (t_token *)malloc(sizeof(t_token));
 	token->val = ft_strcpy(str);

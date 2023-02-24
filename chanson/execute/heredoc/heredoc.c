@@ -6,56 +6,32 @@
 /*   By: chanson <chanson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 16:29:35 by chanson           #+#    #+#             */
-/*   Updated: 2023/02/23 16:56:07 by chanson          ###   ########.fr       */
+/*   Updated: 2023/02/24 16:54:30 by chanson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../test.h"
+#include "../../test.h"
 
-static char	*change_env(char **envp, char *temp, int index)
+static int	heredoc_cmp_limit(char *str, char *limit)
 {
-	int		end;
-	int		i;
-	char	*str;
-	char	*str2;
+	char	*temp;
 
-	i = index;
-	while (temp[++i])
+	temp = NULL;
+	temp = ft_strcpy(limit);
+	temp = ft_strcjoin(temp, '\n');
+	if (ft_strscmp(str, temp) == TRUE)
 	{
-		end = i;
-		if (temp[i] == ' ' || temp[i] == '\'' || temp[i] == '\"')
-			break ;
+		free(temp);
+		return (TRUE);
 	}
-	end--;
-	str = ft_strcpy_index(temp, index + 1, end);
-	printf("str: %s\n", str);
-	str2 = ft_strfind(envp, str);
-	printf("str2: %s\n", str2);
-	free(str);
-	if (str2 != NULL)
-	{
-		i = -1;
-		while (str2[++i])
-		{
-			if (str2[i] == '=')
-				break;
-		}
-		str = ft_strcpy_index(str2, i + 1, ft_strlen(str2));
-		printf("strstr: %s\n", str);
-		free(str2);
-		str2 = ft_strinsert(temp, str, index, end + 1);
-		printf("str2str2: %s\n", str2);
-		free(str);
-	}
-	printf("final str2: %s\n", str2);
-	return (str2);
+	free(temp);
+	return (FALSE);
 }
 
 static void	heredoc_fill(t_tree *tree, char *limit)
 {
 	char	*temp;
 	int		index;
-	char	*final;
 
 	while (1)
 	{
@@ -63,22 +39,21 @@ static void	heredoc_fill(t_tree *tree, char *limit)
 		temp = get_next_line(0);
 		if (temp == 0)
 			break ;
-		final = ft_strcpy(limit);
-		final = ft_strcjoin(final, '\n');
-		if (ft_strscmp(temp, final) == TRUE)
+		if (heredoc_cmp_limit(temp, limit) == TRUE)
 		{
 			free(temp);
 			break ;
 		}
 		index = ft_str_find_c(temp, '$');
 		if (index != -1)
-			temp = change_env(tree->envp_val, temp, index);
+			temp = change_env(tree->envp_val, temp);
 		write(tree->infile, temp, ft_strlen(temp));
 		free(temp);
+		temp = NULL;
 	}
 }
 
-static int	ft_heredoc(t_tree *tree, char *limit)
+int	ft_heredoc(t_tree *tree, char *limit)
 {
 	char		*temp;
 	char		*name;
@@ -103,6 +78,32 @@ static int	ft_heredoc(t_tree *tree, char *limit)
 	return (index);
 }
 
+void	mini_heredoc(t_token *node, t_tree *tree)
+{
+	char	*str;
+	char	**str_arr;
+	int		i;
+
+	str = ft_strtrim_couple_check(node->val, '(', ')');
+	if (str[0] == '(')
+	{
+		free(str);
+		return ;
+	}
+	str_arr = ft_split(str);
+	if (syntax_check(str_arr) == FALSE)
+	{
+		ft_free_str(str_arr);
+		free(str);
+		return ;
+	}
+	i = 0;
+	while (node->val[i])
+	{
+		if ()
+	}
+}
+
 void	execute_heredoc(t_token *node, t_tree *tree, char c)
 {
 	int	cnt;
@@ -122,8 +123,11 @@ void	execute_heredoc(t_token *node, t_tree *tree, char c)
 		return ;
 	}
 	if (node->type == TK_STR)
+	{
+		if (node->val[0] == '(')
+			mini_heredoc(node, tree);
 		return ;
+	}
 	execute_heredoc(node->left, tree, 'l');
 	execute_heredoc(node->right, tree, 'r');
 }
-	
