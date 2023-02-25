@@ -18,6 +18,7 @@ SRCS_NAME =  ./test \
 		./utils/ft_strcpy_index \
 		./utils/ft_strfind \
 		./utils/ft_strinsert \
+		./utils/fr_strdel_one \
 		./parsing/syntax_check/syntax_check \
 		./parsing/syntax_check/check_pattern \
 		./parsing/syntax_check/check_str_valid \
@@ -42,7 +43,7 @@ CC = cc
 
 FLAGS = -Wall -Wextra -Werror -g3
 
-LDFLAGS = -L/Users/chanson/.brew/opt/readline/lib -lreadline
+LDFLAGS = -L/Users/chanson/.brew/opt/readline/lib -lreadline -lncurses
 
 CPPFLAGS = -I/Users/chanson/.brew/opt/readline/include
 

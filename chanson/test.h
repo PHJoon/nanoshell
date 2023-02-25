@@ -6,7 +6,7 @@
 /*   By: chanson <chanson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/12 15:59:58 by chanson           #+#    #+#             */
-/*   Updated: 2023/02/24 21:46:21 by chanson          ###   ########.fr       */
+/*   Updated: 2023/02/25 20:05:51 by chanson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,12 @@
 
 # define TRUE 1
 # define FALSE 0
-
+# define LEFT_ARROW 4479771
+# define RIGHT_ARROW 4414235
+# define UP_ARROW 4283163
+# define DOWN_ARROW 4348699
+# define BACK_SPACE 127
+# define CTRL_D 4
 # include <stdio.h>
 # include <readline/readline.h>
 # include <readline/history.h>
@@ -25,6 +30,9 @@
 # include <fcntl.h>
 # include <sys/types.h>
 # include <sys/wait.h>
+# include <termios.h>
+# include <termcap.h>
+# include <signal.h>
 # include "get_next_line.h"
 
 enum e_token
@@ -62,6 +70,7 @@ typedef struct s_tree
 {
 	t_token		*top;
 	t_token		*last;
+	int			history;
 	int			pipe_cnt;
 	int			here_doc;
 	int			mini_here_doc;
@@ -84,6 +93,7 @@ char	*ft_strtrim_couple_check(char *str, char c1, char c2);
 char	*ft_itoa(int num);
 char	*ft_strfind(char **strs, char *find);
 char	*ft_strinsert(char *str, char *insert, int start, int end);
+char	*fr_strdel_one(char *str);
 char	**ft_strsjoin(char **str1, char *str);
 char	**ft_split(char *s);
 int		ft_split_and(char ***temp, char *str, int idx);
@@ -107,7 +117,7 @@ int		check_str_valid(char *str);
 int		syntax_err_check(char **temp);
 
 //parsing/tree
-t_tree	*init_tree(char **temp);
+t_tree	*init_tree(char **temp, int history_fd);
 t_token	*add_node(t_list *list, t_tree *tree, int d, t_token **pre);
 int		make_list(char **temp, t_list *list);
 int		decide_type(char *str);

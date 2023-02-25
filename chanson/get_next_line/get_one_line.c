@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_one_line.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: chanson <chanson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/23 16:30:54 by chanson           #+#    #+#             */
-/*   Updated: 2023/02/25 18:31:48 by chanson          ###   ########.fr       */
+/*   Created: 2023/02/25 18:32:10 by chanson           #+#    #+#             */
+/*   Updated: 2023/02/25 20:02:47 by chanson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../get_next_line.h"
+#include "../test.h"
 
 void	free_pointer(char *ptr)
 {
@@ -73,31 +73,49 @@ char	*make_line(char *buffer, char **line, int fd, char *temp)
 	return (buffer);
 }
 
-char	*get_next_line(int fd)
+char	*get_one_line(int fd)
 {
-	static char	*buffer;
-	char		*line;
-	char		*temp;
-	int			cnt;
+	struct termios	reset_term;
+	struct termios	term;
+	char			*line;
+	int				c;
+	int				cnt;
 
-	if (fd < 0 || BUFFER_SIZE <= 0)
-		return (0);
-	temp = malloc(BUFFER_SIZE + 1);
-	if (!temp)
-		return (0);
-	if (get_strllen(buffer) > 0)
-		buffer = make_line(buffer, &line, fd, temp);
-	else
+	tcgetattr(STDIN_FILENO, &term);
+	tcgetattr(STDIN_FILENO, &reset_term);
+	term.c_lflag &= ~(ICANON | ECHO);
+	term.c_cc[VMIN] = 1;
+	term.c_cc[VTIME] = 0;
+	tcsetattr(STDIN_FILENO, TCSANOW, &term);
+	line = NULL;
+	while (cnt > 0)
 	{
-		cnt = read(fd, temp, BUFFER_SIZE);
-		if (cnt <= 0)
-			free(temp);
-		if (cnt <= 0)
-			return (0);
-		temp[cnt] = '\0';
-		buffer = get_strdup(temp, get_strchr(temp, '\0'));
-		buffer = make_line(buffer, &line, fd, temp);
+		cnt = read(STDIN_FILENO, &c, 1);
+		if (c == CTRL_D)
+		{
+			if (ft_strlen(line) == 0)
+				break ;
+		}
+		else if (c == BACK_SPACE)
+		{
+			if (ft_strlen(line) > 0)
+				line = fr_strdel_one(line);
+		}
+		else if (c == LEFT_ARROW)
+			return ;
+		else if (c == RIGHT_ARROW)
+			return ;
+		else if (c == UP_ARROW)
+			return ;
+		else if (c == DOWN_ARROW)
+			return ;
+		else
+		{
+			line = ft_strcjoin(line, (char)c);
+			if (c == '\n')
+				break ;
+		}
 	}
-	free_pointer(temp);
+	tcsetattr(STDIN_FILENO, TCSANOW, &reset_term);
 	return (line);
 }
