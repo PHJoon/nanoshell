@@ -6,11 +6,12 @@
 /*   By: chanson <chanson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 16:30:54 by chanson           #+#    #+#             */
-/*   Updated: 2023/02/23 16:31:13 by chanson          ###   ########.fr       */
+/*   Updated: 2023/02/25 16:03:57 by chanson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../get_next_line.h"
+#include <stdio.h>
 
 void	free_pointer(char *ptr)
 {
@@ -52,6 +53,7 @@ char	*make_line(char *buffer, char **line, int fd, char *temp)
 	cnt = 1;
 	while (cnt)
 	{
+		printf("line > buffer: %s, temp: %s\n", buffer, temp);
 		idx = get_strchr(buffer, '\n');
 		if (idx != -1)
 		{
