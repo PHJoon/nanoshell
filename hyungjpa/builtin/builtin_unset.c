@@ -31,7 +31,7 @@ void	relink_env_list(t_env_list *tmp)
 	}
 }
 
-t_env_list	*do_unset(char **str, t_env_list *env_list)
+t_env_list	*list_unset(char **str, t_env_list *env_list)
 {
 	t_env_list	*tmp;
 	size_t		i;
@@ -44,7 +44,7 @@ t_env_list	*do_unset(char **str, t_env_list *env_list)
 		i = 1;
 		while (str[i])
 		{
-			if (ft_strncmp(tmp->key, str[i], ft_strlen(str[i]) + 1))
+			if (ft_strscmp(tmp->key, str[i]))
 			{
 				relink_env_list(tmp);
 				free(tmp->key);
@@ -55,4 +55,10 @@ t_env_list	*do_unset(char **str, t_env_list *env_list)
 		tmp = tmp->next;
 	}
 	return (env_list);
+}
+
+void	do_unset(char **temp, t_env_list **env_list, t_env_list **export_list)
+{
+	*env_list = list_unset(temp, *env_list);
+	*export_list = list_unset(temp, *export_list);
 }

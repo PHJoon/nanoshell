@@ -13,6 +13,8 @@
 #ifndef BUILTIN_H
 # define BUILTIN_H
 
+# define PATH_MAX 1024
+
 typedef struct s_env_list
 {
 	char				*key;
@@ -22,10 +24,13 @@ typedef struct s_env_list
 }	t_env_list;
 
 // builtin_cd.c
-void		do_cd(char **str);
+void		do_cd(char **str, t_env_list *env_list);
+
+// builtin_cd.c
+void		cd_home(t_env_list *env_list);
 
 // builtin_echo.c
-void	do_echo(char **str, t_env_list *env_list);
+void		do_echo(char **str, t_env_list *env_list);
 
 // builtin_env_1.c
 void		do_env(char **str, t_env_list *env_list);
@@ -33,6 +38,9 @@ void		do_env(char **str, t_env_list *env_list);
 // builtin_env_2.c
 t_env_list	*add_env_list(t_env_list *env_list, char *key, char *value);
 t_env_list	*make_env_list(char **envp);
+
+// builtin_exit.c
+void		do_exit(char **str);
 
 // builtin_export_1.c
 void		do_export(char **str, t_env_list **export_list, \
@@ -47,6 +55,10 @@ void		print_export(t_env_list *export_list);
 void		do_pwd(char **str);
 
 // builtin_unset.c
-t_env_list	*do_unset(char **str, t_env_list *env_list);
+void		do_unset(char **temp, t_env_list **env_list, \
+t_env_list **export_list);
+
+// builtin_main.c
+void		builtin(char **temp, t_env_list *env_list, t_env_list *export_list);
 
 #endif

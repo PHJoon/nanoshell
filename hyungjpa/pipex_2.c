@@ -21,7 +21,7 @@ size_t	count_pipe(char **temp)
 	i = 0;
 	while (temp[i])
 	{
-		if (!ft_strncmp(temp[i], "|", 2))
+		if (ft_strscmp(temp[i], "|"))
 			cnt++;
 		i++;
 	}
@@ -38,9 +38,9 @@ char	**get_redirection(char **temp, size_t i)
 	j = 0;
 	while (temp[i + j] != "|")
 	{
-		if (!ft_strncmp(temp[i + j], "<", 2) || \
-		!ft_strncmp(temp[i + j], ">", 2) || \
-		!ft_strncmp(temp[i + j], ">>", 3))
+		if (ft_strscmp(temp[i + j], "<") || \
+		ft_strscmp(temp[i + j], ">") || \
+		ft_strscmp(temp[i + j], ">>"))
 			redir_cnt += 2;
 		j++;
 	}
@@ -67,9 +67,9 @@ char	*get_cmd(char **temp, size_t *i)
 	cmd_temp = NULL;
 	while (temp[*i + j] != "|")
 	{
-		if (!ft_strncmp(temp[*i + j], "<", 2) || \
-		!ft_strncmp(temp[*i + j], ">", 2) || \
-		!ft_strncmp(temp[*i + j], ">>", 3))
+		if (ft_strscmp(temp[*i + j], "<") || \
+		ft_strscmp(temp[*i + j], ">") || \
+		ft_strscmp(temp[*i + j], ">>"))
 			j += 2;
 		else
 		{
@@ -83,8 +83,6 @@ char	*get_cmd(char **temp, size_t *i)
 	return (cmd_temp);
 }
 
-
-
 int	do_pipe(char **temp, char **envp)
 {
 	size_t	pipe_cnt;
@@ -95,23 +93,12 @@ int	do_pipe(char **temp, char **envp)
 
 	pipe_cnt = count_pipe(temp) + 1;
 	i = 0;
-	if (!pipe_cnt)
+	while (temp[i])
 	{
-		do_fork(pipex, envp, 0);
+		redir_temp = get_redirection(temp, i);
+		cmd_temp = get_cmd(temp, i);
 	}
-	else
-	{
-		while (temp[i])
-		{
-			redir_temp = get_redirection(temp, i);
-			cmd_temp = get_cmd(temp, &i);
-			do_fork()
 
-
-
-
-		}
-	}
 }
 
 void	do_fork(t_pipex *pipex, char **envp, int num)

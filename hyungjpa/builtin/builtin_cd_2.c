@@ -1,32 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncmp.c                                       :+:      :+:    :+:   */
+/*   builtin_cd_2.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hyungjpa <hyungjpa@student.42seoul.>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/22 19:26:19 by hyungjpa          #+#    #+#             */
-/*   Updated: 2023/02/22 19:26:22 by hyungjpa         ###   ########.fr       */
+/*   Created: 2023/02/24 12:53:36 by hyungjpa          #+#    #+#             */
+/*   Updated: 2023/02/24 12:53:37 by hyungjpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/test.h"
 
-int	ft_strncmp(const char *s1, const char *s2, size_t n)
+void	cd_home(t_env_list *env_list)
 {
-	size_t	i;
+	t_env_list	*tmp;
 
-	i = 0;
-	if (n == 0)
-		return (0);
-	while (s1[i] != '\0' && s2[i] != '\0' && i < n)
+	tmp = env_list;
+	while (tmp)
 	{
-		if (s1[i] != s2[i])
-			return ((unsigned char)s1[i] - (unsigned char)s2[i]);
-		i++;
+		if (ft_strscmp(tmp->key, "HOME"))
+		{
+			chdir(tmp->value);
+			return ;
+		}
+		tmp = tmp->next;
 	}
-	if (i == n)
-		return (0);
-	else
-		return ((unsigned char)s1[i] - (unsigned char)s2[i]);
 }

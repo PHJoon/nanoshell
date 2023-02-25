@@ -1,27 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strscmp.c                                       :+:      :+:    :+:   */
+/*   builtin_main.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chanson <chanson@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hyungjpa <hyungjpa@student.42seoul.>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/15 14:16:27 by chanson           #+#    #+#             */
-/*   Updated: 2023/02/15 19:48:27 by chanson          ###   ########.fr       */
+/*   Created: 2023/02/24 11:17:42 by hyungjpa          #+#    #+#             */
+/*   Updated: 2023/02/24 11:17:43 by hyungjpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/test.h"
 
-int	ft_strscmp(char *str1, char *str2)
+void	builtin(char **temp, t_env_list *env_list, t_env_list *export_list)
 {
-	int	i;
-
-	i = 0;
-	while (str1[i] || str2[i])
-	{
-		if (str1[i] != str2[i])
-			return (FALSE);
-		i++;
-	}
-	return (TRUE);
+	do_cd(temp, env_list);
+	do_echo(temp, env_list);
+	do_env(temp, env_list);
+	do_export(temp, &export_list, &env_list);
+	do_pwd(temp);
+	do_unset(temp, &env_list, &export_list);
+	do_exit(temp);
 }

@@ -41,10 +41,8 @@ typedef struct s_pipex
 	char	**path;
 }	t_pipex;
 
-
 char	*ft_strjoin(char *str1, char *str2);
 char	*str_cp_limit(char *str, size_t idx);
-
 
 char	**do_here_doc(char **temp);
 

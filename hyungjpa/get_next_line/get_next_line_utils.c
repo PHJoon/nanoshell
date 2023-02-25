@@ -5,12 +5,12 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: chanson <chanson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/24 15:29:46 by chanson           #+#    #+#             */
-/*   Updated: 2023/01/13 19:30:03 by chanson          ###   ########.fr       */
+/*   Created: 2023/02/23 16:31:21 by chanson           #+#    #+#             */
+/*   Updated: 2023/02/23 16:31:46 by chanson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/test.h"
+#include "../includes/get_next_line.h"
 
 int	get_strchr(const char *s, int c)
 {

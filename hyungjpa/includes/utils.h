@@ -33,9 +33,6 @@ char	*ft_strdup(const char *s1);
 // ./utils/ft_strlen
 size_t	ft_strlen(const char *s);
 
-// ./utils/ft_strncmp
-int		ft_strncmp(const char *s1, const char *s2, size_t n);
-
 // ./utils/ft_strrchr
 size_t	ft_strrchr(const char *s, int c);
 
@@ -44,9 +41,6 @@ int		ft_strscmp(char *str1, char *str2);
 
 // ./utils/ft_strsjoin
 char	**ft_strsjoin(char **str1, char *str);
-
-// ./utils/ft_substr
-char	*ft_substr(char const *s, unsigned int start, size_t len);
 
 // ./utils/syntax_ft_split_1
 char	**ft_split_syntax(char *s);

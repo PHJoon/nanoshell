@@ -14,15 +14,14 @@
 
 void	do_pwd(char **str)
 {
-	size_t	i;
 	char	*cwd_buf;
 
-	i = 1;
-	if (ft_strscmp(str[0], "pwd"))
+	if (!ft_strscmp(str[0], "pwd"))
 		return ;
 	if (str_size(str) > 1)
 		return ;
-	cwd_buf = getcwd(NULL, 0);
+	cwd_buf = (char *)malloc(sizeof(char) * 1024);
+	cwd_buf = getcwd(cwd_buf, 1024);
 	printf("%s\n", cwd_buf);
 	free(cwd_buf);
 }

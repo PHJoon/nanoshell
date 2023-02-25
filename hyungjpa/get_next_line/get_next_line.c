@@ -5,12 +5,12 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: chanson <chanson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/24 15:28:41 by chanson           #+#    #+#             */
-/*   Updated: 2023/01/13 19:30:18 by chanson          ###   ########.fr       */
+/*   Created: 2023/02/23 16:30:54 by chanson           #+#    #+#             */
+/*   Updated: 2023/02/23 16:31:13 by chanson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/test.h"
+#include "../includes/get_next_line.h"
 
 void	free_pointer(char *ptr)
 {

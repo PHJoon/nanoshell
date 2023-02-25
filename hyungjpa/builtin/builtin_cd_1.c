@@ -12,22 +12,29 @@
 
 #include "../includes/test.h"
 
-char	*cd_dot_dot(char	*buf_tmp, size_t *i)
+char	*cd_dot_dot(char *buf_tmp, char *slash, size_t *i)
 {
 	size_t	slash_idx;
+	size_t	num;
 	char	*tmp;
 
+	if (ft_strscmp(slash, ".."))
+		num = 2;
+	else
+		num = 3;
+	*i += num;
+	if (ft_strlen(buf_tmp) == 1)
+		return (buf_tmp);
 	if (buf_tmp[ft_strlen(buf_tmp) - 1] == '/')
 	{
-		tmp = ft_substr(buf_tmp, 0, ft_strlen(buf_tmp) - 1);
+		tmp = ft_strcpy_index(buf_tmp, 0, ft_strlen(buf_tmp) - 2);
 		free(buf_tmp);
 		buf_tmp = tmp;
 	}
 	slash_idx = ft_strrchr(buf_tmp, '/');
-	tmp = ft_substr(buf_tmp, 0, slash_idx + 1);
+	tmp = ft_strcpy_index(buf_tmp, 0, slash_idx);
 	free(buf_tmp);
 	buf_tmp = tmp;
-	*i += 3;
 	return (buf_tmp);
 }
 
@@ -43,6 +50,8 @@ char	*cd_not_dot(char *buf_tmp, char *str, size_t *i)
 		(*i)++;
 		slash_idx = ft_strchr(&str[*i], '/');
 	}
+	else if (slash_idx == ft_strlen(&str[*i]))
+		buf_tmp = ft_strcjoin(buf_tmp, '/');
 	j = 0;
 	while (j < slash_idx)
 	{
@@ -53,44 +62,57 @@ char	*cd_not_dot(char *buf_tmp, char *str, size_t *i)
 	return (buf_tmp);
 }
 
-char	*check_cd_argv(char *str)
+char	*add_back_slash(char *buf_tmp, char *slash, size_t *i)
 {
-	char	*cwd_buf;
+	if (buf_tmp[ft_strlen(buf_tmp) - 1] != '/')
+		buf_tmp = ft_strcjoin(buf_tmp, '/');
+	if (ft_strscmp(slash, "./"))
+		*i += 2;
+	else
+		*i += 1;
+	return (buf_tmp);
+}
+
+char	*check_cd_argv(char *str, char *cwd_buf)
+{
 	char	*buf_tmp;
 	size_t	i;
 
 	i = 0;
-	cwd_buf = getcwd(NULL, 0);
 	buf_tmp = ft_strdup(cwd_buf);
 	free(cwd_buf);
 	while (str[i])
 	{
-		if (!ft_strncmp(&str[i], "./", 2))
-		{
-			if (buf_tmp[ft_strlen(buf_tmp) - 1] != '/')
-				buf_tmp = ft_strcjoin(buf_tmp, '/');
-			i += 2;
-		}
-		else if (!ft_strncmp(&str[i], "../", 3))
-			buf_tmp = cd_dot_dot(buf_tmp, &i);
+		if (ft_strscmp(&str[i], "."))
+			buf_tmp = add_back_slash(buf_tmp, ".", &i);
+		else if (ft_strscmp(&str[i], "./"))
+			buf_tmp = add_back_slash(buf_tmp, "./", &i);
+		else if (ft_strscmp(&str[i], ".."))
+			buf_tmp = cd_dot_dot(buf_tmp, "..", &i);
+		else if (ft_strscmp(&str[i], "../"))
+			buf_tmp = cd_dot_dot(buf_tmp, "../", &i);
 		else
 			buf_tmp = cd_not_dot(buf_tmp, str, &i);
 	}
 	return (buf_tmp);
 }
 
-void	do_cd(char **str)
+void	do_cd(char **str, t_env_list *env_list)
 {
-	size_t	i;
 	char	*cwd_buf;
 
-	i = 1;
 	if (!ft_strscmp(str[0], "cd"))
 		return ;
 	if (str_size(str) > 2)
 		return ;
-	cwd_buf = check_cd_argv(str[1]);
-	chdir(cwd_buf);
-	printf("%s\n", cwd_buf);
+	cwd_buf = (char *)malloc(sizeof(char) * 1024);
+	cwd_buf = getcwd(cwd_buf, 1024);
+	if (str[1])
+	{
+		cwd_buf = check_cd_argv(str[1], cwd_buf);
+		chdir(cwd_buf);
+	}
+	else
+		cd_home(env_list);
 	free(cwd_buf);
 }

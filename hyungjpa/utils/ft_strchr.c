@@ -23,5 +23,5 @@ size_t	ft_strchr(const char *s, int c)
 			return (i);
 		i++;
 	}
-	return (0);
+	return (i);
 }

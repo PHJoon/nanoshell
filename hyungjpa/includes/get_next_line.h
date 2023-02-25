@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: chanson <chanson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/24 15:29:59 by chanson           #+#    #+#             */
-/*   Updated: 2023/01/13 17:54:11 by chanson          ###   ########.fr       */
+/*   Created: 2023/02/23 16:29:04 by chanson           #+#    #+#             */
+/*   Updated: 2023/02/24 12:54:45 by chanson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 # include <stdlib.h>
 
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 42
+#  define BUFFER_SIZE 1
 # endif
 
 int		get_strchr(const char *s, int c);

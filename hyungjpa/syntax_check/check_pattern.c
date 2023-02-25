@@ -6,16 +6,14 @@
 /*   By: chanson <chanson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 16:41:16 by chanson           #+#    #+#             */
-/*   Updated: 2023/02/15 17:34:37 by chanson          ###   ########.fr       */
+/*   Updated: 2023/02/22 12:29:36 by chanson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/test.h"
 
-static int	_check_pattern(int rt, int rtb)
+static int	_check_pattern_true(int rt, int rtb)
 {
-	if (rt == TK_STR && rtb == TK_LPT)
-		return (FALSE);
 	if (rt == TK_IRD && rtb == TK_STR)
 		return (TRUE);
 	if (rt == TK_ORD && rtb == TK_STR)
@@ -24,6 +22,13 @@ static int	_check_pattern(int rt, int rtb)
 		return (TRUE);
 	if (rt == TK_ARD && rtb == TK_STR)
 		return (TRUE);
+	return (FALSE);
+}
+
+static int	_check_pattern_false(int rt, int rtb)
+{
+	if (rt == TK_STR && rtb == TK_LPT)
+		return (FALSE);
 	if (rt == TK_PIPE && (rtb == TK_PIPE || \
 	rtb == TK_AND || rtb == TK_OR || rtb == TK_RPT))
 		return (FALSE);
@@ -38,6 +43,19 @@ static int	_check_pattern(int rt, int rtb)
 		return (FALSE);
 	if (rt == TK_RPT && (rtb == TK_STR || rtb == TK_LPT))
 		return (FALSE);
+	return (TRUE);
+}
+
+static int	_check_pattern(int rt, int rtb)
+{
+	if (_check_pattern_false(rt, rtb) == FALSE)
+		return (FALSE);
+	else
+	{
+		if (rt == TK_IRD || rt == TK_ORD || rt == TK_HRD \
+		|| rt == TK_ARD)
+			return (_check_pattern_true(rt, rtb));
+	}
 	return (TRUE);
 }
 
@@ -62,7 +80,7 @@ int	check_pattern(char **temp, int *type_list, int idx)
 	if (type_list[idx + 1] == TK_STR)
 	{
 		if (temp[idx + 1][0] == '(')
-			real_type = TK_LPT;
+			real_type_back = TK_LPT;
 		if (temp[idx + 1][0] == ')')
 			return (FALSE);
 	}

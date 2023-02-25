@@ -43,8 +43,8 @@ void	find_key_value(char *str, char **key, char **value)
 			break ;
 		i++;
 	}
-	*key = ft_substr(str, 0, i);
-	*value = ft_substr(str, i + 1, ft_strlen(str));
+	*key = ft_strcpy_index(str, 0, i - 1);
+	*value = ft_strcpy_index(str, i + 1, ft_strlen(str) - 1);
 }
 
 int	find_dup_key(t_env_list *env_list, char *key, char *value)

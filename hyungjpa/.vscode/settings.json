@@ -4,6 +4,7 @@
 		"test.h": "c",
 		"ios": "c",
 		"readline.h": "c",
-		"types.h": "c"
+		"types.h": "c",
+		"get_next_line.h": "c"
 	}
 }

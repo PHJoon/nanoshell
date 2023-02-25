@@ -7,11 +7,9 @@ SRCS_NAME = ./test \
 			./utils/ft_strcjoin \
 			./utils/ft_strdup \
 			./utils/ft_strlen \
-			./utils/ft_strncmp \
 			./utils/ft_strrchr \
 			./utils/ft_strscmp \
 			./utils/ft_strsjoin \
-			./utils/ft_substr \
 			./utils/syntax_ft_split_1 \
 			./utils/syntax_ft_split_2 \
 			./utils/syntax_ft_split_3 \
@@ -26,7 +24,9 @@ SRCS_NAME = ./test \
 			./syntax_tree/ast_list_func_2 \
 			./syntax_tree/ast_main \
 			./signal_handle/signal_handler \
-			./builtin/builtin_cd \
+			./builtin/builtin_main \
+			./builtin/builtin_cd_1 \
+			./builtin/builtin_cd_2 \
 			./builtin/builtin_echo \
 			./builtin/builtin_env_1 \
 			./builtin/builtin_env_2 \
@@ -36,13 +36,13 @@ SRCS_NAME = ./test \
 			./builtin/builtin_pwd \
 			./builtin/builtin_unset \
 			./display \
-			./pipex \
 			./utils/pipex_ft_strjoin \
 			./utils/pipex_str_cp \
 			./utils/ft_strtrim \
 			./remove_quote \
 			./utils/ft_strcpy_index \
-			
+			./set_canonical_mode \
+			./heredoc_tmp \
 
 
 
@@ -67,10 +67,10 @@ RL = -lreadline
 all:		$(NAME)
 
 $(NAME):	$(OBJS)
-			@$(CC) $(FLAGS) $(RL_FLAGS) $(RL) $(RL_INCLUDE) $(INCLUDES) $(OBJS) -o $(NAME)
+			@$(CC) $(FLAGS) $(RL_FLAGS) $(RL) $(RL_INCLUDE) $(INCLUDES) $(SRCS) -o $(NAME)
 
 %.o : %.c
-			@${CC} ${FLAGS} $(RL_INCLUDE) $(INCLUDES) -c $< -o $@
+			@$(CC) $(FLAGS) $(RL_INCLUDE) $(INCLUDES) -c $< -o $@
 
 
 clean:		

@@ -21,7 +21,7 @@ size_t	check_here_doc(char **temp)
 	i = 0;
 	while (temp[i])
 	{
-		if (ft_strncmp(temp[i], "<<", 3))
+		if (ft_strscmp(temp[i], "<<"))
 			cnt++;
 		i++;
 	}
@@ -93,30 +93,54 @@ char	**change_hrd(char **temp, char *tmp_file, size_t i)
 	return (temp);
 }
 
-
 char	**do_here_doc(char **temp)
 {
 	size_t	cnt;
-	size_t	i;
-	size_t	j;
-	char	*tmp_file;
+	int		ch;
+	int		idx;
+	char	*tmp;
+	char	*tmp_tmp;
+	struct termios	normal_term;
+	struct termios	hd_term;
 
+	ch = 0;
+	idx = 0;
 	cnt = check_here_doc(temp);
-	i = 0;
-	j = 0;
 	if (cnt == 0)
-		return (0);
-	while (temp[i])
+		return (temp);
+	tmp = NULL;
+	on_off_catch_signals(1);
+	normal_term = set_normal_mode();
+	hd_term = set_heredoc_mode();
+	while (read(0, &ch, sizeof(int)) > 0)
 	{
-		if (!ft_strncmp(temp[i], "<<", 3))
+		if (ch == 3)
+			break ;
+		else if (ch == 4)
 		{
-			tmp_file = here_doc(temp[i + 1], j);
-			temp = change_hrd(temp, tmp_file, i);
-			j++;
-			i += 2;
+			ch = 0;
+			continue ;
+		}
+		else if (ch == 28)
+		{
+			ch = 0;
+			continue ;
+		}	
+		else if (ch == 127)
+		{
+			tmp_tmp = ft_strcpy_index(tmp, 0, ft_strlen(tmp) - 2);
+			free(tmp);
+			tmp = tmp_tmp;
+			write(1, "\b \b", 3);
 		}
 		else
-			i++;
+		{
+			tmp = ft_strcjoin(tmp, ch);
+			write (1, &ch, sizeof(int));
+		}
+		ch = 0;
 	}
+	reset_normal_mode(normal_term);
+	on_off_catch_signals(0);
 	return (temp);
 }

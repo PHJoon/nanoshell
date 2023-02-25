@@ -25,7 +25,7 @@ t_env_list	*sort_export_list(t_env_list *export_list)
 		tmp_next = tmp->next;
 		while (tmp_next)
 		{
-			if (ft_strncmp(tmp->key, tmp_next->key, ft_strlen(tmp->key)) > 0)
+			if (ft_strscmp(tmp->key, tmp_next->key))
 			{
 				key_tmp = tmp->key;
 				value_tmp = tmp->value;
@@ -48,6 +48,8 @@ t_env_list	*free_last(t_env_list *export_list)
 	tmp = export_list;
 	while (tmp->next->next)
 		tmp = tmp->next;
+	free(tmp->next->key);
+	free(tmp->next->value);
 	free(tmp->next);
 	tmp->next = NULL;
 	return (export_list);
