@@ -1,31 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   signal_handler.h                                   :+:      :+:    :+:   */
+/*   builtin_error.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hyungjpa <hyungjpa@student.42seoul.>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/16 19:16:06 by hyungjpa          #+#    #+#             */
-/*   Updated: 2023/02/16 19:16:08 by hyungjpa         ###   ########.fr       */
+/*   Created: 2023/02/26 02:36:35 by hyungjpa          #+#    #+#             */
+/*   Updated: 2023/02/26 02:36:37 by hyungjpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SIGNAL_HANDLER_H
-# define SIGNAL_HANDLER_H
+#include "../includes/test.h"
 
-# include <signal.h>
-# include <termios.h>
+int	print_error_1(char *str)
+{
+	printf("%s\n", str);
+	return (2);
+}
 
-# define OFF 0
-# define ON 1
-# define PARENT 2
-# define CHILD 3
-# define HEREDOC 4
+int	print_error_2(char *str1, char *str2)
+{
+	printf("%s", str1);
+	printf("%s\n", str2);
+	return (2);
+}
 
-void	on_off_catch_signals(int on_off);
-void	parent_sig_handler(int signo);
-void	do_signal_handle(int status);
-void	signal_sigterm(char *str);
-void	child_signal_handle(void);
-
-#endif
+int	print_error_3(char *str1, char *str2, char *str3)
+{
+	printf("%s", str1);
+	printf("%s", str2);
+	printf("%s\n", str3);
+	return (2);
+}

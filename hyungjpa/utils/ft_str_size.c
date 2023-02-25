@@ -12,9 +12,9 @@
 
 #include "../includes/test.h"
 
-size_t	str_size(char **str)
+int	str_size(char **str)
 {
-	size_t	i;
+	int	i;
 
 	i = 0;
 	while (str[i])

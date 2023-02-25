@@ -71,13 +71,7 @@ void	make_type_list(int *type_list, char **temp);
 void	display_node(t_node *head);
 void	display_ast(t_ast *root);
 
-
 char	**remove_quote(char **temp);
 int		check_remove_quote(char *str);
-
-
-struct termios	set_normal_mode(void);
-struct termios	set_heredoc_mode(void);
-void			reset_normal_mode(struct termios normal_term);
 
 #endif

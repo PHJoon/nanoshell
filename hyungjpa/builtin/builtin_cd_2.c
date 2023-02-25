@@ -12,9 +12,9 @@
 
 #include "../includes/test.h"
 
-void	cd_home(t_env_list *env_list)
+void	cd_home(t_env *env_list)
 {
-	t_env_list	*tmp;
+	t_env	*tmp;
 
 	tmp = env_list;
 	while (tmp)
@@ -26,4 +26,19 @@ void	cd_home(t_env_list *env_list)
 		}
 		tmp = tmp->next;
 	}
+}
+
+int	check_dir(char *cwd_buf)
+{
+	DIR	*dir_info;
+
+	dir_info = opendir(cwd_buf);
+	if (dir_info)
+	{
+		closedir(dir_info);
+		return (1);
+	}
+	closedir(dir_info);
+	free(cwd_buf);
+	return (0);
 }

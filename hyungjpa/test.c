@@ -16,15 +16,15 @@ int	main(int argc, char **argv, char **envp)
 {
 	char		*str;
 	char		**temp;
-	t_env_list	*env_list;
-	t_env_list	*export_list;
+	t_env	*env_list;
+	t_env	*export_list;
 	// t_node	*head;
 	// t_ast	*root;
 
 	(void)argc;
 	(void)argv;
 	on_off_catch_signals(OFF);
-	signal_handle();
+	do_signal_handle(PARENT);
 	export_list = make_export_list(envp);
 	env_list = make_env_list(envp);
 	while (1)
@@ -37,9 +37,10 @@ int	main(int argc, char **argv, char **envp)
 			printf("syntax error\n");
 			continue ;
 		}
-		// temp = do_here_doc(temp);
+		temp = do_here_doc(temp);
+		do_signal_handle(PARENT);
 		temp = remove_quote(temp);
-		// builtin(temp, env_list, export_list);
+		printf("%d\n", builtin(temp, env_list, export_list));
 		// dispaly_str(temp);
 		// root = NULL;
 		// head = trans_to_list(temp);

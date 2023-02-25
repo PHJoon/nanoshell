@@ -1,29 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   str_cp_bonus.c                                     :+:      :+:    :+:   */
+/*   ft_isalnum.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chanson <chanson@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hyungjpa <hyungjpa@student.42seoul.>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/13 20:44:49 by chanson           #+#    #+#             */
-/*   Updated: 2023/01/13 20:48:33 by chanson          ###   ########.fr       */
+/*   Created: 2022/11/09 15:00:16 by hyungjpa          #+#    #+#             */
+/*   Updated: 2022/11/09 21:00:27 by hyungjpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/test.h"
 
-char	*str_cp_limit(char *str, int idx)
+int	ft_isalnum(int c)
 {
-	int		i;
-	char	*temp;
-
-	temp = (char *)malloc(sizeof(char) * (idx + 1));
-	temp[idx + 1] = '\0';
-	i = 0;
-	while (i <= idx)
-	{
-		temp[i] = str[i];
-		i++;
-	}
-	return (temp);
+	if (c < 48 || (c > 57 && c < 65) || (c > 90 && c < 97) || c > 122)
+		return (0);
+	return (1);
 }

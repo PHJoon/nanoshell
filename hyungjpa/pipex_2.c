@@ -12,10 +12,10 @@
 
 #include "./includes/test.h"
 
-size_t	count_pipe(char **temp)
+int	count_pipe(char **temp)
 {
-	size_t	cnt;
-	size_t	i;
+	int	cnt;
+	int	i;
 
 	cnt = 0;
 	i = 0;
@@ -28,10 +28,10 @@ size_t	count_pipe(char **temp)
 	return (cnt);
 }
 
-char	**get_redirection(char **temp, size_t i)
+char	**get_redirection(char **temp, int i)
 {
-	size_t	redir_cnt;
-	size_t	j;
+	int	redir_cnt;
+	int	j;
 	char	**redir_temp;
 
 	redir_cnt = 0;
@@ -57,9 +57,9 @@ char	**get_redirection(char **temp, size_t i)
 	return (redir_temp);
 }
 
-char	*get_cmd(char **temp, size_t *i)
+char	*get_cmd(char **temp, int *i)
 {
-	size_t	j;
+	int	j;
 	char	*tmp;
 	char	*cmd_temp;
 
@@ -85,9 +85,9 @@ char	*get_cmd(char **temp, size_t *i)
 
 int	do_pipe(char **temp, char **envp)
 {
-	size_t	pipe_cnt;
+	int	pipe_cnt;
 	t_pipex	pipex;
-	size_t	i;
+	int	i;
 	char	**redir_temp;
 	char	*cmd_temp;
 

@@ -42,7 +42,7 @@ typedef struct s_pipex
 }	t_pipex;
 
 char	*ft_strjoin(char *str1, char *str2);
-char	*str_cp_limit(char *str, size_t idx);
+char	*str_cp_limit(char *str, int idx);
 
 char	**do_here_doc(char **temp);
 

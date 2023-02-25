@@ -14,7 +14,7 @@
 
 int	check_remove_quote(char *str)
 {
-	size_t	i;
+	int	i;
 
 	i = 0;
 	if (str[i] == '\'' || str[i] == '"')
@@ -40,7 +40,7 @@ int	check_remove_quote(char *str)
 
 char	**remove_quote(char **temp)
 {
-	size_t	i;
+	int	i;
 
 	i = 0;
 	while (temp[i])

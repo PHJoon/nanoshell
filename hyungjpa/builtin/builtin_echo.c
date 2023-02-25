@@ -14,7 +14,7 @@
 
 int	echo_option(char *str)
 {
-	size_t	i;
+	int	i;
 
 	i = 1;
 	if (str == NULL)
@@ -33,9 +33,9 @@ int	echo_option(char *str)
 	return (0);
 }
 
-void	find_value_print(t_env_list *env_list, char *key)
+void	find_value_print(t_env *env_list, char *key)
 {
-	t_env_list	*tmp;
+	t_env	*tmp;
 
 	tmp = env_list;
 	while (tmp)
@@ -49,10 +49,10 @@ void	find_value_print(t_env_list *env_list, char *key)
 	}
 }
 
-void	print_env_var(char *str, t_env_list *env_list)
+void	print_env_var(char *str, t_env *env_list)
 {
-	size_t	i;
-	size_t	j;
+	int		i;
+	int		j;
 	char	*tmp;
 
 	i = 0;
@@ -78,7 +78,7 @@ void	print_env_var(char *str, t_env_list *env_list)
 	}
 }
 
-void	check_env_var(char *str, t_env_list *env_list)
+void	check_env_var(char *str, t_env *env_list)
 {
 	char	*tmp;
 
@@ -103,29 +103,30 @@ void	check_env_var(char *str, t_env_list *env_list)
 		printf("%s", str);
 }
 
-void	do_echo(char **str, t_env_list *env_list)
+int	do_echo(char **temp, t_env *env_list)
 {
-	int		flag;
-	size_t	i;
+	int	flag;
+	int	i;
 
 	flag = 1;
 	i = 1;
-	if (!ft_strscmp(str[0], "echo"))
-		return ;
-	while (echo_option(str[i]) == 1)
+	if (!ft_strscmp(temp[0], "echo"))
+		return (1);
+	if (echo_option(temp[i]) == -1)
+		return (0);
+	while (echo_option(temp[i]) == 1)
 	{
 		i++;
 		flag = 0;
 	}
-	if (echo_option(str[i]) == -1)
-		return ;
-	while (str[i])
+	while (temp[i])
 	{
-		check_env_var(str[i], env_list);
+		check_env_var(temp[i], env_list);
 		i++;
-		if (i != str_size(str))
+		if (i != str_size(temp))
 			printf(" ");
 	}
 	if (flag)
 		printf("\n");
+	return (0);
 }

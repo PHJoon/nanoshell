@@ -5,6 +5,7 @@
 		"ios": "c",
 		"readline.h": "c",
 		"types.h": "c",
-		"get_next_line.h": "c"
+		"get_next_line.h": "c",
+		"sstream": "c"
 	}
 }

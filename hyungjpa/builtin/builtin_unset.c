@@ -12,7 +12,7 @@
 
 #include "../includes/test.h"
 
-void	relink_env_list(t_env_list *tmp)
+void	relink_env_list(t_env *tmp)
 {
 	if (tmp->prev)
 	{
@@ -31,20 +31,22 @@ void	relink_env_list(t_env_list *tmp)
 	}
 }
 
-t_env_list	*list_unset(char **str, t_env_list *env_list)
+int	list_unset(char **temp, t_env **env_list)
 {
-	t_env_list	*tmp;
-	size_t		i;
+	t_env	*tmp;
+	int		i;
 
-	if (!ft_strscmp(str[0], "unset"))
-		return (env_list);
-	tmp = env_list;
+	if (!ft_strscmp(temp[0], "unset"))
+		return (-1);
+	tmp = *env_list;
 	while (tmp)
 	{
 		i = 1;
-		while (str[i])
+		while (temp[i])
 		{
-			if (ft_strscmp(tmp->key, str[i]))
+			if (!valid_check(temp[i]))
+				return (i);
+			if (ft_strscmp(tmp->key, temp[i]))
 			{
 				relink_env_list(tmp);
 				free(tmp->key);
@@ -54,11 +56,20 @@ t_env_list	*list_unset(char **str, t_env_list *env_list)
 		}
 		tmp = tmp->next;
 	}
-	return (env_list);
+	return (0);
 }
 
-void	do_unset(char **temp, t_env_list **env_list, t_env_list **export_list)
+int	do_unset(char **temp, t_env **env_list, t_env **export_list)
 {
-	*env_list = list_unset(temp, *env_list);
-	*export_list = list_unset(temp, *export_list);
+	int	res1;
+	int	res2;
+
+	res1 = list_unset(temp, env_list);
+	res2 = list_unset(temp, export_list);
+	if (res1 == -1)
+		return (1);
+	else if (res1 > 0)
+		return (print_error_3("export: \'", temp[res1], \
+			"\': not a valid identifier"));
+	return (0);
 }

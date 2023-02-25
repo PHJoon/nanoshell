@@ -41,8 +41,10 @@ SRCS_NAME = ./test \
 			./utils/ft_strtrim \
 			./remove_quote \
 			./utils/ft_strcpy_index \
-			./set_canonical_mode \
-			./heredoc_tmp \
+			./heredoc \
+			./utils/ft_isalnum \
+			./utils/ft_isalpha \
+			./builtin/builtin_error \
 
 
 

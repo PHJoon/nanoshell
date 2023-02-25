@@ -12,11 +12,11 @@
 
 #include "../includes/test.h"
 
-t_env_list	*make_new_env_list(char *key, char *value)
+t_env	*make_new_env_list(char *key, char *value)
 {
-	t_env_list	*new;
+	t_env	*new;
 
-	new = (t_env_list *)malloc(sizeof(t_env_list));
+	new = (t_env *)malloc(sizeof(t_env));
 	if (!new)
 		return (NULL);
 	new->key = key;
@@ -26,10 +26,10 @@ t_env_list	*make_new_env_list(char *key, char *value)
 	return (new);
 }
 
-t_env_list	*add_env_list(t_env_list *env_list, char *key, char *value)
+t_env	*add_env_list(t_env *env_list, char *key, char *value)
 {
-	t_env_list	*new;
-	t_env_list	*tmp;
+	t_env	*new;
+	t_env	*tmp;
 
 	tmp = env_list;
 	new = make_new_env_list(key, value);
@@ -42,9 +42,9 @@ t_env_list	*add_env_list(t_env_list *env_list, char *key, char *value)
 	return (env_list);
 }
 
-t_env_list	*split_env(t_env_list *env_list, char *str)
+t_env	*split_env(t_env *env_list, char *str)
 {
-	size_t	i;
+	int		i;
 	char	*key;
 	char	*value;
 
@@ -57,9 +57,9 @@ t_env_list	*split_env(t_env_list *env_list, char *str)
 	return (env_list);
 }
 
-t_env_list	*make_env_list(char **envp)
+t_env	*make_env_list(char **envp)
 {
-	t_env_list	*env_list;
+	t_env	*env_list;
 
 	env_list = NULL;
 	while (*envp)

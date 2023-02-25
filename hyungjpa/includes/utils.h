@@ -19,10 +19,10 @@
 void	ft_free_str(char **str);
 
 // ./utils/ft_str_size
-size_t	str_size(char **str);
+int		str_size(char **str);
 
 // ./utils/ft_strchr
-size_t	ft_strchr(const char *s, int c);
+int		ft_strchr(const char *s, int c);
 
 // ./utils/ft_strcjoin 
 char	*ft_strcjoin(char *s, char c);
@@ -31,10 +31,10 @@ char	*ft_strcjoin(char *s, char c);
 char	*ft_strdup(const char *s1);
 
 // ./utils/ft_strlen
-size_t	ft_strlen(const char *s);
+int		ft_strlen(const char *s);
 
 // ./utils/ft_strrchr
-size_t	ft_strrchr(const char *s, int c);
+int		ft_strrchr(const char *s, int c);
 
 // ./utils/ft_strscmp
 int		ft_strscmp(char *str1, char *str2);
@@ -64,5 +64,8 @@ char	*ft_strtrim_couple_check(char *str, char c1, char c2);
 
 // ./utils/ft_strcpy_index.c
 char	*ft_strcpy_index(char *str, int start, int end);
+
+int		ft_isalpha(int c);
+int		ft_isalnum(int c);
 
 #endif

@@ -12,10 +12,10 @@
 
 #include "../includes/test.h"
 
-char	*cd_dot_dot(char *buf_tmp, char *slash, size_t *i)
+char	*cd_dot_dot(char *buf_tmp, char *slash, int *i)
 {
-	size_t	slash_idx;
-	size_t	num;
+	int		slash_idx;
+	int		num;
 	char	*tmp;
 
 	if (ft_strscmp(slash, ".."))
@@ -38,10 +38,10 @@ char	*cd_dot_dot(char *buf_tmp, char *slash, size_t *i)
 	return (buf_tmp);
 }
 
-char	*cd_not_dot(char *buf_tmp, char *str, size_t *i)
+char	*cd_not_dot(char *buf_tmp, char *str, int *i)
 {
-	size_t	slash_idx;
-	size_t	j;
+	int	slash_idx;
+	int	j;
 
 	slash_idx = ft_strchr(&str[*i], '/');
 	if (slash_idx == 0)
@@ -62,7 +62,7 @@ char	*cd_not_dot(char *buf_tmp, char *str, size_t *i)
 	return (buf_tmp);
 }
 
-char	*add_back_slash(char *buf_tmp, char *slash, size_t *i)
+char	*add_back_slash(char *buf_tmp, char *slash, int *i)
 {
 	if (buf_tmp[ft_strlen(buf_tmp) - 1] != '/')
 		buf_tmp = ft_strcjoin(buf_tmp, '/');
@@ -76,7 +76,7 @@ char	*add_back_slash(char *buf_tmp, char *slash, size_t *i)
 char	*check_cd_argv(char *str, char *cwd_buf)
 {
 	char	*buf_tmp;
-	size_t	i;
+	int		i;
 
 	i = 0;
 	buf_tmp = ft_strdup(cwd_buf);
@@ -97,22 +97,28 @@ char	*check_cd_argv(char *str, char *cwd_buf)
 	return (buf_tmp);
 }
 
-void	do_cd(char **str, t_env_list *env_list)
+int	do_cd(char **temp, t_env *env_list)
 {
 	char	*cwd_buf;
 
-	if (!ft_strscmp(str[0], "cd"))
-		return ;
-	if (str_size(str) > 2)
-		return ;
+	if (!ft_strscmp(temp[0], "cd"))
+		return (1);
+	if (str_size(temp) > 2)
+		return (print_error_2("cd: string not in: ", temp[2]));
 	cwd_buf = (char *)malloc(sizeof(char) * 1024);
+	if (!cwd_buf)
+		return (print_error_1("malloc_error"));
 	cwd_buf = getcwd(cwd_buf, 1024);
-	if (str[1])
+	if (temp[1])
 	{
-		cwd_buf = check_cd_argv(str[1], cwd_buf);
-		chdir(cwd_buf);
+		cwd_buf = check_cd_argv(temp[1], cwd_buf);
+		if (check_dir(cwd_buf))
+			chdir(cwd_buf);
+		else
+			return (print_error_2("cd : not a directory: ", temp[1]));
 	}
 	else
 		cd_home(env_list);
 	free(cwd_buf);
+	return (0);
 }

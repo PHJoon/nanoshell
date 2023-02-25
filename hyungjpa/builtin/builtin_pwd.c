@@ -12,16 +12,17 @@
 
 #include "../includes/test.h"
 
-void	do_pwd(char **str)
+int	do_pwd(char **temp)
 {
 	char	*cwd_buf;
 
-	if (!ft_strscmp(str[0], "pwd"))
-		return ;
-	if (str_size(str) > 1)
-		return ;
+	if (!ft_strscmp(temp[0], "pwd"))
+		return (1);
 	cwd_buf = (char *)malloc(sizeof(char) * 1024);
+	if (!cwd_buf)
+		return (print_error_1("malloc error"));
 	cwd_buf = getcwd(cwd_buf, 1024);
 	printf("%s\n", cwd_buf);
 	free(cwd_buf);
+	return (0);
 }

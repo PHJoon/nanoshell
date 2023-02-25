@@ -12,9 +12,9 @@
 
 #include "../includes/test.h"
 
-size_t	ft_strchr(const char *s, int c)
+int	ft_strchr(const char *s, int c)
 {
-	size_t	i;
+	int	i;
 
 	i = 0;
 	while (s[i])

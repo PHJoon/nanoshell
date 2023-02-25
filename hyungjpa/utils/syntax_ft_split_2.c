@@ -53,7 +53,7 @@ int	ft_split_redirection(char ***temp, char *str, int idx)
 
 int	_ft_split_quote(char *str, int idx, char **buff)
 {
-	int		cnt;
+	int	cnt;
 
 	*buff = ft_strcjoin(*buff, str[idx++]);
 	cnt = 0;

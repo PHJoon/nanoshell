@@ -12,12 +12,12 @@
 
 #include "../includes/test.h"
 
-t_env_list	*sort_export_list(t_env_list *export_list)
+t_env	*sort_export_list(t_env *export_list)
 {
-	t_env_list	*tmp;
-	t_env_list	*tmp_next;
-	char		*key_tmp;
-	char		*value_tmp;
+	t_env	*tmp;
+	t_env	*tmp_next;
+	char	*key_tmp;
+	char	*value_tmp;
 
 	tmp = export_list;
 	while (tmp)
@@ -41,9 +41,9 @@ t_env_list	*sort_export_list(t_env_list *export_list)
 	return (export_list);
 }
 
-t_env_list	*free_last(t_env_list *export_list)
+t_env	*free_last(t_env *export_list)
 {
-	t_env_list	*tmp;
+	t_env	*tmp;
 
 	tmp = export_list;
 	while (tmp->next->next)
@@ -55,9 +55,9 @@ t_env_list	*free_last(t_env_list *export_list)
 	return (export_list);
 }
 
-t_env_list	*make_export_list(char **envp)
+t_env	*make_export_list(char **envp)
 {
-	t_env_list	*export_list;
+	t_env	*export_list;
 
 	export_list = make_env_list(envp);
 	export_list = free_last(export_list);
@@ -65,9 +65,9 @@ t_env_list	*make_export_list(char **envp)
 	return (export_list);
 }
 
-void	print_export(t_env_list *export_list)
+void	print_export(t_env *export_list)
 {
-	t_env_list	*tmp;
+	t_env	*tmp;
 
 	tmp = export_list;
 	while (tmp)
@@ -75,4 +75,21 @@ void	print_export(t_env_list *export_list)
 		printf("%s=%s\n", tmp->key, tmp->value);
 		tmp = tmp->next;
 	}
+}
+
+int	valid_check(char *str)
+{
+	int	idx;
+
+	idx = 0;
+	if (!ft_isalpha(str[idx]))
+		return (0);
+	idx++;
+	while (str[idx])
+	{
+		if (!ft_isalnum(str[idx]))
+			return (0);
+		idx++;
+	}
+	return (1);
 }

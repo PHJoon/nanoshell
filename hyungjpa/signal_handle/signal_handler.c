@@ -22,16 +22,32 @@ void	on_off_catch_signals(int on_off)
 
 void	parent_sig_handler(int signo)
 {
-	printf("\n");
-	rl_on_new_line();
-	rl_replace_line("", 1);
-	rl_redisplay();
+	if (signo == SIGINT)
+	{
+		printf("\n");
+		rl_on_new_line();
+		rl_replace_line("", 1);
+		rl_redisplay();
+	}
 }
 
-void	parent_signal_handle(void)
+void	do_signal_handle(int status)
 {
-	signal(SIGINT, parent_sig_handler);
-	signal(SIGQUIT, SIG_IGN);
+	if (status == PARENT)
+	{
+		signal(SIGINT, parent_sig_handler);
+		signal(SIGQUIT, SIG_IGN);
+	}
+	else if (status == CHILD)
+	{
+		signal(SIGINT, SIG_DFL);
+		signal(SIGQUIT, SIG_DFL);
+	}
+	else if (status == HEREDOC)
+	{
+		signal(SIGINT, SIG_DFL);
+		signal(SIGQUIT, SIG_DFL);
+	}
 }
 
 void	signal_sigterm(char *str)
@@ -40,10 +56,4 @@ void	signal_sigterm(char *str)
 		return ;
 	printf("exit\n");
 	exit(0);
-}
-
-void	child_signal_handle(void)
-{
-	signal(SIGINT, SIG_DFL);
-	signal(SIGQUIT, SIG_DFL);
 }
