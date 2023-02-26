@@ -6,7 +6,7 @@
 /*   By: chanson <chanson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/12 15:59:58 by chanson           #+#    #+#             */
-/*   Updated: 2023/02/26 17:55:47 by chanson          ###   ########.fr       */
+/*   Updated: 2023/02/26 21:30:50 by chanson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,9 +69,11 @@ typedef struct s_list
 
 typedef struct s_cusor
 {
-	int	row;
-	int	col;
-	int	end;
+	int		row;
+	int		col;
+	int		end;
+	char	*cm;
+	char	*ce;
 }	t_cusor;
 
 typedef struct s_tree
@@ -118,6 +120,16 @@ void	display_str(char **str);
 void	display_tree(t_token *root, char c);
 void	display_acc_str(char *str);
 void	show_node_list(t_token *token);
+
+// utils/cusor
+int		putchar_tc(int tc);
+void	move_cursor_left(int *col, int *row, char *cm);
+void	move_cursor_right(int *col, int *row, char *cm, int *end);
+void	delete_end(int *col, int *row, char *cm, char *ce);
+
+// utils->history
+void	history_up(t_tree *tree, char *str);
+void	history_down(t_tree *tree, char *str);
 
 //parsing/syntax_check
 int		syntax_check(char **temp);
