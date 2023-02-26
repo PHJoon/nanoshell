@@ -6,7 +6,7 @@
 /*   By: chanson <chanson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 16:30:54 by chanson           #+#    #+#             */
-/*   Updated: 2023/02/25 18:31:48 by chanson          ###   ########.fr       */
+/*   Updated: 2023/02/26 20:01:34 by chanson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,6 @@ char	*make_line(char *buffer, char **line, int fd, char *temp)
 	cnt = 1;
 	while (cnt)
 	{
-		printf("line > buffer: %s, temp: %s\n", buffer, temp);
 		idx = get_strchr(buffer, '\n');
 		if (idx != -1)
 		{

@@ -6,7 +6,7 @@
 /*   By: chanson <chanson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/12 15:59:58 by chanson           #+#    #+#             */
-/*   Updated: 2023/02/25 20:05:51 by chanson          ###   ########.fr       */
+/*   Updated: 2023/02/26 17:55:47 by chanson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 # define DOWN_ARROW 4348699
 # define BACK_SPACE 127
 # define CTRL_D 4
+
 # include <stdio.h>
 # include <readline/readline.h>
 # include <readline/history.h>
@@ -66,11 +67,18 @@ typedef struct s_list
 	t_token	*last;
 }	t_list;
 
+typedef struct s_cusor
+{
+	int	row;
+	int	col;
+	int	end;
+}	t_cusor;
+
 typedef struct s_tree
 {
 	t_token		*top;
 	t_token		*last;
-	int			history;
+	t_cusor		cusor;
 	int			pipe_cnt;
 	int			here_doc;
 	int			mini_here_doc;
@@ -79,6 +87,7 @@ typedef struct s_tree
 	int			outfile;
 	char		**here_documets;
 	char		**envp_val;
+	char		**history;
 }	t_tree;
 
 // utils
@@ -117,7 +126,7 @@ int		check_str_valid(char *str);
 int		syntax_err_check(char **temp);
 
 //parsing/tree
-t_tree	*init_tree(char **temp, int history_fd);
+t_tree	*init_tree(char **temp);
 t_token	*add_node(t_list *list, t_tree *tree, int d, t_token **pre);
 int		make_list(char **temp, t_list *list);
 int		decide_type(char *str);

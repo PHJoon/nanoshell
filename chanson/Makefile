@@ -19,6 +19,7 @@ SRCS_NAME =  ./test \
 		./utils/ft_strfind \
 		./utils/ft_strinsert \
 		./utils/fr_strdel_one \
+		
 		./parsing/syntax_check/syntax_check \
 		./parsing/syntax_check/check_pattern \
 		./parsing/syntax_check/check_str_valid \
@@ -48,7 +49,7 @@ LDFLAGS = -L/Users/chanson/.brew/opt/readline/lib -lreadline -lncurses
 CPPFLAGS = -I/Users/chanson/.brew/opt/readline/include
 
 all:		$(NAME)
-######################################################### srcs objs로 바바꾸꾸기
+
 $(NAME):	$(OBJS)
 			@$(CC) $(FLAGS) $(LDFLAGS) $(CPPFLAGS) $(OBJS) -o $(NAME)
 

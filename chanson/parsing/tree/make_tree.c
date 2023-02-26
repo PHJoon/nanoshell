@@ -6,7 +6,7 @@
 /*   By: chanson <chanson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 20:53:51 by chanson           #+#    #+#             */
-/*   Updated: 2023/02/25 20:06:45 by chanson          ###   ########.fr       */
+/*   Updated: 2023/02/26 17:52:07 by chanson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ static void	set_tree(t_tree *tree)
 	tree->outfile = 0;
 }
 
-t_tree	*init_tree(char **temp, int history_fd)
+t_tree	*init_tree(char **temp)
 {
 	t_tree	*tree;
 	t_list	*list;
@@ -54,7 +54,6 @@ t_tree	*init_tree(char **temp, int history_fd)
 	list->first = NULL;
 	list->last = NULL;
 	set_tree(tree);
-	tree->history = history_fd;
 	pre = NULL;
 	if (make_list(temp, list) == FALSE)
 		return (FALSE);
