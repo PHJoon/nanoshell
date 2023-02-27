@@ -20,6 +20,7 @@ SRCS_NAME =  ./test \
 		./utils/ft_strinsert \
 		./utils/fr_strdel_one \
 		./utils/history \
+		./utils/ft_atoi \
 		./utils/cusor/cusor_move \
 		./utils/cusor/cusor_position \
 		./parsing/syntax_check/syntax_check \
@@ -37,6 +38,7 @@ SRCS_NAME =  ./test \
 		./execute/heredoc/mini_heredoc \
 		./get_next_line/get_next_line \
 		./get_next_line/get_next_line_utils \
+		./get_next_line/get_one_line \
 
 SRCS = $(addsuffix .c, $(SRCS_NAME))
 

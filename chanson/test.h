@@ -6,7 +6,7 @@
 /*   By: chanson <chanson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/12 15:59:58 by chanson           #+#    #+#             */
-/*   Updated: 2023/02/26 21:30:50 by chanson          ###   ########.fr       */
+/*   Updated: 2023/02/27 20:47:02 by chanson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,8 @@ typedef struct s_cusor
 	int		row;
 	int		col;
 	int		end;
+	int		start;
+	int		h_index;
 	char	*cm;
 	char	*ce;
 }	t_cusor;
@@ -80,7 +82,7 @@ typedef struct s_tree
 {
 	t_token		*top;
 	t_token		*last;
-	t_cusor		cusor;
+	t_cusor		h_cusor;
 	int			pipe_cnt;
 	int			here_doc;
 	int			mini_here_doc;
@@ -112,6 +114,7 @@ int		ft_split_par(char ***temp, char *str, int idx);
 int		ft_strscmp(char *str1, char *str2);
 int		ft_strlen(char *str);
 int		ft_str_find_c(char *str, char c);
+int		ft_atoi(const char *str);
 void	ft_free_str(char **str);
 
 // utils->display.c
@@ -123,13 +126,14 @@ void	show_node_list(t_token *token);
 
 // utils/cusor
 int		putchar_tc(int tc);
-void	move_cursor_left(int *col, int *row, char *cm);
-void	move_cursor_right(int *col, int *row, char *cm, int *end);
-void	delete_end(int *col, int *row, char *cm, char *ce);
+void	move_cursor_left(t_cusor *cusor);
+void	move_cursor_right(t_cusor *cusor);
+void	delete_end(t_cusor *cusor);
+void	get_cursor_position(t_cusor *cusor);
+void	get_cusor_start(t_cusor *cusor);
 
 // utils->history
-void	history_up(t_tree *tree, char *str);
-void	history_down(t_tree *tree, char *str);
+char	*history_up_down(t_cusor *cusor, char *str, char **history, char c);
 
 //parsing/syntax_check
 int		syntax_check(char **temp);
@@ -152,4 +156,8 @@ void	execute_heredoc(t_token *node, t_tree *tree, char c);
 void	*change_env(char **envp, char *temp);
 void	mini_heredoc(t_token *node, t_tree *tree);
 int		ft_heredoc(t_tree *tree, char *limit);
+
+//get_one_line
+char	*get_one_line(t_tree *tr, int idx);
+
 #endif

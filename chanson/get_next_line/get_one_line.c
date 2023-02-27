@@ -6,13 +6,13 @@
 /*   By: chanson <chanson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/25 18:32:10 by chanson           #+#    #+#             */
-/*   Updated: 2023/02/26 21:43:43 by chanson          ###   ########.fr       */
+/*   Updated: 2023/02/27 20:58:15 by chanson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../test.h"
 
-char	*get_one_line(int fd, t_tree *tree, int index)
+char	*get_one_line(t_tree *tr, int idx)
 {
 	struct termios	reset_term;
 	struct termios	term;
@@ -28,9 +28,12 @@ char	*get_one_line(int fd, t_tree *tree, int index)
 	tcsetattr(STDIN_FILENO, TCSANOW, &term);
 	line = NULL;
 	cnt = 1;
-	while (cnt > 0)
+	c = 0;
+	tr->h_cusor.cm = tgetstr("cm", NULL);
+	tr->h_cusor.ce = tgetstr("ce", NULL);
+	get_cusor_start(&(tr->h_cusor));
+	while (read(STDIN_FILENO, &c, sizeof(c)) > 0)
 	{
-		cnt = read(STDIN_FILENO, &c, sizeof(c));
 		if (c == CTRL_D)
 		{
 			if (ft_strlen(line) == 0)
@@ -40,18 +43,29 @@ char	*get_one_line(int fd, t_tree *tree, int index)
 		{
 			if (ft_strlen(line) > 0)
 				line = fr_strdel_one(line);
+			delete_end(&(tr->h_cusor));
 		}
 		else if (c == LEFT_ARROW)
-			return ;
+			move_cursor_left(&(tr->h_cusor));
 		else if (c == RIGHT_ARROW)
-			return ;
+			move_cursor_right(&(tr->h_cusor));
 		else if (c == UP_ARROW)
-			history_up(tree, tree->here_documets[index]);
+		{
+			free(line);
+			line = NULL;
+			line = history_up_down(&(tr->h_cusor), tr->here_documets[idx], tr->history, 'u');
+		}
 		else if (c == DOWN_ARROW)
-			history_down(tree, tree->here_documets[index]);
+		{
+			free(line);
+			line = NULL;
+			line = history_up_down(&(tr->h_cusor), tr->here_documets[idx], tr->history, 'd');
+		}
 		else
 		{
 			line = ft_strcjoin(line, (char)c);
+			tr->h_cusor.col++;
+			tr->h_cusor.end++;
 			write(0, &c, 1);
 			if (c == '\n')
 				break ;

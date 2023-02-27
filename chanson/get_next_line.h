@@ -6,7 +6,7 @@
 /*   By: chanson <chanson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 16:29:04 by chanson           #+#    #+#             */
-/*   Updated: 2023/02/24 12:54:45 by chanson          ###   ########.fr       */
+/*   Updated: 2023/02/27 16:17:40 by chanson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,5 +28,4 @@ char	*get_strjoin(char *s1, char *s2);
 int		get_strllen(char const *s);
 char	*get_strdup(const char *s1, int end);
 void	free_pointer(char *ptr);
-
 #endif

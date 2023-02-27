@@ -2,10 +2,11 @@
     "tasks": [
         {
             "type": "cppbuild",
-            "label": "C/C++: gcc 활성 파일 빌드",
-            "command": "/usr/bin/gcc",
+            "label": "C/C++: clang 활성 파일 빌드",
+            "command": "/usr/bin/clang",
             "args": [
-                "-fdiagnostics-color=always",
+                "-fcolor-diagnostics",
+                "-fansi-escape-codes",
                 "-g",
                 "${file}",
                 "-o",

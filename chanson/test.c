@@ -6,7 +6,7 @@
 /*   By: chanson <chanson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 18:56:44 by chanson           #+#    #+#             */
-/*   Updated: 2023/02/26 17:58:14 by chanson          ###   ########.fr       */
+/*   Updated: 2023/02/27 21:00:35 by chanson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,12 @@ int	main(int argc, char **argv, char **envp)
 	(void)argv;
 	signal(SIGQUIT, SIG_IGN);
 	history = NULL;
+	temp_hist = NULL;
 	// 반복문
 	str = readline("> ");
+	add_history(str);
 	temp_hist = ft_strcpy(str);
-	temp_hist = ft_strcjoin(temp_hist, '\n');
 	history = ft_strsjoin(history, temp_hist);
-	free(temp_hist);
 	temp = ft_split(str);
 	if (syntax_err_check(temp) == FALSE)
 	{
@@ -43,7 +43,8 @@ int	main(int argc, char **argv, char **envp)
 	tree->pipe_cnt = count_pipe(temp);
 	cnt_heredoc(tree->top, tree);
 	tree->here_documets = (char **)malloc(sizeof(char *) * \
-		(tree->here_doc_cnt));
+		(tree->here_doc_cnt + 1));
+	tree->here_documets[tree->here_doc_cnt] = NULL;
 	tree->envp_val = envp;
 	execute_heredoc(tree->top, tree, 's');
 	display_tree(tree->top, 's');

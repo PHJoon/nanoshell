@@ -6,7 +6,7 @@
 /*   By: chanson <chanson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 17:58:54 by chanson           #+#    #+#             */
-/*   Updated: 2023/02/26 21:14:52 by chanson          ###   ########.fr       */
+/*   Updated: 2023/02/27 19:43:45 by chanson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,26 +18,29 @@ int	putchar_tc(int tc)
 	return (0);
 }
 
-void	move_cursor_left(int *col, int *row, char *cm)
+void	move_cursor_left(t_cusor *cusor)
 {
-	if (*col == 0)
+	if (cusor->col == cusor->start)
 		return ;
-	--(*col);
-	tputs(tgoto(cm, *col, *row), 1, putchar_tc);
+	--(cusor->col);
+	tputs(tgoto(cusor->cm, cusor->col, cusor->row), 1, putchar_tc);
 }
 
-void	move_cursor_right(int *col, int *row, char *cm, int *end)
+void	move_cursor_right(t_cusor *cusor)
 {
-	if (*col > *end)
+	if (cusor->col >= cusor->end)
 		return ;
-	++(*col);
-	tputs(tgoto(cm, *col, *row), 1, putchar_tc);
+	++(cusor->col);
+	tputs(tgoto(cusor->cm, cusor->col, cusor->row), 1, putchar_tc);
 }
 
-void	delete_end(int *col, int *row, char *cm, char *ce)
+void	delete_end(t_cusor *cusor)
 {
-	if (*col != 0)
-		--(*col);
-	tputs(tgoto(cm, *col, *row), 1, putchar_tc);
-	tputs(ce, 1, putchar_tc);
+	if (cusor->col != cusor->start)
+	{
+		--(cusor->col);
+		--(cusor->end);
+	}
+	tputs(tgoto(cusor->cm, cusor->col, cusor->row), 1, putchar_tc);
+	tputs(cusor->ce, 1, putchar_tc);
 }
