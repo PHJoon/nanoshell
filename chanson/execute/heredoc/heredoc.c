@@ -6,7 +6,7 @@
 /*   By: chanson <chanson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 16:29:35 by chanson           #+#    #+#             */
-/*   Updated: 2023/02/27 19:33:55 by chanson          ###   ########.fr       */
+/*   Updated: 2023/02/27 21:32:50 by chanson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,20 +28,17 @@ static int	heredoc_cmp_limit(char *str, char *limit)
 	return (FALSE);
 }
 
-static void	heredoc_fill(t_tree *tree, char *limit)
+static void	heredoc_fill(t_tree *tree, char *limit, char *name)
 {
 	char	*temp;
 	int		index;
 
 	display_str(tree->history);
+	printf("name %d: %s\n", tree->mini_here_doc, name);
 	while (1)
 	{
 		write(1, "here_doc> ", 10);
-		// temp = get_next_line(0);
-		index = 0;
-		while (tree->here_documets[index])
-			index++;
-		temp = get_one_line(tree, index - 1);
+		temp = get_one_line(tree, name);
 		if (temp == 0)
 			break ;
 		if (heredoc_cmp_limit(temp, limit) == TRUE)
@@ -77,7 +74,7 @@ int	ft_heredoc(t_tree *tree, char *limit)
 		return (-1);
 	}
 	tree->here_documets[index] = name;
-	heredoc_fill(tree, limit);
+	heredoc_fill(tree, limit, name);
 	close(tree->infile);
 	index++;
 	return (index);

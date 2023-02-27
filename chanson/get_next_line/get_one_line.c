@@ -6,13 +6,13 @@
 /*   By: chanson <chanson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/25 18:32:10 by chanson           #+#    #+#             */
-/*   Updated: 2023/02/27 20:58:15 by chanson          ###   ########.fr       */
+/*   Updated: 2023/02/27 21:17:57 by chanson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../test.h"
 
-char	*get_one_line(t_tree *tr, int idx)
+char	*get_one_line(t_tree *tr, char *str)
 {
 	struct termios	reset_term;
 	struct termios	term;
@@ -53,13 +53,13 @@ char	*get_one_line(t_tree *tr, int idx)
 		{
 			free(line);
 			line = NULL;
-			line = history_up_down(&(tr->h_cusor), tr->here_documets[idx], tr->history, 'u');
+			line = history_up_down(&(tr->h_cusor), str, tr->history, 'u');
 		}
 		else if (c == DOWN_ARROW)
 		{
 			free(line);
 			line = NULL;
-			line = history_up_down(&(tr->h_cusor), tr->here_documets[idx], tr->history, 'd');
+			line = history_up_down(&(tr->h_cusor), str, tr->history, 'd');
 		}
 		else
 		{
