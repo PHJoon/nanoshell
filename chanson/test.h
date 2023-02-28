@@ -6,21 +6,18 @@
 /*   By: chanson <chanson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/12 15:59:58 by chanson           #+#    #+#             */
-/*   Updated: 2023/02/27 21:23:34 by chanson          ###   ########.fr       */
+/*   Updated: 2023/02/28 15:29:10 by chanson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef TEST_H
 # define TEST_H
 
-# define TRUE 1
 # define FALSE 0
-# define LEFT_ARROW 4479771
-# define RIGHT_ARROW 4414235
-# define UP_ARROW 4283163
-# define DOWN_ARROW 4348699
-# define BACK_SPACE 127
-# define CTRL_D 4
+# define TRUE 1
+# define PARENT 4
+# define CHILD 5
+# define HEREDOC 6
 
 # include <stdio.h>
 # include <readline/readline.h>
@@ -34,7 +31,6 @@
 # include <termios.h>
 # include <termcap.h>
 # include <signal.h>
-# include "get_next_line.h"
 
 enum e_token
 {
@@ -106,7 +102,7 @@ char	*ft_strtrim_couple_check(char *str, char c1, char c2);
 char	*ft_itoa(int num);
 char	*ft_strfind(char **strs, char *find);
 char	*ft_strinsert(char *str, char *insert, int start, int end);
-char	*fr_strdel_one(char *str);
+char	*fr_strdel_one(char *str, int index);
 char	**ft_strsjoin(char **str1, char *str);
 char	**ft_split(char *s);
 int		ft_split_and(char ***temp, char *str, int idx);
@@ -116,6 +112,7 @@ int		ft_strlen(char *str);
 int		ft_str_find_c(char *str, char c);
 int		ft_atoi(const char *str);
 void	ft_free_str(char **str);
+void	ft_error(char *str);
 
 // utils->display.c
 void	show_list(t_list	*list);
@@ -123,14 +120,6 @@ void	display_str(char **str);
 void	display_tree(t_token *root, char c);
 void	display_acc_str(char *str);
 void	show_node_list(t_token *token);
-
-// utils/cusor
-int		putchar_tc(int tc);
-void	move_cursor_left(t_cusor *cusor);
-void	move_cursor_right(t_cusor *cusor);
-void	delete_end(t_cusor *cusor);
-void	get_cursor_position(t_cusor *cusor);
-void	get_cusor_start(t_cusor *cusor);
 
 // utils->history
 char	*history_up_down(t_cusor *cusor, char *str, char **history, char c);
@@ -157,7 +146,11 @@ void	*change_env(char **envp, char *temp);
 void	mini_heredoc(t_token *node, t_tree *tree);
 int		ft_heredoc(t_tree *tree, char *limit);
 
-//get_one_line
-char	*get_one_line(t_tree *tr, char *str);
+//signal
+void	on_off_catch_signals(int on_off);
+void	parent_sig_handler(int signo);
+void	do_signal_handle(int status);
+void	signal_sigterm(char *str);
+void	child_signal_handle(void);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: chanson <chanson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 18:56:44 by chanson           #+#    #+#             */
-/*   Updated: 2023/02/27 21:00:35 by chanson          ###   ########.fr       */
+/*   Updated: 2023/02/28 15:28:23 by chanson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,21 +15,16 @@
 int	main(int argc, char **argv, char **envp)
 {
 	char	*str;
-	char	*temp_hist;
 	char	**temp;
-	char	**history;
 	t_tree	*tree;
 
 	(void)argc;
 	(void)argv;
 	signal(SIGQUIT, SIG_IGN);
-	history = NULL;
-	temp_hist = NULL;
+	on_off_catch_signals(0);
 	// 반복문
 	str = readline("> ");
 	add_history(str);
-	temp_hist = ft_strcpy(str);
-	history = ft_strsjoin(history, temp_hist);
 	temp = ft_split(str);
 	if (syntax_err_check(temp) == FALSE)
 	{
@@ -38,7 +33,6 @@ int	main(int argc, char **argv, char **envp)
 		return (1);
 	}
 	tree = init_tree(temp);
-	tree->history = history;
 	free(str);
 	tree->pipe_cnt = count_pipe(temp);
 	cnt_heredoc(tree->top, tree);

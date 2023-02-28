@@ -1,39 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fr_strdel_one.c                                    :+:      :+:    :+:   */
+/*   ft_error.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: chanson <chanson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/25 18:53:49 by chanson           #+#    #+#             */
-/*   Updated: 2023/02/28 13:27:57 by chanson          ###   ########.fr       */
+/*   Created: 2023/02/28 13:45:13 by chanson           #+#    #+#             */
+/*   Updated: 2023/02/28 13:50:50 by chanson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../test.h"
 
-char	*fr_strdel_one(char *str, int index)
+void	ft_error(char *str)
 {
-	char	*temp;
-	int		i;
-	int		cnt;
-
-	cnt = ft_strlen(str);
-	if (cnt == 0)
-		return (0);
-	temp = (char *)malloc(sizeof(char) * cnt);
-	temp[cnt - 1] = '\0';
-	i = 0;
-	while (i < cnt - 1)
-	{
-		if (i == index)
-		{
-			i++;
-			continue ;
-		}
-		temp[i] = str[i];
-		i++;
-	}
-	free(str);
-	return (temp);
+	write(2, str, ft_strlen(str));
+	exit(-1);
 }

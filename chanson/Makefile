@@ -19,10 +19,8 @@ SRCS_NAME =  ./test \
 		./utils/ft_strfind \
 		./utils/ft_strinsert \
 		./utils/fr_strdel_one \
-		./utils/history \
 		./utils/ft_atoi \
-		./utils/cusor/cusor_move \
-		./utils/cusor/cusor_position \
+		./utils/ft_error \
 		./parsing/syntax_check/syntax_check \
 		./parsing/syntax_check/check_pattern \
 		./parsing/syntax_check/check_str_valid \
@@ -36,9 +34,7 @@ SRCS_NAME =  ./test \
 		./execute/heredoc/heredoc_cnt \
 		./execute/heredoc/heredoc_env \
 		./execute/heredoc/mini_heredoc \
-		./get_next_line/get_next_line \
-		./get_next_line/get_next_line_utils \
-		./get_next_line/get_one_line \
+		./signal/handler \
 
 SRCS = $(addsuffix .c, $(SRCS_NAME))
 

@@ -6,7 +6,7 @@
 /*   By: chanson <chanson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 16:29:35 by chanson           #+#    #+#             */
-/*   Updated: 2023/02/27 21:32:50 by chanson          ###   ########.fr       */
+/*   Updated: 2023/02/28 15:24:08 by chanson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,19 +28,19 @@ static int	heredoc_cmp_limit(char *str, char *limit)
 	return (FALSE);
 }
 
-static void	heredoc_fill(t_tree *tree, char *limit, char *name)
+static void	heredoc_fill(t_tree *tree, char *limit)
 {
 	char	*temp;
 	int		index;
 
-	display_str(tree->history);
-	printf("name %d: %s\n", tree->mini_here_doc, name);
+	signal(SIGINT, SIG_DFL);
+	signal(SIGQUIT, SIG_DFL);
 	while (1)
 	{
-		write(1, "here_doc> ", 10);
-		temp = get_one_line(tree, name);
+		temp = readline("heredoc> ");
 		if (temp == 0)
 			break ;
+		temp = ft_strcjoin(temp, '\n');
 		if (heredoc_cmp_limit(temp, limit) == TRUE)
 		{
 			free(temp);
@@ -53,6 +53,7 @@ static void	heredoc_fill(t_tree *tree, char *limit, char *name)
 		free(temp);
 		temp = NULL;
 	}
+	exit(1);
 }
 
 int	ft_heredoc(t_tree *tree, char *limit)
@@ -60,6 +61,7 @@ int	ft_heredoc(t_tree *tree, char *limit)
 	char		*temp;
 	char		*name;
 	static int	index;
+	pid_t		pid;
 
 	name = NULL;
 	name = ft_strstr(name, "heredoc");
@@ -68,14 +70,18 @@ int	ft_heredoc(t_tree *tree, char *limit)
 	free(temp);
 	tree->infile = open(name, O_WRONLY | O_CREAT | O_TRUNC, 0644);
 	if (tree->infile < 0)
-	{
-		perror("infile not found");
-		free (name);
-		return (-1);
-	}
+		ft_error("file error\n");
 	tree->here_documets[index] = name;
-	heredoc_fill(tree, limit, name);
-	close(tree->infile);
+	printf("limit: %s\n", limit);
+	pid = fork();
+	if (pid < 0)
+		ft_error("fork error\n");
+	if (pid == 0)
+	{
+		heredoc_fill(tree, limit);
+		close(tree->infile);
+	}
+	waitpid(pid, 0, 0);
 	index++;
 	return (index);
 }
