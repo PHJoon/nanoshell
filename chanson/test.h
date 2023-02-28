@@ -6,7 +6,7 @@
 /*   By: chanson <chanson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/12 15:59:58 by chanson           #+#    #+#             */
-/*   Updated: 2023/02/28 15:29:10 by chanson          ###   ########.fr       */
+/*   Updated: 2023/02/28 16:20:00 by chanson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,22 +63,10 @@ typedef struct s_list
 	t_token	*last;
 }	t_list;
 
-typedef struct s_cusor
-{
-	int		row;
-	int		col;
-	int		end;
-	int		start;
-	int		h_index;
-	char	*cm;
-	char	*ce;
-}	t_cusor;
-
 typedef struct s_tree
 {
 	t_token		*top;
 	t_token		*last;
-	t_cusor		h_cusor;
 	int			pipe_cnt;
 	int			here_doc;
 	int			mini_here_doc;
@@ -87,7 +75,6 @@ typedef struct s_tree
 	int			outfile;
 	char		**here_documets;
 	char		**envp_val;
-	char		**history;
 }	t_tree;
 
 // utils
@@ -111,6 +98,9 @@ int		ft_strscmp(char *str1, char *str2);
 int		ft_strlen(char *str);
 int		ft_str_find_c(char *str, char c);
 int		ft_atoi(const char *str);
+int		ft_split_quote(char ***temp, char *str, int idx);
+int		ft_split_redirection(char ***temp, char *str, int idx);
+int		ft_split_pipe(char ***temp, char *str, int idx);
 void	ft_free_str(char **str);
 void	ft_error(char *str);
 
@@ -120,9 +110,6 @@ void	display_str(char **str);
 void	display_tree(t_token *root, char c);
 void	display_acc_str(char *str);
 void	show_node_list(t_token *token);
-
-// utils->history
-char	*history_up_down(t_cusor *cusor, char *str, char **history, char c);
 
 //parsing/syntax_check
 int		syntax_check(char **temp);

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_split.c                                         :+:      :+:    :+:   */
+/*   syntax_ft_split_1.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: chanson <chanson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 14:02:12 by chanson           #+#    #+#             */
-/*   Updated: 2023/02/15 13:40:37 by chanson          ###   ########.fr       */
+/*   Updated: 2023/02/28 15:36:30 by chanson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ static int	do_ft_split_syntax(char ***temp, char **buff, char *s, int i)
 	return (i);
 }
 
-char	**ft_split_syntax(char *s)
+char	**ft_split(char *s)
 {
 	char	**temp;
 	char	*buff;

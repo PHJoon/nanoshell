@@ -6,7 +6,7 @@
 /*   By: chanson <chanson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 18:56:44 by chanson           #+#    #+#             */
-/*   Updated: 2023/02/28 15:28:23 by chanson          ###   ########.fr       */
+/*   Updated: 2023/02/28 15:54:43 by chanson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ int	main(int argc, char **argv, char **envp)
 	str = readline("> ");
 	add_history(str);
 	temp = ft_split(str);
+	display_str(temp);
 	if (syntax_err_check(temp) == FALSE)
 	{
 		free(str);

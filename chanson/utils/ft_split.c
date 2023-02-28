@@ -5,93 +5,54 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: chanson <chanson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/13 14:02:12 by chanson           #+#    #+#             */
-/*   Updated: 2023/02/24 16:36:18 by chanson          ###   ########.fr       */
+/*   Created: 2023/02/28 15:37:40 by chanson           #+#    #+#             */
+/*   Updated: 2023/02/28 15:37:50 by chanson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../test.h"
 
-static int	ft_split_pipe(char ***temp, char *str, int idx)
+static int	check_ascii(char c)
 {
-	char	*buff;
-	int		cnt;
-
-	buff = NULL;
-	cnt = 0;
-	buff = ft_strcjoin(buff, str[idx++]);
-	if (str[idx] == '|')
-	{
-		buff = ft_strcjoin(buff, str[idx]);
-		cnt++;
-	}
-	*temp = ft_strsjoin(*temp, buff);
-	return (cnt);
-}
-
-static int	ft_split_redirection(char ***temp, char *str, int idx)
-{
-	char	*buff;
-
-	buff = NULL;
-	buff = ft_strcjoin(buff, str[idx]);
-	if (str[idx] == '<' && str[idx + 1] == '<')
-	{
-		buff = ft_strcjoin(buff, str[idx + 1]);
-		*temp = ft_strsjoin(*temp, buff);
+	if (c == '|')
 		return (1);
-	}
-	else if (str[idx] == '>' && str[idx + 1] == '>')
-	{
-		buff = ft_strcjoin(buff, str[idx + 1]);
-		*temp = ft_strsjoin(*temp, buff);
-		return (1);
-	}
-	*temp = ft_strsjoin(*temp, buff);
+	else if (c == '\'' || c == '\"')
+		return (2);
+	else if (c == '>' || c == '<')
+		return (3);
+	else if (c == '&')
+		return (4);
+	else if (c == '(')
+		return (5);
+	else if (c == ' ')
+		return (6);
 	return (0);
 }
 
-static int	_ft_split_quote(char *str, int idx, char **buff)
+static int	do_ft_split_syntax(char ***temp, char **buff, char *s, int i)
 {
-	int		cnt;
+	int	check;
 
-	*buff = ft_strcjoin(*buff, str[idx++]);
-	cnt = 0;
-	while (str[idx])
+	check = check_ascii(s[i]);
+	if (check == 0)
+		*buff = ft_strcjoin(*buff, s[i]);
+	else
 	{
-		*buff = ft_strcjoin(*buff, str[idx]);
-		if (str[idx] == '\"')
-			break ;
-		idx++;
-		cnt++;
+		if (*buff != NULL)
+			*temp = ft_strsjoin(*temp, *buff);
+		*buff = NULL;
+		if (check == 1)
+			i += ft_split_pipe(temp, s, i);
+		else if (check == 2)
+			i += ft_split_quote(temp, s, i);
+		else if (check == 3)
+			i += ft_split_redirection(temp, s, i);
+		else if (check == 4)
+			i += ft_split_and(temp, s, i);
+		else if (check == 5)
+			i += ft_split_par(temp, s, i);
 	}
-	return (cnt);
-}
-
-static int	ft_split_quote(char ***temp, char *str, int idx)
-{
-	char	*buff;
-	int		cnt;
-
-	buff = NULL;
-	cnt = 0;
-	if (str[idx] == '\'')
-	{
-		buff = ft_strcjoin(buff, str[idx++]);
-		while (str[idx])
-		{
-			buff = ft_strcjoin(buff, str[idx]);
-			if (str[idx] == '\'')
-				break ;
-			cnt++;
-			idx++;
-		}
-		*temp = ft_strsjoin(*temp, buff);
-		return (cnt + 1);
-	}
-	cnt = _ft_split_quote(str, idx, &buff);
-	*temp = ft_strsjoin(*temp, buff);
-	return (cnt + 1);
+	return (i);
 }
 
 char	**ft_split(char *s)
@@ -105,25 +66,7 @@ char	**ft_split(char *s)
 	temp = NULL;
 	while (s[i])
 	{
-		if (s[i] != '|' && s[i] != '\'' && s[i] != '\"' && s[i] != ' ' && \
-			s[i] != '&' && s[i] != '>' && s[i] != '<' && s[i] != '(')
-			buff = ft_strcjoin(buff, s[i]);
-		else
-		{
-			if (buff != NULL)
-				temp = ft_strsjoin(temp, buff);
-			buff = NULL;
-			if (s[i] == '|')
-				i += ft_split_pipe(&temp, s, i);
-			else if (s[i] == '\'' || s[i] == '\"')
-				i += ft_split_quote(&temp, s, i);
-			else if (s[i] == '>' || s[i] == '<')
-				i += ft_split_redirection(&temp, s, i);
-			else if (s[i] == '&')
-				i += ft_split_and(&temp, s, i);
-			else if (s[i] == '(')
-				i += ft_split_par(&temp, s, i);
-		}
+		i = do_ft_split_syntax(&temp, &buff, s, i);
 		if (s[i] != '\0')
 			i++;
 	}

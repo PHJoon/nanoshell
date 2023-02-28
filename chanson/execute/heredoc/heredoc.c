@@ -6,7 +6,7 @@
 /*   By: chanson <chanson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 16:29:35 by chanson           #+#    #+#             */
-/*   Updated: 2023/02/28 15:24:08 by chanson          ###   ########.fr       */
+/*   Updated: 2023/02/28 15:34:44 by chanson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ static void	heredoc_fill(t_tree *tree, char *limit)
 		free(temp);
 		temp = NULL;
 	}
-	exit(1);
+	exit(0);
 }
 
 int	ft_heredoc(t_tree *tree, char *limit)
@@ -72,7 +72,6 @@ int	ft_heredoc(t_tree *tree, char *limit)
 	if (tree->infile < 0)
 		ft_error("file error\n");
 	tree->here_documets[index] = name;
-	printf("limit: %s\n", limit);
 	pid = fork();
 	if (pid < 0)
 		ft_error("fork error\n");

@@ -3,6 +3,7 @@ NAME = test
 SRCS_NAME =  ./test \
 		./utils/ft_split \
 		./utils/ft_split_2 \
+		./utils/ft_split_3 \
 		./utils/ft_free_str \
 		./utils/ft_strcjoin \
 		./utils/ft_strsjoin \
