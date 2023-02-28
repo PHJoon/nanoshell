@@ -68,4 +68,6 @@ char	*ft_strcpy_index(char *str, int start, int end);
 int		ft_isalpha(int c);
 int		ft_isalnum(int c);
 
+int		ft_strncmp(const char *s1, const char *s2, int n);
+
 #endif

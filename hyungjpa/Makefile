@@ -45,6 +45,7 @@ SRCS_NAME = ./test \
 			./utils/ft_isalnum \
 			./utils/ft_isalpha \
 			./builtin/builtin_error \
+			./utils/ft_strncmp \
 
 
 

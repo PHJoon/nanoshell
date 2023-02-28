@@ -40,7 +40,7 @@ int	main(int argc, char **argv, char **envp)
 		temp = do_here_doc(temp);
 		do_signal_handle(PARENT);
 		temp = remove_quote(temp);
-		printf("%d\n", builtin(temp, env_list, export_list));
+		builtin(temp, env_list, export_list);
 		// dispaly_str(temp);
 		// root = NULL;
 		// head = trans_to_list(temp);

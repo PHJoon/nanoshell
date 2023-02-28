@@ -83,14 +83,14 @@ char	*check_cd_argv(char *str, char *cwd_buf)
 	free(cwd_buf);
 	while (str[i])
 	{
-		if (ft_strscmp(&str[i], "."))
-			buf_tmp = add_back_slash(buf_tmp, ".", &i);
-		else if (ft_strscmp(&str[i], "./"))
-			buf_tmp = add_back_slash(buf_tmp, "./", &i);
-		else if (ft_strscmp(&str[i], ".."))
-			buf_tmp = cd_dot_dot(buf_tmp, "..", &i);
-		else if (ft_strscmp(&str[i], "../"))
+		if (ft_strncmp(&str[i], "../", 3))
 			buf_tmp = cd_dot_dot(buf_tmp, "../", &i);
+		else if (ft_strncmp(&str[i], "./", 2))
+			buf_tmp = add_back_slash(buf_tmp, "./", &i);
+		else if (ft_strncmp(&str[i], "..", 2))
+			buf_tmp = cd_dot_dot(buf_tmp, "..", &i);
+		else if (ft_strncmp(&str[i], ".", 1))
+			buf_tmp = add_back_slash(buf_tmp, ".", &i);
 		else
 			buf_tmp = cd_not_dot(buf_tmp, str, &i);
 	}

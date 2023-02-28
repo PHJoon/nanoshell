@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   signal_handler.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chanson <chanson@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hyungjpa <hyungjpa@student.42seoul.>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/16 19:15:49 by hyungjpa          #+#    #+#             */
-/*   Updated: 2023/02/28 14:37:26 by chanson          ###   ########.fr       */
+/*   Updated: 2023/02/16 19:15:50 by hyungjpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/test.h"
+// cc signal_handler.c signal_handler.h -L/Users/hyungjpa/.brew/opt/readline/lib -lreadline -I/Users/hyungjpa/.brew/opt/readline/include/
 
 void	on_off_catch_signals(int on_off)
 {
