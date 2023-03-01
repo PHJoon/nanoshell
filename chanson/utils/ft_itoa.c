@@ -6,11 +6,11 @@
 /*   By: chanson <chanson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 20:18:48 by chanson           #+#    #+#             */
-/*   Updated: 2023/02/22 20:27:55 by chanson          ###   ########.fr       */
+/*   Updated: 2023/03/01 18:11:14 by chanson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../test.h"
+#include "../include/test.h"
 
 char	*ft_itoa(int num)
 {

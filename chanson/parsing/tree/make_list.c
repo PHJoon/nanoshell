@@ -6,11 +6,11 @@
 /*   By: chanson <chanson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/16 13:37:02 by chanson           #+#    #+#             */
-/*   Updated: 2023/02/24 16:36:35 by chanson          ###   ########.fr       */
+/*   Updated: 2023/03/01 18:11:14 by chanson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../test.h"
+#include "../../include/test.h"
 
 static int	append_node_list(char *str, int type, t_list *list)
 {

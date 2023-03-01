@@ -6,11 +6,11 @@
 /*   By: chanson <chanson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 15:19:36 by chanson           #+#    #+#             */
-/*   Updated: 2023/02/23 15:20:43 by chanson          ###   ########.fr       */
+/*   Updated: 2023/03/01 18:11:14 by chanson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../test.h"
+#include "../include/test.h"
 
 char	*ft_strfind(char **strs, char *find)
 {

@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   token_to_ptr.c                                     :+:      :+:    :+:   */
+/*   token_to_arr.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hyungjpa <hyungjpa@student.42seoul.>       +#+  +:+       +#+        */
+/*   By: chanson <chanson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 12:32:54 by hyungjpa          #+#    #+#             */
-/*   Updated: 2023/03/01 12:32:55 by hyungjpa         ###   ########.fr       */
+/*   Updated: 2023/03/01 18:11:14 by chanson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./includes/test.h"
+#include "./includes/include/test.h"
 
 char	**token_to_arr(t_token *cmd)
 {

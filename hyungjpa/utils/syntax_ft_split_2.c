@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   syntax_ft_split_3.c                                :+:      :+:    :+:   */
+/*   syntax_ft_split_2.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hyungjpa <hyungjpa@student.42seoul.>       +#+  +:+       +#+        */
+/*   By: chanson <chanson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 20:08:42 by hyungjpa          #+#    #+#             */
-/*   Updated: 2023/02/22 20:08:44 by hyungjpa         ###   ########.fr       */
+/*   Updated: 2023/03/01 18:11:14 by chanson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/test.h"
+#include "../includes/include/test.h"
 
 int	ft_split_pipe(char ***temp, char *str, int idx)
 {

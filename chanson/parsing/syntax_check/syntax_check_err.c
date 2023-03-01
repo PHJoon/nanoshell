@@ -6,11 +6,11 @@
 /*   By: chanson <chanson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 19:29:55 by chanson           #+#    #+#             */
-/*   Updated: 2023/02/24 20:27:15 by chanson          ###   ########.fr       */
+/*   Updated: 2023/03/01 18:11:14 by chanson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../test.h"
+#include "../../include/test.h"
 
 static int	_syntax_err_check(char	*str)
 {

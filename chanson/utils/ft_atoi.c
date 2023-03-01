@@ -6,11 +6,11 @@
 /*   By: chanson <chanson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 14:33:47 by chanson           #+#    #+#             */
-/*   Updated: 2023/02/27 14:42:45 by chanson          ###   ########.fr       */
+/*   Updated: 2023/03/01 18:11:14 by chanson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../test.h"
+#include "../include/test.h"
 
 static int	a_to_i(const char *str, int minus_cnt, int idx)
 {

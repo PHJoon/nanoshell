@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_redirection.c                                  :+:      :+:    :+:   */
+/*   get_cmd_redir.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hyungjpa <hyungjpa@student.42seoul.>       +#+  +:+       +#+        */
+/*   By: chanson <chanson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 15:34:16 by hyungjpa          #+#    #+#             */
-/*   Updated: 2023/03/01 15:34:18 by hyungjpa         ###   ########.fr       */
+/*   Updated: 2023/03/01 18:00:19 by chanson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ char	**_cmd_get(char **temp, char **cmd)
 			i++;
 		else
 		{
-			cmd[size] = ft_strdup(temp[i]);
+			cmd[size] = ft_strcpy(temp[i]);
 			size++;
 		}
 	}

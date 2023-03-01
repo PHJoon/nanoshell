@@ -6,35 +6,16 @@
 /*   By: chanson <chanson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 15:06:18 by chanson           #+#    #+#             */
-/*   Updated: 2023/02/23 19:44:34 by chanson          ###   ########.fr       */
+/*   Updated: 2023/03/01 18:11:14 by chanson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../test.h"
-
-static int	_count_pipe_parentheses(char *str)
-{
-	char	**str_par;
-	int		i;
-	int		cnt;
-
-	str_par = ft_split(str);
-	cnt = 0;
-	i = -1;
-	while (str_par[++i])
-	{
-		if (ft_strscmp(str_par[i], "|") == TRUE)
-			cnt++;
-	}
-	ft_free_str(str_par);
-	return (cnt);
-}
+#include "../../include/test.h"
 
 int	count_pipe(char **temp)
 {
 	int		cnt;
 	int		i;
-	char	*str;
 
 	i = -1;
 	cnt = 0;
@@ -42,12 +23,47 @@ int	count_pipe(char **temp)
 	{
 		if (ft_strscmp(temp[i], "|") == TRUE)
 			cnt++;
-		else if (temp[i][0] == '(')
-		{
-			str = ft_strtrim_couple_check(temp[i], '(', ')');
-			cnt += _count_pipe_parentheses(str);
-			free(str);
-		}
 	}
 	return (cnt);
+}
+
+void	setting_pipe(t_tree *tree)
+{
+	int	i;
+
+	tree->pipe_fd = (int **)malloc(sizeof(int *) * tree->pipe_cnt);
+	if (tree->pipe_fd == NULL)
+		ft_error("malloc error //pipe.c\n");
+	i = -1;
+	while (++i < tree->pipe_cnt)
+	{
+		tree->pipe_fd[i] = (int *)malloc(sizeof(int) * 2);
+		if (tree->pipe_fd[i] == NULL)
+			ft_error("malloc error //pipe.c\n");
+	}
+	tree->pid = (pid_t *)malloc(sizeof(pid_t) * (tree->pipe_cnt + 1));
+	if (tree->pid == NULL)
+		ft_error("malloc error //pipe.c\n");
+	i = -1;
+	while (++i < tree->pipe_cnt)
+	{
+		if (pipe(tree->pipe_fd[i]) == -1)
+			ft_error("pipe create error //pipe.c\n");
+	}
+}
+
+void	wait_pid(t_tree *tree)
+{
+	int	i;
+
+	i = -1;
+	while (++i < tree->pipe_cnt + 1)
+	{
+		if (i < tree->pipe_cnt)
+		{
+			close(tree->pipe_fd[i][0]);
+			close(tree->pipe_fd[i][1]);
+		}
+		waitpid(tree->pid[i], 0, 0);
+	}
 }

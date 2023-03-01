@@ -6,11 +6,11 @@
 /*   By: chanson <chanson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 16:58:03 by chanson           #+#    #+#             */
-/*   Updated: 2023/02/24 21:47:46 by chanson          ###   ########.fr       */
+/*   Updated: 2023/03/01 18:11:14 by chanson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../test.h"
+#include "../../include/test.h"
 
 static void	_make_node_val(t_token *node, char **str_arr, char *str)
 {

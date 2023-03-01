@@ -22,6 +22,14 @@ SRCS_NAME =  ./test \
 		./utils/fr_strdel_one \
 		./utils/ft_atoi \
 		./utils/ft_error \
+		./utils/ft_split_char \
+		./utils/ft_strncmp \
+		./utils/ft_isalnum \
+		./utils/ft_isalpha \
+		./utils/ft_split_char \
+		./utils/ft_str_size \
+		./utils/ft_strchr \
+		./utils/ft_strrchr \
 		./parsing/syntax_check/syntax_check \
 		./parsing/syntax_check/check_pattern \
 		./parsing/syntax_check/check_str_valid \
@@ -31,11 +39,26 @@ SRCS_NAME =  ./test \
 		./parsing/tree/make_list \
 		./parsing/tree/add_node_to_tree \
 		./execute/pipe/pipe \
+		./execute/pipe/execute_pipe \
+		./execute/pipe/cmd_check \
+		./execute/pipe/get_cmd_redir \
 		./execute/heredoc/heredoc \
 		./execute/heredoc/heredoc_cnt \
 		./execute/heredoc/heredoc_env \
 		./execute/heredoc/mini_heredoc \
 		./signal/handler \
+		./builtin/builtin_cd_1 \
+		./builtin/builtin_cd_2 \
+		./builtin/builtin_echo \
+		./builtin/builtin_env_1 \
+		./builtin/builtin_env_2 \
+		./builtin/builtin_error \
+		./builtin/builtin_exit \
+		./builtin/builtin_export_1 \
+		./builtin/builtin_export_2 \
+		./builtin/builtin_main \
+		./builtin/builtin_pwd \
+		./builtin/builtin_unset \
 
 SRCS = $(addsuffix .c, $(SRCS_NAME))
 

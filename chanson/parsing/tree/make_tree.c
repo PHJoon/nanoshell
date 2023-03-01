@@ -6,11 +6,11 @@
 /*   By: chanson <chanson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 20:53:51 by chanson           #+#    #+#             */
-/*   Updated: 2023/02/27 19:45:07 by chanson          ###   ########.fr       */
+/*   Updated: 2023/03/01 18:11:14 by chanson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../test.h"
+#include "../../include/test.h"
 
 static void	_make_tree(t_list *list, t_tree *tree, int d, t_token **pre)
 {
@@ -34,6 +34,9 @@ static void	set_tree(t_tree *tree)
 	tree->top = NULL;
 	tree->last = NULL;
 	tree->here_documets = NULL;
+	tree->cmd.envp_path = NULL;
+	tree->cmd.cmd_head = NULL;
+	tree->cmd.cmd_arr = NULL;
 	tree->here_doc = 0;
 	tree->here_doc_cnt = 0;
 	tree->pipe_cnt = 0;

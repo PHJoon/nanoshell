@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ast_4.c                                            :+:      :+:    :+:   */
+/*   ast_list_func_1.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hyungjpa <hyungjpa@student.42seoul.>       +#+  +:+       +#+        */
+/*   By: chanson <chanson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/16 18:12:35 by hyungjpa          #+#    #+#             */
-/*   Updated: 2023/02/16 18:12:37 by hyungjpa         ###   ########.fr       */
+/*   Updated: 2023/03/01 18:11:14 by chanson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/test.h"
+#include "../includes/include/test.h"
 
 t_node	*make_new(char *str, int t)
 {
@@ -71,7 +71,7 @@ t_node	*node_dup(t_node *head, int i)
 	tmp = head;
 	while (i && tmp)
 	{
-		dup = add_back(dup, ft_strdup(tmp->data), tmp->type);
+		dup = add_back(dup, ft_strcpy(tmp->data), tmp->type);
 		tmp = tmp->next;
 		i--;
 	}

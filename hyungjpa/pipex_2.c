@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   pipex_2.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hyungjpa <hyungjpa@student.42seoul.>       +#+  +:+       +#+        */
+/*   By: chanson <chanson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 15:50:28 by hyungjpa          #+#    #+#             */
-/*   Updated: 2023/02/23 15:50:33 by hyungjpa         ###   ########.fr       */
+/*   Updated: 2023/03/01 18:11:14 by chanson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./includes/test.h"
+#include "./includes/include/test.h"
 
 int	count_pipe(char **temp)
 {
@@ -50,7 +50,7 @@ char	**get_redirection(char **temp, int i)
 	j = 0;
 	while (redir_cnt)
 	{
-		redir_temp[j] = ft_strdup(temp[i + j]);
+		redir_temp[j] = ft_strcpy(temp[i + j]);
 		j++;
 		redir_cnt--;
 	}

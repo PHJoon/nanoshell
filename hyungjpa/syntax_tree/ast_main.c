@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   split_to_tree_ver_2.c                              :+:      :+:    :+:   */
+/*   ast_main.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hyungjpa <hyungjpa@student.42seoul.>       +#+  +:+       +#+        */
+/*   By: chanson <chanson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/16 11:26:29 by hyungjpa          #+#    #+#             */
-/*   Updated: 2023/02/16 11:26:31 by hyungjpa         ###   ########.fr       */
+/*   Updated: 2023/03/01 18:11:14 by chanson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/test.h"
+#include "../includes/include/test.h"
 
 t_node	*trans_to_list(char **temp)
 {
@@ -27,7 +27,7 @@ t_node	*trans_to_list(char **temp)
 	i = 0;
 	while (temp[i])
 	{
-		head = add_back(head, ft_strdup(temp[i]), type_list[i]);
+		head = add_back(head, ft_strcpy(temp[i]), type_list[i]);
 		i++;
 	}
 	free(type_list);

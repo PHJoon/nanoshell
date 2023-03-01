@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hyungjpa <hyungjpa@student.42seoul.>       +#+  +:+       +#+        */
+/*   By: chanson <chanson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 20:19:18 by hyungjpa          #+#    #+#             */
-/*   Updated: 2023/02/22 20:19:19 by hyungjpa         ###   ########.fr       */
+/*   Updated: 2023/03/01 18:00:19 by chanson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ int		ft_strchr(const char *s, int c);
 // ./utils/ft_strcjoin 
 char	*ft_strcjoin(char *s, char c);
 
-// ./utils/ft_strdup
-char	*ft_strdup(const char *s1);
+// ./utils/ft_strcpy
+char	*ft_strcpy(const char *s1);
 
 // ./utils/ft_strlen
 int		ft_strlen(const char *s);

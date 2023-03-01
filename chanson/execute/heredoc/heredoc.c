@@ -6,11 +6,11 @@
 /*   By: chanson <chanson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 16:29:35 by chanson           #+#    #+#             */
-/*   Updated: 2023/02/28 15:34:44 by chanson          ###   ########.fr       */
+/*   Updated: 2023/03/01 18:11:14 by chanson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../test.h"
+#include "../../include/test.h"
 
 static int	heredoc_cmp_limit(char *str, char *limit)
 {
@@ -53,6 +53,7 @@ static void	heredoc_fill(t_tree *tree, char *limit)
 		free(temp);
 		temp = NULL;
 	}
+	close(tree->infile);
 	exit(0);
 }
 
@@ -76,10 +77,7 @@ int	ft_heredoc(t_tree *tree, char *limit)
 	if (pid < 0)
 		ft_error("fork error\n");
 	if (pid == 0)
-	{
 		heredoc_fill(tree, limit);
-		close(tree->infile);
-	}
 	waitpid(pid, 0, 0);
 	index++;
 	return (index);

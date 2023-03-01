@@ -5,7 +5,7 @@ SRCS_NAME = ./test \
 			./utils/ft_str_size \
 			./utils/ft_strchr \
 			./utils/ft_strcjoin \
-			./utils/ft_strdup \
+			./utils/ft_strcpy \
 			./utils/ft_strlen \
 			./utils/ft_strrchr \
 			./utils/ft_strscmp \
