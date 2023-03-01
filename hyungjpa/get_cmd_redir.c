@@ -12,17 +12,27 @@
 
 #include "test.h"
 
+void	close_fd(int *cnt, int fd)
+{
+	if (*cnt != 0)
+		close(fd);
+	(*cnt)++;
+}
+
 int	get_ird(char **temp)
 {
 	int	i;
 	int	ird_fd;
+	int	cnt;
 
 	i = -1;
 	ird_fd = 0;
+	cnt = 0;
 	while (!ft_strscmp(temp[++i], "|") && temp[i])
 	{
 		if (ft_strscmp(temp[i], "<"))
 		{
+			close_fd(&cnt, ird_fd);
 			ird_fd = open(temp[i + 1], O_RDONLY);
 			if (ird_fd == -1)
 			{
@@ -39,19 +49,23 @@ int	get_ord(char **temp)
 {
 	int	i;
 	int	ord_fd;
+	int	cnt;
 
 	i = -1;
 	ord_fd = 0;
+	cnt = 0;
 	while (!ft_strscmp(temp[++i], "|") && temp[i])
 	{
 		if (ft_strscmp(temp[i], ">"))
 		{
+			close_fd(&cnt, ord_fd);
 			ord_fd = open(temp[++i], O_WRONLY | O_CREAT | O_TRUNC, 0644);
 			if (ord_fd == -1)
 				ft_error("open_error\n");
 		}
 		else if (ft_strscmp(temp[i], ">>"))
 		{
+			close_fd(&cnt, ord_fd);
 			ord_fd = open(temp[++i], O_WRONLY | O_CREAT | O_APPEND, 0644);
 			if (ord_fd == -1)
 				ft_error("open_error\n");
