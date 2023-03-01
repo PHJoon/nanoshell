@@ -1,29 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strscmp.c                                       :+:      :+:    :+:   */
+/*   ft_error.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: chanson <chanson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/15 14:16:27 by chanson           #+#    #+#             */
-/*   Updated: 2023/02/15 19:48:27 by chanson          ###   ########.fr       */
+/*   Created: 2023/02/28 13:45:13 by chanson           #+#    #+#             */
+/*   Updated: 2023/02/28 13:50:50 by chanson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/test.h"
 
-int	ft_strscmp(char *str1, char *str2)
+void	ft_error(char *str)
 {
-	int	i;
-
-	i = 0;
-	if ((!str1 && str2) || (str1 && !str2))
-		return (FALSE);
-	while (str1[i] || str2[i])
-	{
-		if (str1[i] != str2[i])
-			return (FALSE);
-		i++;
-	}
-	return (TRUE);
+	write(2, str, ft_strlen(str));
+	exit(-1);
 }

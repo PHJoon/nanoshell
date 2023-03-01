@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "../includes/test.h"
-// cc signal_handler.c signal_handler.h -L/Users/hyungjpa/.brew/opt/readline/lib -lreadline -I/Users/hyungjpa/.brew/opt/readline/include/
 
 void	on_off_catch_signals(int on_off)
 {

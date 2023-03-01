@@ -41,6 +41,10 @@ int	main(int argc, char **argv, char **envp)
 		do_signal_handle(PARENT);
 		temp = remove_quote(temp);
 		builtin(temp, env_list, export_list);
+		display_str(temp);
+		printf("in %d\n", get_ird(temp));
+		printf("out %d\n", get_ord(temp));
+		dispaly_str(cmd_get(temp));
 		// dispaly_str(temp);
 		// root = NULL;
 		// head = trans_to_list(temp);

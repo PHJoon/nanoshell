@@ -1,49 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   display.c                                          :+:      :+:    :+:   */
+/*   token_to_ptr.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hyungjpa <hyungjpa@student.42seoul.>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/18 15:38:15 by hyungjpa          #+#    #+#             */
-/*   Updated: 2023/02/18 15:38:17 by hyungjpa         ###   ########.fr       */
+/*   Created: 2023/03/01 12:32:54 by hyungjpa          #+#    #+#             */
+/*   Updated: 2023/03/01 12:32:55 by hyungjpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./includes/test.h"
 
-void	display_node(t_node *head)
+char	**token_to_arr(t_token *cmd)
 {
-	t_node	*tmp;
+	t_token	*tmp;
+	int		size;
+	char	**new_cmd;
 
-	tmp = head;
+	tmp = cmd;
+	size = 0;
 	while (tmp)
 	{
-		printf("%s : %d \n", tmp->data, tmp->type);
-		tmp = tmp->next;
+		size++;
+		tmp = tmp->right;
 	}
-}
-
-void	display_ast(t_ast *root)
-{
-	t_ast	*tmp;
-
-	tmp = root;
-	if (tmp == NULL)
-		return ;
-	display_node(tmp->node);
-	display_ast(tmp->left);
-	display_ast(tmp->right);
-}
-
-void	display_str(char **str)
-{
-	int	i;
-
-	i = 0;
-	while (str[i])
+	new_cmd = (char **)malloc(sizeof(char *) * (size + 1));
+	if (!new_cmd)
+		return (NULL);
+	tmp = cmd;
+	size = 0;
+	while (tmp)
 	{
-		printf("str[%d]: %s\n", i, str[i]);
-		i++;
+		new_cmd[size] = tmp->val;
+		tmp = tmp->right;
+		size++;
 	}
+	new_cmd[size] = NULL;
+	return (new_cmd);
 }

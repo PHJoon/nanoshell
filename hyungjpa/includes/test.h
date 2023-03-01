@@ -26,7 +26,6 @@
 # include "signal_handler.h"
 # include "builtin.h"
 # include "utils.h"
-# include "get_next_line.h"
 # include "pipex.h"
 
 enum e_token
@@ -49,12 +48,16 @@ enum e_token
 typedef struct s_token
 {
 	char			*val;
-	struct s_token	*parent;
 	struct s_token	*left;
 	struct s_token	*right;
-	struct s_token	*next;
 	enum e_token	type;
 }	t_token;
+
+typedef struct s_list
+{
+	t_token	*first;
+	t_token	*last;
+}	t_list;
 
 typedef struct s_tree
 {
@@ -74,4 +77,11 @@ void	display_ast(t_ast *root);
 char	**remove_quote(char **temp);
 int		check_remove_quote(char *str);
 
+char	**token_to_arr(t_token *cmd);
+void	ft_error(char *str);
+
+int		get_ird(char **temp);
+int		get_ord(char **temp);
+char	**cmd_get(char **temp);
+void	display_str(char **str);
 #endif

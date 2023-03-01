@@ -59,7 +59,7 @@ char	**get_redirection(char **temp, int i)
 
 char	*get_cmd(char **temp, int *i)
 {
-	int	j;
+	int		j;
 	char	*tmp;
 	char	*cmd_temp;
 
@@ -78,16 +78,17 @@ char	*get_cmd(char **temp, int *i)
 			cmd_temp = tmp;
 			j++;
 		}
-	}
+	}																																																																																																																																																																																																																																																																																																																																																				
 	*i += j + 1;
 	return (cmd_temp);
 }
 
 int	do_pipe(char **temp, char **envp)
 {
-	int	pipe_cnt;
+	int		pipe_cnt;
 	t_pipex	pipex;
-	int	i;
+	int		i;
+	int		*pipe_fd;
 	char	**redir_temp;
 	char	*cmd_temp;
 

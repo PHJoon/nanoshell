@@ -13,8 +13,6 @@ SRCS_NAME = ./test \
 			./utils/syntax_ft_split_1 \
 			./utils/syntax_ft_split_2 \
 			./utils/syntax_ft_split_3 \
-			./get_next_line/get_next_line_utils \
-			./get_next_line/get_next_line \
 			./syntax_check/syntax_check \
 			./syntax_check/check_pattern \
 			./syntax_check/check_str_valid \
@@ -46,6 +44,9 @@ SRCS_NAME = ./test \
 			./utils/ft_isalpha \
 			./builtin/builtin_error \
 			./utils/ft_strncmp \
+			./token_to_arr \
+			./get_cmd_redir \
+			./utils/ft_error \
 
 
 

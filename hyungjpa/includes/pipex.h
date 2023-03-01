@@ -21,7 +21,6 @@
 # include <fcntl.h>
 # include <sys/types.h>
 # include <sys/wait.h>
-# include "get_next_line.h"
 
 # define FAIL		0
 # define SUCCESS	1
