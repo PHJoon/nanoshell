@@ -6,11 +6,11 @@
 /*   By: chanson <chanson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 15:00:16 by hyungjpa          #+#    #+#             */
-/*   Updated: 2023/03/01 18:33:19 by chanson          ###   ########.fr       */
+/*   Updated: 2023/03/02 15:16:49 by chanson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/test.h"
+#include "../include/test.h"
 
 int	ft_isalnum(int c)
 {

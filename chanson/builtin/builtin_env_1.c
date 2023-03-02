@@ -6,11 +6,11 @@
 /*   By: chanson <chanson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 14:52:09 by hyungjpa          #+#    #+#             */
-/*   Updated: 2023/03/01 18:11:14 by chanson          ###   ########.fr       */
+/*   Updated: 2023/03/02 15:33:01 by chanson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/include/test.h"
+#include "../include/test.h"
 
 int	do_env(char **temp, t_env *env_list)
 {
@@ -40,8 +40,8 @@ char	**make_envp(char **new_envp, int size, t_env *env_list)
 	tmp = env_list;
 	while (idx < size)
 	{
-		key_value_tmp = ft_strjoin(tmp->key, "=");
-		key_value = ft_strjoin(key_value_tmp, tmp->value);
+		key_value_tmp = ft_strstr(tmp->key, "=");
+		key_value = ft_strstr(key_value_tmp, tmp->value);
 		free(key_value_tmp);
 		new_envp[idx] = key_value;
 		tmp = tmp->next;

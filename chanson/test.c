@@ -6,11 +6,11 @@
 /*   By: chanson <chanson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 18:56:44 by chanson           #+#    #+#             */
-/*   Updated: 2023/03/01 14:13:41 by chanson          ###   ########.fr       */
+/*   Updated: 2023/03/02 17:39:09 by chanson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "test.h"
+#include "./include/test.h"
 
 int	main(int argc, char **argv, char **envp)
 {
@@ -26,7 +26,6 @@ int	main(int argc, char **argv, char **envp)
 	str = readline("> ");
 	add_history(str);
 	temp = ft_split(str);
-	display_str(temp);
 	if (syntax_err_check(temp) == FALSE)
 	{
 		free(str);
@@ -42,6 +41,6 @@ int	main(int argc, char **argv, char **envp)
 	tree->here_documets[tree->here_doc_cnt] = NULL;
 	tree->envp_val = envp;
 	execute_heredoc(tree->top, tree, 's');
-	display_tree(tree->top, 's');
+	execute_pipe(temp, tree);
 	return (0);
 }

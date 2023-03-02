@@ -26,10 +26,12 @@ SRCS_NAME =  ./test \
 		./utils/ft_strncmp \
 		./utils/ft_isalnum \
 		./utils/ft_isalpha \
-		./utils/ft_split_char \
 		./utils/ft_str_size \
 		./utils/ft_strchr \
 		./utils/ft_strrchr \
+		./utils/str_find \
+		./utils/check_remove_quote \
+		./utils/ft_strstr_no_free \
 		./parsing/syntax_check/syntax_check \
 		./parsing/syntax_check/check_pattern \
 		./parsing/syntax_check/check_str_valid \
@@ -42,6 +44,9 @@ SRCS_NAME =  ./test \
 		./execute/pipe/execute_pipe \
 		./execute/pipe/cmd_check \
 		./execute/pipe/get_cmd_redir \
+		./execute/pipe/forks/fork_first \
+		./execute/pipe/forks/fork_mid \
+		./execute/pipe/forks/fork_last \
 		./execute/heredoc/heredoc \
 		./execute/heredoc/heredoc_cnt \
 		./execute/heredoc/heredoc_env \

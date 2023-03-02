@@ -6,7 +6,7 @@
 /*   By: chanson <chanson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 16:48:03 by chanson           #+#    #+#             */
-/*   Updated: 2023/03/01 18:11:14 by chanson          ###   ########.fr       */
+/*   Updated: 2023/03/02 16:56:13 by chanson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,10 @@ static char	*cmd_init_0(t_tree *tree, int i)
 	char	*temp;
 	char	*temp_2;
 
-	temp_2 = ft_strstr(tree->cmd.envp_path[i], "/");
+	temp_2 = NULL;
+	temp = NULL;
+	temp_2 = ft_strstr_no_free(tree->cmd.envp_path[i], "/");
 	temp = ft_strstr(temp_2, tree->cmd.cmd_arr[0]);
-	free(temp_2);
 	return (temp);
 }
 

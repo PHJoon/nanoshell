@@ -6,11 +6,11 @@
 /*   By: chanson <chanson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 14:30:33 by hyungjpa          #+#    #+#             */
-/*   Updated: 2023/03/01 18:33:25 by chanson          ###   ########.fr       */
+/*   Updated: 2023/03/02 15:17:00 by chanson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/test.h"
+#include "../include/test.h"
 
 int	ft_isalpha(int c)
 {
