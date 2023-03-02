@@ -6,7 +6,7 @@
 /*   By: chanson <chanson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 02:36:35 by hyungjpa          #+#    #+#             */
-/*   Updated: 2023/03/02 15:28:21 by chanson          ###   ########.fr       */
+/*   Updated: 2023/03/02 19:48:44 by chanson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,21 +14,24 @@
 
 int	print_error_1(char *str)
 {
-	printf("%s\n", str);
+	write(2, str, ft_strlen(str));
+	write(2, "\n", 1);
 	return (2);
 }
 
 int	print_error_2(char *str1, char *str2)
 {
-	printf("%s", str1);
-	printf("%s\n", str2);
+	write(2, str1, ft_strlen(str1));
+	write(2, str2, ft_strlen(str2));
+	write(2, "\n", 1);
 	return (2);
 }
 
 int	print_error_3(char *str1, char *str2, char *str3)
 {
-	printf("%s", str1);
-	printf("%s", str2);
-	printf("%s\n", str3);
+	write(2, str1, ft_strlen(str1));
+	write(2, str2, ft_strlen(str2));
+	write(2, str3, ft_strlen(str3));
+	write(2, "\n", 1);
 	return (2);
 }

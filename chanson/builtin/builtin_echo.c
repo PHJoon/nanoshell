@@ -6,7 +6,7 @@
 /*   By: chanson <chanson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/11 21:46:27 by hyungjpa          #+#    #+#             */
-/*   Updated: 2023/03/02 15:28:03 by chanson          ###   ########.fr       */
+/*   Updated: 2023/03/02 19:58:35 by chanson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,27 +103,27 @@ void	check_env_var(char *str, t_env *env_list)
 		printf("%s", str);
 }
 
-int	do_echo(char **temp, t_env *env_list)
+int	do_echo(t_tree *info)
 {
 	int	flag;
 	int	i;
 
 	flag = 1;
 	i = 1;
-	if (!ft_strscmp(temp[0], "echo"))
+	if (!ft_strscmp(info->cmd.cmd_arr[0], "echo"))
 		return (1);
-	if (echo_option(temp[i]) == -1)
+	if (echo_option(info->cmd.cmd_arr[i]) == -1)
 		return (0);
-	while (echo_option(temp[i]) == 1)
+	while (echo_option(info->cmd.cmd_arr[i]) == 1)
 	{
 		i++;
 		flag = 0;
 	}
-	while (temp[i])
+	while (info->cmd.cmd_arr[i])
 	{
-		check_env_var(temp[i], env_list);
+		check_env_var(info->cmd.cmd_arr[i], info->env_list);
 		i++;
-		if (i != str_size(temp))
+		if (i != str_size(info->cmd.cmd_arr))
 			printf(" ");
 	}
 	if (flag)

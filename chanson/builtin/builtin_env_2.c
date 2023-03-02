@@ -6,7 +6,7 @@
 /*   By: chanson <chanson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 15:46:48 by hyungjpa          #+#    #+#             */
-/*   Updated: 2023/03/02 15:28:15 by chanson          ###   ########.fr       */
+/*   Updated: 2023/03/02 19:50:57 by chanson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,4 +68,18 @@ t_env	*make_env_list(char **envp)
 		envp++;
 	}
 	return (env_list);
+}
+
+char	*find_path(t_tree *info)
+{
+	t_env	*tmp;
+
+	tmp = info->env_list;
+	while (tmp)
+	{
+		if (ft_strscmp(tmp->key, "PATH"))
+			return (tmp->value);
+		tmp = tmp->next;
+	}
+	return (0);
 }

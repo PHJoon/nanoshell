@@ -6,7 +6,7 @@
 /*   By: chanson <chanson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/12 15:59:58 by chanson           #+#    #+#             */
-/*   Updated: 2023/03/02 16:48:14 by chanson          ###   ########.fr       */
+/*   Updated: 2023/03/02 20:36:01 by chanson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@
 # include <termcap.h>
 # include <signal.h>
 # include <dirent.h>
-# include "builtin.h"
 
 enum e_token
 {
@@ -70,6 +69,14 @@ typedef struct s_list
 	t_token	*last;
 }	t_list;
 
+typedef struct s_env_list
+{
+	char				*key;
+	char				*value;
+	struct s_env_list	*prev;
+	struct s_env_list	*next;
+}	t_env;
+
 typedef struct s_cmd
 {
 	char	*cmd_head;
@@ -94,6 +101,8 @@ typedef struct s_tree
 	char		**here_documets;
 	char		**envp_val;
 	pid_t		*pid;
+	t_env		*env_list;
+	t_env		*export_list;
 }	t_tree;
 
 // utils
@@ -111,6 +120,7 @@ char	*ft_strinsert(char *str, char *insert, int start, int end);
 char	*fr_strdel_one(char *str, int index);
 char	*str_find(char **strs, char *find);
 char	*ft_strstr_no_free(char *str_origin, char *str_new);
+char	*ft_strjoin(char *str1, char *str2);
 char	**ft_strsjoin(char **str1, char *str);
 char	**ft_split(char *s);
 char	**ft_split_char(char *str, char c);
@@ -172,6 +182,29 @@ void	execute_heredoc(t_token *node, t_tree *tree, char c);
 void	*change_env(char **envp, char *temp);
 void	mini_heredoc(t_token *node, t_tree *tree);
 int		ft_heredoc(t_tree *tree, char *limit);
+
+// execute/builtin
+int		do_cd(t_tree *info);
+void	cd_home(t_env *env_list);
+int		check_dir(char *cwd_buf);
+int		do_echo(t_tree *info);
+int		do_env(t_tree *info);
+char	**env_to_envp(t_env *env_list);
+t_env	*add_env_list(t_env *env_list, char *key, char *value);
+t_env	*make_env_list(char **envp);
+char	*find_path(t_tree *info);
+int		do_exit(t_tree *info);
+int		do_export(t_tree *info);
+t_env	*sort_export_list(t_env *export_list);
+t_env	*make_export_list(char **envp);
+void	print_export(t_env *export_list);
+int		valid_check(char *str);
+int		do_pwd(t_tree *info);
+int		do_unset(t_tree *info);
+int		builtin(t_tree *info);
+int		print_error_1(char *str);
+int		print_error_2(char *str1, char *str2);
+int		print_error_3(char *str1, char *str2, char *str3);
 
 //signal
 void	on_off_catch_signals(int on_off);

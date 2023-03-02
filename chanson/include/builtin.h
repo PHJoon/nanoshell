@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   env.h                                              :+:      :+:    :+:   */
+/*   builtin.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hyungjpa <hyungjpa@student.42seoul.>       +#+  +:+       +#+        */
+/*   By: chanson <chanson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 15:52:06 by hyungjpa          #+#    #+#             */
-/*   Updated: 2023/02/17 15:52:10 by hyungjpa         ###   ########.fr       */
+/*   Updated: 2023/03/02 19:46:09 by chanson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,28 +25,29 @@ typedef struct s_env_list
 }	t_env;
 
 // builtin_cd_1.c
-int		do_cd(char **temp, t_env *env_list);
+int		do_cd(t_info *info);
 
 // builtin_cd_2.c
 void	cd_home(t_env *env_list);
 int		check_dir(char *cwd_buf);
 
 // builtin_echo.c
-int		do_echo(char **temp, t_env *env_list);
+int		do_echo(t_info *info);
 
 // builtin_env_1.c
-int		do_env(char **temp, t_env *env_list);
+int		do_env(t_info *info);
 char	**env_to_envp(t_env *env_list);
 
 // builtin_env_2.c
 t_env	*add_env_list(t_env *env_list, char *key, char *value);
 t_env	*make_env_list(char **envp);
+char	*find_path(t_info *info);
 
 // builtin_exit.c
-int		do_exit(char **temp);
+int		do_exit(t_info *info);
 
 // builtin_export_1.c
-int		do_export(char **temp, t_env **export_list, t_env **env_list);
+int		do_export(t_info *info);
 
 // builtin_export_2.c
 t_env	*sort_export_list(t_env *export_list);
@@ -55,13 +56,13 @@ void	print_export(t_env *export_list);
 int		valid_check(char *str);
 
 // builtin_pwd.c
-int		do_pwd(char **temp);
+int		do_pwd(t_info *info);
 
 // builtin_unset.c
-int		do_unset(char **temp, t_env **env_list, t_env **export_list);
+int		do_unset(t_info *info);
 
 // builtin_main.c
-int		builtin(char **temp, t_env *env_list, t_env *export_list);
+int		builtin(t_info *info);
 
 // builtin_error.c
 int		print_error_1(char *str);

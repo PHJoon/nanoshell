@@ -6,7 +6,7 @@
 /*   By: chanson <chanson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 14:52:20 by hyungjpa          #+#    #+#             */
-/*   Updated: 2023/03/02 15:28:30 by chanson          ###   ########.fr       */
+/*   Updated: 2023/03/02 19:54:32 by chanson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ int	find_dup_key(t_env *env_list, char *key, char *value)
 	return (0);
 }
 
-int	export_args(char **temp, t_env **export_list, t_env **env_list)
+int	export_args(char **cmd, t_env **export_list, t_env **env_list)
 {
 	int		i;
 	char	*key;
@@ -73,13 +73,13 @@ int	export_args(char **temp, t_env **export_list, t_env **env_list)
 	i = 1;
 	key = NULL;
 	value = NULL;
-	while (temp[i])
+	while (cmd[i])
 	{
-		if (!check_equal(temp[i]))
+		if (!check_equal(cmd[i]))
 			return (0);
-		if (!valid_check(temp[i]))
+		if (!valid_check(cmd[i]))
 			return (i);
-		find_key_value(temp[i], &key, &value);
+		find_key_value(cmd[i], &key, &value);
 		if (!find_dup_key(*export_list, key, value))
 		{
 			add_env_list(*export_list, key, value);
@@ -91,20 +91,22 @@ int	export_args(char **temp, t_env **export_list, t_env **env_list)
 	return (0);
 }
 
-int	do_export(char **temp, t_env **export_list, t_env **env_list)
+int	do_export(t_tree *info)
 {
 	int	check_args;
 
-	if (!ft_strscmp(temp[0], "export"))
+	if (!ft_strscmp(info->cmd.cmd_arr[0], "export"))
 		return (1);
-	if (temp[1])
+	if (info->cmd.cmd_arr[1])
 	{
-		check_args = export_args(temp, export_list, env_list);
+		check_args = export_args(info->cmd.cmd_arr, \
+			&(info->export_list), &(info->env_list));
 		if (check_args)
-			return (print_error_3("export: \'", temp[check_args], \
+			return (print_error_3("export: \'", info->cmd.cmd_arr[check_args], \
 			"\': not a valid identifier"));
+		info->envp_val = env_to_envp(info->env_list);
 	}	
 	else
-		print_export(*export_list);
+		print_export(info->export_list);
 	return (0);
 }

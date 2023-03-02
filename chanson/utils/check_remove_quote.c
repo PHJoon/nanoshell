@@ -6,7 +6,7 @@
 /*   By: chanson <chanson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 15:30:46 by chanson           #+#    #+#             */
-/*   Updated: 2023/03/02 15:30:57 by chanson          ###   ########.fr       */
+/*   Updated: 2023/03/02 19:20:51 by chanson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,15 +40,24 @@ int	check_remove_quote(char *str)
 
 char	**remove_quote(char **temp)
 {
-	int	i;
+	int		i;
+	char	*tmp;
 
 	i = 0;
 	while (temp[i])
 	{
 		if (check_remove_quote(temp[i]) == 1)
-			temp[i] = ft_strtrim(temp[i], '\'');
+		{
+			tmp = ft_strtrim(temp[i], '\'');
+			free(temp[i]);
+			temp[i] = tmp;
+		}
 		else if (check_remove_quote(temp[i]) == 2)
-			temp[i] = ft_strtrim(temp[i], '"');
+		{
+			tmp = ft_strtrim(temp[i], '"');
+			free(temp[i]);
+			temp[i] = tmp;
+		}
 		i++;
 	}
 	return (temp);

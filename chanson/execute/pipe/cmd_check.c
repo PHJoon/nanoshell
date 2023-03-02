@@ -6,7 +6,7 @@
 /*   By: chanson <chanson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 16:48:03 by chanson           #+#    #+#             */
-/*   Updated: 2023/03/02 16:56:13 by chanson          ###   ########.fr       */
+/*   Updated: 2023/03/02 19:06:49 by chanson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void	cmd_check(t_tree *tree, char **cmd)
 	if (tree->cmd.envp_path == NULL)
 		tree->cmd.envp_path = ft_split_char(temp, ':');
 	free(temp);
-	tree->cmd.cmd_arr = cmd;
+	tree->cmd.cmd_arr = remove_quote(cmd);
 	if (access(cmd[0], X_OK) == 0)
 	{
 		tree->cmd.cmd_head = ft_strcpy(cmd[0]);

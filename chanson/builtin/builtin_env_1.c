@@ -6,21 +6,22 @@
 /*   By: chanson <chanson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 14:52:09 by hyungjpa          #+#    #+#             */
-/*   Updated: 2023/03/02 15:33:01 by chanson          ###   ########.fr       */
+/*   Updated: 2023/03/02 20:36:57 by chanson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/test.h"
 
-int	do_env(char **temp, t_env *env_list)
+int	do_env(t_tree *info)
 {
 	t_env	*tmp;
 
-	if (!ft_strscmp(temp[0], "env"))
+	if (!ft_strscmp(info->cmd.cmd_arr[0], "env"))
 		return (1);
-	if (temp[1])
-		return (print_error_3("env: ", temp[1], ": No such file or directory"));
-	tmp = env_list;
+	if (info->cmd.cmd_arr[1])
+		return (print_error_3("env: ", info->cmd.cmd_arr[1], \
+		": No such file or directory"));
+	tmp = info->env_list;
 	while (tmp)
 	{
 		printf("%s=%s\n", tmp->key, tmp->value);
@@ -40,8 +41,8 @@ char	**make_envp(char **new_envp, int size, t_env *env_list)
 	tmp = env_list;
 	while (idx < size)
 	{
-		key_value_tmp = ft_strstr(tmp->key, "=");
-		key_value = ft_strstr(key_value_tmp, tmp->value);
+		key_value_tmp = ft_strjoin(tmp->key, "=");
+		key_value = ft_strjoin(key_value_tmp, tmp->value);
 		free(key_value_tmp);
 		new_envp[idx] = key_value;
 		tmp = tmp->next;

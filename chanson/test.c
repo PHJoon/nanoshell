@@ -6,7 +6,7 @@
 /*   By: chanson <chanson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 18:56:44 by chanson           #+#    #+#             */
-/*   Updated: 2023/03/02 17:46:28 by chanson          ###   ########.fr       */
+/*   Updated: 2023/03/02 20:00:51 by chanson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,8 @@ int	main(int argc, char **argv, char **envp)
 		(tree->here_doc_cnt + 1));
 	tree->here_documets[tree->here_doc_cnt] = NULL;
 	tree->envp_val = envp;
+	tree->env_list = make_env_list(envp);
+	tree->export_list = make_export_list(envp);
 	execute_heredoc(tree->top, tree, 's');
 	execute_pipe(temp, tree);
 	return (0);

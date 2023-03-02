@@ -6,7 +6,7 @@
 /*   By: chanson <chanson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/18 17:54:11 by hyungjpa          #+#    #+#             */
-/*   Updated: 2023/03/02 15:27:45 by chanson          ###   ########.fr       */
+/*   Updated: 2023/03/02 19:58:49 by chanson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,28 +97,29 @@ char	*check_cd_argv(char *str, char *cwd_buf)
 	return (buf_tmp);
 }
 
-int	do_cd(char **temp, t_env *env_list)
+int	do_cd(t_tree *info)
 {
 	char	*cwd_buf;
 
-	if (!ft_strscmp(temp[0], "cd"))
+	if (!ft_strscmp(info->cmd.cmd_arr[0], "cd"))
 		return (1);
-	if (str_size(temp) > 2)
-		return (print_error_2("cd: string not in: ", temp[2]));
+	if (str_size(info->cmd.cmd_arr) > 2)
+		return (print_error_2("cd: string not in: ", info->cmd.cmd_arr[2]));
 	cwd_buf = (char *)malloc(sizeof(char) * 1024);
 	if (!cwd_buf)
 		return (print_error_1("malloc_error"));
 	cwd_buf = getcwd(cwd_buf, 1024);
-	if (temp[1])
+	if (info->cmd.cmd_arr[1])
 	{
-		cwd_buf = check_cd_argv(temp[1], cwd_buf);
+		cwd_buf = check_cd_argv(info->cmd.cmd_arr[1], cwd_buf);
 		if (check_dir(cwd_buf))
 			chdir(cwd_buf);
 		else
-			return (print_error_2("cd : not a directory: ", temp[1]));
+			return (print_error_2("cd : not a directory: "\
+				, info->cmd.cmd_arr[1]));
 	}
 	else
-		cd_home(env_list);
+		cd_home(info->env_list);
 	free(cwd_buf);
 	return (0);
 }

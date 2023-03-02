@@ -30,6 +30,7 @@ SRCS_NAME =  ./test \
 		./utils/ft_strchr \
 		./utils/ft_strrchr \
 		./utils/str_find \
+		./utils/ft_strjoin \
 		./utils/check_remove_quote \
 		./utils/ft_strstr_no_free \
 		./parsing/syntax_check/syntax_check \

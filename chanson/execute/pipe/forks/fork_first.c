@@ -6,33 +6,44 @@
 /*   By: chanson <chanson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 13:43:24 by chanson           #+#    #+#             */
-/*   Updated: 2023/03/02 15:26:11 by chanson          ###   ########.fr       */
+/*   Updated: 2023/03/02 21:23:04 by chanson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../include/test.h"
 
-void	fork_first(t_tree *tree)
+static void	_fork_in(t_tree *tree)
 {
-	close(tree->pipe_fd[0][READ]);
 	if (tree->infile != 0)
 	{
 		if (dup2(tree->infile, STDIN_FILENO) == -1)
-			ft_error("dup2 error\n");
+			ft_error("dup2 error1\n");
 	}
 	if (tree->outfile != 0)
 	{
 		tree->next_pipe_or_file = N_FILE;
 		close(tree->pipe_fd[0][WRITE]);
 		if (dup2(tree->outfile, STDOUT_FILENO) == -1)
-			ft_error("dup2 error\n");
+			ft_error("dup2 error2\n");
 	}
 	else
 	{
 		tree->next_pipe_or_file = PIPE;
 		if (dup2(tree->pipe_fd[0][WRITE], STDOUT_FILENO) == -1)
-			ft_error("dup2 error\n");
+			ft_error("dup2 error3\n");
 	}
-	if (execve(tree->cmd.cmd_head, tree->cmd.cmd_arr, tree->envp_val) == -1)
-		ft_error("cmd option error child\n");
+}
+
+void	fork_first(t_tree *tree)
+{
+	int	builtin_num;
+
+	close(tree->pipe_fd[0][READ]);
+	_fork_in(tree);
+	builtin_num = builtin(tree);
+	if (builtin_num == 1)
+	{
+		if (execve(tree->cmd.cmd_head, tree->cmd.cmd_arr, tree->envp_val) == -1)
+			ft_error("cmd option error child\n");
+	}
 }
