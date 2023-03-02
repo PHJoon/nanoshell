@@ -1,37 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   builtin_error.c                                    :+:      :+:    :+:   */
+/*   ft_isalnum.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hyungjpa <hyungjpa@student.42seoul.>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/26 02:36:35 by hyungjpa          #+#    #+#             */
-/*   Updated: 2023/02/26 02:36:37 by hyungjpa         ###   ########.fr       */
+/*   Created: 2022/11/09 15:00:16 by hyungjpa          #+#    #+#             */
+/*   Updated: 2022/11/09 21:00:27 by hyungjpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/test.h"
 
-int	print_error_1(char *str)
+int	ft_isalnum(int c)
 {
-	write(2, str, ft_strlen(str));
-	write(2, "\n", 1);
-	return (2);
-}
-
-int	print_error_2(char *str1, char *str2)
-{
-	write(2, str1, ft_strlen(str1));
-	write(2, str2, ft_strlen(str2));
-	write(2, "\n", 1);
-	return (2);
-}
-
-int	print_error_3(char *str1, char *str2, char *str3)
-{
-	write(2, str1, ft_strlen(str1));
-	write(2, str2, ft_strlen(str2));
-	write(2, str3, ft_strlen(str3));
-	write(2, "\n", 1);
-	return (2);
+	if (c < 48 || (c > 57 && c < 65) || (c > 90 && c < 97) || c > 122)
+		return (0);
+	return (1);
 }

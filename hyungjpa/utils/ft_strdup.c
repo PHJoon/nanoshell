@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chanson <chanson@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hyungjpa <hyungjpa@student.42seoul.>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 19:32:40 by hyungjpa          #+#    #+#             */
-/*   Updated: 2023/03/01 18:11:14 by chanson          ###   ########.fr       */
+/*   Updated: 2023/02/22 19:32:43 by hyungjpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/include/test.h"
+#include "../includes/test.h"
 
-char	*ft_strcpy(const char *s1)
+char	*ft_strdup(const char *s1)
 {
 	char	*ptr;
 	int		i;

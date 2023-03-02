@@ -1,26 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   builtin_env_1.c                                    :+:      :+:    :+:   */
+/*   builtin_env_2.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chanson <chanson@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hyungjpa <hyungjpa@student.42seoul.>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 14:52:09 by hyungjpa          #+#    #+#             */
-/*   Updated: 2023/03/01 18:11:14 by chanson          ###   ########.fr       */
+/*   Updated: 2023/02/22 14:52:11 by hyungjpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/include/test.h"
+#include "../includes/test.h"
 
-int	do_env(char **temp, t_env *env_list)
+int	do_env(t_info *info)
 {
 	t_env	*tmp;
 
-	if (!ft_strscmp(temp[0], "env"))
+	if (!ft_strscmp(info->cmd[0], "env"))
 		return (1);
-	if (temp[1])
-		return (print_error_3("env: ", temp[1], ": No such file or directory"));
-	tmp = env_list;
+	if (info->cmd[1])
+		return (print_error_3("env: ", info->cmd[1], \
+		": No such file or directory"));
+	tmp = info->env_list;
 	while (tmp)
 	{
 		printf("%s=%s\n", tmp->key, tmp->value);

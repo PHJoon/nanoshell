@@ -6,11 +6,11 @@
 /*   By: chanson <chanson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 14:54:20 by chanson           #+#    #+#             */
-/*   Updated: 2023/03/01 18:11:14 by chanson          ###   ########.fr       */
+/*   Updated: 2023/02/23 14:58:16 by chanson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/include/test.h"
+#include "../includes/test.h"
 
 char	*ft_strcpy_index(char *str, int start, int end)
 {

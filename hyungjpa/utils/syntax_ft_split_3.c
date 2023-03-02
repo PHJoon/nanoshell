@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   syntax_ft_split_3.c                                :+:      :+:    :+:   */
+/*   ft_split_2.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: chanson <chanson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 13:03:46 by chanson           #+#    #+#             */
-/*   Updated: 2023/03/01 18:11:14 by chanson          ###   ########.fr       */
+/*   Updated: 2023/02/15 13:31:56 by chanson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/include/test.h"
+#include "../includes/test.h"
 
 int	ft_split_and(char ***temp, char *str, int idx)
 {

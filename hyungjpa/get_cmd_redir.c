@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_cmd_redir.c                                    :+:      :+:    :+:   */
+/*   get_redirection.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chanson <chanson@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hyungjpa <hyungjpa@student.42seoul.>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 15:34:16 by hyungjpa          #+#    #+#             */
-/*   Updated: 2023/03/01 18:00:19 by chanson          ###   ########.fr       */
+/*   Updated: 2023/03/01 15:34:18 by hyungjpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ int	get_ord(char **temp)
 	int	cnt;
 
 	i = -1;
-	ord_fd = 0;
+	ord_fd = 1;
 	cnt = 0;
 	while (!ft_strscmp(temp[++i], "|") && temp[i])
 	{
@@ -88,7 +88,7 @@ char	**_cmd_get(char **temp, char **cmd)
 			i++;
 		else
 		{
-			cmd[size] = ft_strcpy(temp[i]);
+			cmd[size] = ft_strdup(temp[i]);
 			size++;
 		}
 	}

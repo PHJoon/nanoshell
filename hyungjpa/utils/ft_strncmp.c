@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strncmp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chanson <chanson@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hyungjpa <hyungjpa@student.42seoul.>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 14:47:15 by hyungjpa          #+#    #+#             */
-/*   Updated: 2023/03/01 18:11:14 by chanson          ###   ########.fr       */
+/*   Updated: 2022/11/10 14:58:41 by hyungjpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/include/test.h"
+#include "../includes/test.h"
 
 int	ft_strncmp(const char *s1, const char *s2, int n)
 {

@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   builtin_env_2.c                                    :+:      :+:    :+:   */
+/*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chanson <chanson@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hyungjpa <hyungjpa@student.42seoul.>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 15:46:48 by hyungjpa          #+#    #+#             */
-/*   Updated: 2023/03/01 18:11:14 by chanson          ###   ########.fr       */
+/*   Updated: 2023/02/17 15:46:49 by hyungjpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/include/test.h"
+#include "../includes/test.h"
 
 t_env	*make_new_env_list(char *key, char *value)
 {
@@ -68,4 +68,18 @@ t_env	*make_env_list(char **envp)
 		envp++;
 	}
 	return (env_list);
+}
+
+char	*find_path(t_info *info)
+{
+	t_env	*tmp;
+
+	tmp = info->env_list;
+	while (tmp)
+	{
+		if (ft_strscmp(tmp->key, "PATH"))
+			return (tmp->value);
+		tmp = tmp->next;
+	}
+	return (0);
 }

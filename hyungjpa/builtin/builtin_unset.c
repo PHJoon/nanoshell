@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   builtin_unset.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chanson <chanson@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hyungjpa <hyungjpa@student.42seoul.>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 16:21:39 by hyungjpa          #+#    #+#             */
-/*   Updated: 2023/03/01 18:11:14 by chanson          ###   ########.fr       */
+/*   Updated: 2023/02/17 16:21:41 by hyungjpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/include/test.h"
+#include "../includes/test.h"
 
 void	relink_env_list(t_env *tmp)
 {
@@ -31,22 +31,22 @@ void	relink_env_list(t_env *tmp)
 	}
 }
 
-int	list_unset(char **temp, t_env **env_list)
+int	list_unset(char **cmd, t_env **env_list)
 {
 	t_env	*tmp;
 	int		i;
 
-	if (!ft_strscmp(temp[0], "unset"))
+	if (!ft_strscmp(cmd[0], "unset"))
 		return (-1);
 	tmp = *env_list;
 	while (tmp)
 	{
 		i = 1;
-		while (temp[i])
+		while (cmd[i])
 		{
-			if (!valid_check(temp[i]))
+			if (!valid_check(cmd[i]))
 				return (i);
-			if (ft_strscmp(tmp->key, temp[i]))
+			if (ft_strscmp(tmp->key, cmd[i]))
 			{
 				relink_env_list(tmp);
 				free(tmp->key);
@@ -59,17 +59,18 @@ int	list_unset(char **temp, t_env **env_list)
 	return (0);
 }
 
-int	do_unset(char **temp, t_env **env_list, t_env **export_list)
+int	do_unset(t_info *info)
 {
 	int	res1;
 	int	res2;
 
-	res1 = list_unset(temp, env_list);
-	res2 = list_unset(temp, export_list);
+	res1 = list_unset(info->cmd, &(info->env_list));
+	res2 = list_unset(info->cmd, &(info->export_list));
+	info->new_envp = env_to_envp(info->env_list);
 	if (res1 == -1)
 		return (1);
 	else if (res1 > 0)
-		return (print_error_3("export: \'", temp[res1], \
+		return (print_error_3("export: \'", info->cmd[res1], \
 			"\': not a valid identifier"));
 	return (0);
 }

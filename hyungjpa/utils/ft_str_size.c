@@ -1,37 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   builtin_error.c                                    :+:      :+:    :+:   */
+/*   ft_str_size.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hyungjpa <hyungjpa@student.42seoul.>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/26 02:36:35 by hyungjpa          #+#    #+#             */
-/*   Updated: 2023/02/26 02:36:37 by hyungjpa         ###   ########.fr       */
+/*   Created: 2023/02/22 19:26:03 by hyungjpa          #+#    #+#             */
+/*   Updated: 2023/02/22 19:26:05 by hyungjpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/test.h"
 
-int	print_error_1(char *str)
+int	str_size(char **str)
 {
-	write(2, str, ft_strlen(str));
-	write(2, "\n", 1);
-	return (2);
-}
+	int	i;
 
-int	print_error_2(char *str1, char *str2)
-{
-	write(2, str1, ft_strlen(str1));
-	write(2, str2, ft_strlen(str2));
-	write(2, "\n", 1);
-	return (2);
-}
-
-int	print_error_3(char *str1, char *str2, char *str3)
-{
-	write(2, str1, ft_strlen(str1));
-	write(2, str2, ft_strlen(str2));
-	write(2, str3, ft_strlen(str3));
-	write(2, "\n", 1);
-	return (2);
+	i = 0;
+	while (str[i])
+		i++;
+	return (i);
 }

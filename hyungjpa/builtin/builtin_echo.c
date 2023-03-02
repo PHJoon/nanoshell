@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   builtin_echo.c                                     :+:      :+:    :+:   */
+/*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chanson <chanson@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hyungjpa <hyungjpa@student.42seoul.>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/11 21:46:27 by hyungjpa          #+#    #+#             */
-/*   Updated: 2023/03/01 18:11:14 by chanson          ###   ########.fr       */
+/*   Updated: 2023/02/11 21:47:19 by hyungjpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/include/test.h"
+#include "../includes/test.h"
 
 int	echo_option(char *str)
 {
@@ -103,27 +103,27 @@ void	check_env_var(char *str, t_env *env_list)
 		printf("%s", str);
 }
 
-int	do_echo(char **temp, t_env *env_list)
+int	do_echo(t_info *info)
 {
 	int	flag;
 	int	i;
 
 	flag = 1;
 	i = 1;
-	if (!ft_strscmp(temp[0], "echo"))
+	if (!ft_strscmp(info->cmd[0], "echo"))
 		return (1);
-	if (echo_option(temp[i]) == -1)
+	if (echo_option(info->cmd[i]) == -1)
 		return (0);
-	while (echo_option(temp[i]) == 1)
+	while (echo_option(info->cmd[i]) == 1)
 	{
 		i++;
 		flag = 0;
 	}
-	while (temp[i])
+	while (info->cmd[i])
 	{
-		check_env_var(temp[i], env_list);
+		check_env_var(info->cmd[i], info->env_list);
 		i++;
-		if (i != str_size(temp))
+		if (i != str_size(info->cmd))
 			printf(" ");
 	}
 	if (flag)

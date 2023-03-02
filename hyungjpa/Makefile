@@ -5,7 +5,7 @@ SRCS_NAME = ./test \
 			./utils/ft_str_size \
 			./utils/ft_strchr \
 			./utils/ft_strcjoin \
-			./utils/ft_strcpy \
+			./utils/ft_strdup \
 			./utils/ft_strlen \
 			./utils/ft_strrchr \
 			./utils/ft_strscmp \
@@ -16,11 +16,6 @@ SRCS_NAME = ./test \
 			./syntax_check/syntax_check \
 			./syntax_check/check_pattern \
 			./syntax_check/check_str_valid \
-			./syntax_tree/ast_ast_func \
-			./syntax_tree/ast_free \
-			./syntax_tree/ast_list_func_1 \
-			./syntax_tree/ast_list_func_2 \
-			./syntax_tree/ast_main \
 			./signal_handle/signal_handler \
 			./builtin/builtin_main \
 			./builtin/builtin_cd_1 \
@@ -34,19 +29,20 @@ SRCS_NAME = ./test \
 			./builtin/builtin_pwd \
 			./builtin/builtin_unset \
 			./display \
-			./utils/pipex_ft_strjoin \
-			./utils/pipex_str_cp \
 			./utils/ft_strtrim \
 			./remove_quote \
 			./utils/ft_strcpy_index \
-			./heredoc \
 			./utils/ft_isalnum \
 			./utils/ft_isalpha \
 			./builtin/builtin_error \
 			./utils/ft_strncmp \
-			./token_to_arr \
 			./get_cmd_redir \
 			./utils/ft_error \
+			./pipe_1 \
+			./pipe_2 \
+			./pipe_path \
+			./ft_split_path \
+			./utils/ft_strjoin \
 
 
 

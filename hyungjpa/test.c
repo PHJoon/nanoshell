@@ -6,53 +6,65 @@
 /*   By: chanson <chanson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 18:56:44 by chanson           #+#    #+#             */
-/*   Updated: 2023/03/01 18:11:14 by chanson          ###   ########.fr       */
+/*   Updated: 2023/02/15 17:13:55 by chanson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./includes/include/test.h"
+#include "./includes/test.h"
+
+t_info	*init_info(void)
+{
+	t_info	*info;
+
+	info = (t_info *)malloc(sizeof(t_info));
+	if (!info)
+		return (NULL);
+	info->temp = NULL;
+	info->here_doc = 0;
+	info->mini_here_doc = 0;
+	info->here_doc_cnt = 0;
+	info->here_documets = NULL;
+	info->pipe_cnt = 0;
+	info->infile = 0;
+	info->outfile = 0;
+	info->pid = NULL;
+	info->pipe_fd = NULL;
+	info->cmd = NULL;
+	info->new_envp = NULL;
+	info->env_list = NULL;
+	info->export_list = NULL;
+	return (info);
+}
 
 int	main(int argc, char **argv, char **envp)
 {
 	char		*str;
-	char		**temp;
-	t_env	*env_list;
-	t_env	*export_list;
-	// t_node	*head;
-	// t_ast	*root;
+	t_info		*info;
 
 	(void)argc;
 	(void)argv;
 	on_off_catch_signals(OFF);
 	do_signal_handle(PARENT);
-	export_list = make_export_list(envp);
-	env_list = make_env_list(envp);
+	info = init_info();
+	info->env_list = make_env_list(envp);
+	info->export_list = make_export_list(envp);
+	info->new_envp = envp;
+	get_path(info);
 	while (1)
 	{
 		str = readline("nanoshell$ ");
 		signal_sigterm(str);
-		temp = ft_split_syntax(str);
-		if (!syntax_check(temp))
+		info->temp = ft_split_syntax(str);
+		if (!syntax_check(info->temp))
 		{
 			printf("syntax error\n");
 			continue ;
 		}
-		temp = do_here_doc(temp);
-		do_signal_handle(PARENT);
-		temp = remove_quote(temp);
-		builtin(temp, env_list, export_list);
-		display_str(temp);
-		printf("in %d\n", get_ird(temp));
-		printf("out %d\n", get_ord(temp));
-		dispaly_str(cmd_get(temp));
-		// dispaly_str(temp);
-		// root = NULL;
-		// head = trans_to_list(temp);
-		// root = list_to_ast(root, head, 7);
-		// display_ast(root);
-		// free_ast(root);
-		// free_node(head);
-		ft_free_str(temp);
+		info->temp = remove_quote(info->temp);
+		info->pipe_cnt = count_pipe(info->temp);
+		setting_pipe(info);
+		pipex(info);
+		ft_free_str(info->temp);
 		add_history(str);
 		free(str);
 	}

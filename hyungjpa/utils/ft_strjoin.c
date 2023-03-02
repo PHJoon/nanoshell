@@ -1,29 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex_str_cp.c                                     :+:      :+:    :+:   */
+/*   ft_strjoin_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: chanson <chanson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/13 20:44:49 by chanson           #+#    #+#             */
-/*   Updated: 2023/03/01 18:11:14 by chanson          ###   ########.fr       */
+/*   Created: 2023/01/15 19:29:16 by chanson           #+#    #+#             */
+/*   Updated: 2023/01/15 19:29:52 by chanson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/include/test.h"
+#include "../includes/test.h"
 
-char	*str_cp_limit(char *str, int idx)
+char	*ft_strjoin(char *str1, char *str2)
 {
-	int		i;
 	char	*temp;
+	int		i;
+	int		j;
 
-	temp = (char *)malloc(sizeof(char) * (idx + 1));
-	temp[idx + 1] = '\0';
-	i = 0;
-	while (i <= idx)
-	{
-		temp[i] = str[i];
-		i++;
-	}
+	i = ft_strlen(str1);
+	j = ft_strlen(str2);
+	if (!i && !j)
+		return (0);
+	temp = (char *)malloc(i + j + 1);
+	i = -1;
+	while (str1[++i])
+		temp[i] = str1[i];
+	j = -1;
+	while (str2[++j])
+		temp[i + j] = str2[j];
+	temp[i + j] = '\0';
 	return (temp);
 }
