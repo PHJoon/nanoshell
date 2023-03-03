@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   display.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hyungjpa <hyungjpa@student.42seoul.>       +#+  +:+       +#+        */
+/*   By: chanson <chanson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/18 15:38:15 by hyungjpa          #+#    #+#             */
-/*   Updated: 2023/02/18 15:38:17 by hyungjpa         ###   ########.fr       */
+/*   Updated: 2023/03/03 19:51:03 by chanson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,5 +21,17 @@ void	display_str(char **str)
 	{
 		printf("str[%d]: %s\n", i, str[i]);
 		i++;
+	}
+}
+
+void	display_list_envp(t_env *node)
+{
+	t_env	*temp;
+
+	temp = node;
+	while (temp)
+	{
+		printf("key: %s val: %s\n", node->key, node->value);
+		temp = temp->next;
 	}
 }

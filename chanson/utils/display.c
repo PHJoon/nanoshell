@@ -6,7 +6,7 @@
 /*   By: chanson <chanson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/16 17:48:49 by chanson           #+#    #+#             */
-/*   Updated: 2023/03/02 16:01:17 by chanson          ###   ########.fr       */
+/*   Updated: 2023/03/03 19:48:34 by chanson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,4 +97,16 @@ void	display_acc_str(char *str)
 		i++;
 	}
 	printf("\n");
+}
+
+void	display_list_envp(t_env *node)
+{
+	t_env	*temp;
+
+	temp = node;
+	while (temp)
+	{
+		printf("key: %s val: %s\n", node->key, node->value);
+		temp = temp->next;
+	}
 }

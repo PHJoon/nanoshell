@@ -6,7 +6,7 @@
 /*   By: chanson <chanson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 13:43:24 by chanson           #+#    #+#             */
-/*   Updated: 2023/03/02 21:23:04 by chanson          ###   ########.fr       */
+/*   Updated: 2023/03/03 20:26:08 by chanson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,10 +37,20 @@ static void	_fork_in(t_tree *tree)
 void	fork_first(t_tree *tree)
 {
 	int	builtin_num;
+	int	i;
 
+	i = 1;
+	while (i < tree->pipe_cnt)
+	{
+		close(tree->pipe_fd[i][READ]);
+		close(tree->pipe_fd[i][WRITE]);
+		i++;
+	}
 	close(tree->pipe_fd[0][READ]);
 	_fork_in(tree);
 	builtin_num = builtin(tree);
+	if (builtin_num != 1)
+		exit(builtin_num);
 	if (builtin_num == 1)
 	{
 		if (execve(tree->cmd.cmd_head, tree->cmd.cmd_arr, tree->envp_val) == -1)

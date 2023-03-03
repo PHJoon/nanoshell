@@ -6,7 +6,7 @@
 /*   By: chanson <chanson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 14:18:40 by chanson           #+#    #+#             */
-/*   Updated: 2023/03/02 20:24:18 by chanson          ###   ########.fr       */
+/*   Updated: 2023/03/03 21:21:26 by chanson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,10 @@
 
 static void	set_execute_cmd(t_tree *tree)
 {
+	if (tree->cmd.cmd_head)
+		free(tree->cmd.cmd_head);
+	if (tree->cmd.cmd_arr)
+		ft_free_str(tree->cmd.cmd_arr);
 	tree->cmd.cmd_head = NULL;
 	tree->cmd.cmd_arr = NULL;
 	tree->infile = 0;
@@ -25,10 +29,6 @@ void	execute_cmd(char **cmd, int index, t_tree *tree)
 {
 	char	**pure_cmd;
 
-	if (tree->cmd.cmd_head)
-		free(tree->cmd.cmd_head);
-	if (tree->cmd.cmd_arr)
-		ft_free_str(tree->cmd.cmd_arr);
 	set_execute_cmd(tree);
 	pure_cmd = cmd_get(cmd);
 	cmd_check(tree, pure_cmd);
@@ -36,6 +36,8 @@ void	execute_cmd(char **cmd, int index, t_tree *tree)
 		printf("cmd not valid: %s\n", tree->cmd.cmd_arr[0]);
 	tree->infile = get_ird(cmd);
 	tree->outfile = get_ord(cmd);
+	if (pure_cmd[0] == NULL)
+		return ;
 	tree->pid[index] = fork();
 	if (tree->pid[index] == 0)
 	{
@@ -45,11 +47,6 @@ void	execute_cmd(char **cmd, int index, t_tree *tree)
 			fork_last(tree);
 		else
 			fork_mid(tree, index);
-	}
-	else
-	{
-		if (index < tree->pipe_cnt)
-			close(tree->pipe_fd[index][WRITE]);
 	}
 }
 
@@ -78,5 +75,6 @@ void	execute_pipe(char **temp, t_tree *tree)
 			cmd = ft_strsjoin(cmd, temp[i]);
 		i++;
 	}
+	close_pipe_all(tree);
 	wait_pid(tree);
 }

@@ -6,7 +6,7 @@
 /*   By: chanson <chanson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 15:46:48 by hyungjpa          #+#    #+#             */
-/*   Updated: 2023/03/02 19:50:57 by chanson          ###   ########.fr       */
+/*   Updated: 2023/03/03 19:41:34 by chanson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,12 +60,14 @@ t_env	*split_env(t_env *env_list, char *str)
 t_env	*make_env_list(char **envp)
 {
 	t_env	*env_list;
+	int		i;
 
+	i = 0;
 	env_list = NULL;
-	while (*envp)
+	while (envp[i])
 	{
-		env_list = split_env(env_list, *envp);
-		envp++;
+		env_list = split_env(env_list, envp[i]);
+		i++;
 	}
 	return (env_list);
 }

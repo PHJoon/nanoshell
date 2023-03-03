@@ -8,6 +8,7 @@
 		"get_next_line.h": "c",
 		"sstream": "c",
 		"wait.h": "c",
-		"stdio.h": "c"
+		"stdio.h": "c",
+		"signal_handler.h": "c"
 	}
 }

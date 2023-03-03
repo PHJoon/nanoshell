@@ -58,9 +58,13 @@ FLAGS = -Wall -Wextra -Werror -g3
 
 INCLUDES = -I ./includes/
 
-RL_INCLUDE = -I/Users/hyungjpa/.brew/opt/readline/include/
+RL_FLAGS = -L/Users/chanson/.brew/opt/readline/lib
 
-RL_FLAGS = -L/Users/hyungjpa/.brew/opt/readline/lib
+RL_INCLUDE = -I/Users/chanson/.brew/opt/readline/include
+
+# RL_INCLUDE = -I/Users/hyungjpa/.brew/opt/readline/include/
+
+# RL_FLAGS = -L/Users/hyungjpa/.brew/opt/readline/lib
 
 RL = -lreadline
 

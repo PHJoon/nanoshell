@@ -6,7 +6,7 @@
 /*   By: chanson <chanson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/12 15:59:58 by chanson           #+#    #+#             */
-/*   Updated: 2023/03/02 20:36:01 by chanson          ###   ########.fr       */
+/*   Updated: 2023/03/03 20:10:06 by chanson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,6 +122,7 @@ char	*str_find(char **strs, char *find);
 char	*ft_strstr_no_free(char *str_origin, char *str_new);
 char	*ft_strjoin(char *str1, char *str2);
 char	**ft_strsjoin(char **str1, char *str);
+char	**ft_strsjoin_2(char **str1, char *str);
 char	**ft_split(char *s);
 char	**ft_split_char(char *str, char c);
 char	**remove_quote(char **temp);
@@ -143,13 +144,7 @@ int		ft_isalnum(int c);
 int		ft_isalpha(int c);
 void	ft_free_str(char **str);
 void	ft_error(char *str);
-
-// utils->display.c
-void	show_list(t_list	*list);
-void	display_str(char **str);
-void	display_tree(t_token *root, char c);
-void	display_acc_str(char *str);
-void	show_node_list(t_token *token);
+void	ft_free_tree(t_tree *tree);
 
 //parsing/syntax_check
 int		syntax_check(char **temp);
@@ -175,6 +170,8 @@ void	fork_first(t_tree *tree);
 void	fork_mid(t_tree *tree, int index);
 void	fork_last(t_tree *tree);
 void	execute_pipe(char **temp, t_tree *tree);
+void	execute_no_pipe(char **temp, t_tree *tree);
+void	close_pipe_all(t_tree *tree);
 
 //execute/heredoc
 void	cnt_heredoc(t_token *node, t_tree *tree);
@@ -182,6 +179,7 @@ void	execute_heredoc(t_token *node, t_tree *tree, char c);
 void	*change_env(char **envp, char *temp);
 void	mini_heredoc(t_token *node, t_tree *tree);
 int		ft_heredoc(t_tree *tree, char *limit);
+void	heredoc_sum(t_token *node, char ***temp);
 
 // execute/builtin
 int		do_cd(t_tree *info);
@@ -192,11 +190,11 @@ int		do_env(t_tree *info);
 char	**env_to_envp(t_env *env_list);
 t_env	*add_env_list(t_env *env_list, char *key, char *value);
 t_env	*make_env_list(char **envp);
+t_env	*sort_export_list(t_env *export_list);
+t_env	*make_export_list(char **envp);
 char	*find_path(t_tree *info);
 int		do_exit(t_tree *info);
 int		do_export(t_tree *info);
-t_env	*sort_export_list(t_env *export_list);
-t_env	*make_export_list(char **envp);
 void	print_export(t_env *export_list);
 int		valid_check(char *str);
 int		do_pwd(t_tree *info);
@@ -212,5 +210,13 @@ void	parent_sig_handler(int signo);
 void	do_signal_handle(int status);
 void	signal_sigterm(char *str);
 void	child_signal_handle(void);
+
+// utils->display.c
+void	show_list(t_list	*list);
+void	display_str(char **str);
+void	display_tree(t_token *root, char c);
+void	display_acc_str(char *str);
+void	show_node_list(t_token *token);
+void	display_list_envp(t_env *node);
 
 #endif

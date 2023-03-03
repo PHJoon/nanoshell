@@ -6,7 +6,7 @@
 /*   By: chanson <chanson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 18:56:44 by chanson           #+#    #+#             */
-/*   Updated: 2023/02/15 17:13:55 by chanson          ###   ########.fr       */
+/*   Updated: 2023/03/03 19:52:03 by chanson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ int	main(int argc, char **argv, char **envp)
 	info = init_info();
 	info->env_list = make_env_list(envp);
 	info->export_list = make_export_list(envp);
+	display_list_envp(info->export_list);
 	info->new_envp = envp;
 	get_path(info);
 	while (1)

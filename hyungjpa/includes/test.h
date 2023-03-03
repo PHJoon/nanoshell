@@ -6,7 +6,7 @@
 /*   By: chanson <chanson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/12 15:59:58 by chanson           #+#    #+#             */
-/*   Updated: 2023/02/15 17:13:19 by chanson          ###   ########.fr       */
+/*   Updated: 2023/03/03 19:51:19 by chanson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,7 @@ int		get_ord(char **temp);
 char	**cmd_get(char **temp);
 
 void	display_str(char **str);
+void	display_list_envp(t_env *node);
 
 char	**ft_split_path(char const *s, char c);
 

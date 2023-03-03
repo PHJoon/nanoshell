@@ -6,7 +6,7 @@
 /*   By: chanson <chanson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 11:17:42 by hyungjpa          #+#    #+#             */
-/*   Updated: 2023/03/02 21:29:09 by chanson          ###   ########.fr       */
+/*   Updated: 2023/03/02 21:58:54 by chanson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ int	builtin(t_tree *info)
 	int	check_1;
 	int	check_2;
 
+	exit_check = 0;
 	check_1 = cd_echo_env_check(info);
 	if (check_1 != 1)
 		return (check_1);
@@ -63,5 +64,6 @@ int	builtin(t_tree *info)
 	exit_check = do_exit(info);
 	if (exit_check != 0)
 		return (exit_check);
+	exit(0);
 	return (exit_check);
 }

@@ -33,6 +33,8 @@ SRCS_NAME =  ./test \
 		./utils/ft_strjoin \
 		./utils/check_remove_quote \
 		./utils/ft_strstr_no_free \
+		./utils/ft_free_tree \
+		./utils/ft_strsjoin_2 \
 		./parsing/syntax_check/syntax_check \
 		./parsing/syntax_check/check_pattern \
 		./parsing/syntax_check/check_str_valid \
@@ -43,6 +45,7 @@ SRCS_NAME =  ./test \
 		./parsing/tree/add_node_to_tree \
 		./execute/pipe/pipe \
 		./execute/pipe/execute_pipe \
+		./execute/pipe/execute_no_pipe \
 		./execute/pipe/cmd_check \
 		./execute/pipe/get_cmd_redir \
 		./execute/pipe/forks/fork_first \
@@ -52,6 +55,7 @@ SRCS_NAME =  ./test \
 		./execute/heredoc/heredoc_cnt \
 		./execute/heredoc/heredoc_env \
 		./execute/heredoc/mini_heredoc \
+		./execute/heredoc/heredoc_sum \
 		./signal/handler \
 		./builtin/builtin_cd_1 \
 		./builtin/builtin_cd_2 \

@@ -6,7 +6,7 @@
 /*   By: chanson <chanson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 15:06:18 by chanson           #+#    #+#             */
-/*   Updated: 2023/03/02 19:03:01 by chanson          ###   ########.fr       */
+/*   Updated: 2023/03/03 20:49:40 by chanson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,9 +58,18 @@ void	wait_pid(t_tree *tree)
 
 	i = -1;
 	while (++i < tree->pipe_cnt + 1)
+		waitpid(tree->pid[i], &tree->child_status, 0);
+}
+
+void	close_pipe_all(t_tree *tree)
+{
+	int	i;
+
+	i = 0;
+	while (i < tree->pipe_cnt)
 	{
-		if (i < tree->pipe_cnt)
-			close(tree->pipe_fd[i][READ]);
-		waitpid(tree->pid[i], &tree->child_status, WNOHANG);
+		close(tree->pipe_fd[i][READ]);
+		close(tree->pipe_fd[i][WRITE]);
+		i++;
 	}
 }

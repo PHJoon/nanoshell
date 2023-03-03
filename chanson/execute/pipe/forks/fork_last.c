@@ -6,7 +6,7 @@
 /*   By: chanson <chanson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 13:57:16 by chanson           #+#    #+#             */
-/*   Updated: 2023/03/02 21:17:29 by chanson          ###   ########.fr       */
+/*   Updated: 2023/03/03 20:33:41 by chanson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 static void	fork_in(t_tree *tree, int idx)
 {
-	close(tree->pipe_fd[idx][WRITE]);
 	if (tree->infile != 0)
 	{
 		close(tree->pipe_fd[idx][READ]);
@@ -33,15 +32,25 @@ static void	fork_in(t_tree *tree, int idx)
 void	fork_last(t_tree *tree)
 {
 	int	builtin_num;
+	int	i;
 
+	i = 0;
+	while (i < tree->pipe_cnt - 1)
+	{
+		close(tree->pipe_fd[i][READ]);
+		close(tree->pipe_fd[i][WRITE]);
+		i++;
+	}
 	fork_in(tree, tree->pipe_cnt - 1);
+	close(tree->pipe_fd[tree->pipe_cnt - 1][WRITE]);
 	if (tree->outfile != 0)
 	{
 		if (dup2(tree->outfile, STDOUT_FILENO) == -1)
 			ft_error("dup2 error10\n");
 	}
 	builtin_num = builtin(tree);
-	// builtin_num = 1;
+	if (builtin_num != 1)
+		exit(builtin_num);
 	if (builtin_num == 1)
 	{
 		if (execve(tree->cmd.cmd_head, tree->cmd.cmd_arr, tree->envp_val) == -1)
