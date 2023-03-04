@@ -6,11 +6,11 @@
 /*   By: chanson <chanson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 14:47:02 by chanson           #+#    #+#             */
-/*   Updated: 2023/02/13 14:50:56 by chanson          ###   ########.fr       */
+/*   Updated: 2023/03/03 14:37:45 by chanson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/test.h"
+#include "../include/test.h"
 
 void	ft_free_str(char **str)
 {

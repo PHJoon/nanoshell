@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   builtin_exit.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hyungjpa <hyungjpa@student.42seoul.>       +#+  +:+       +#+        */
+/*   By: chanson <chanson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 14:40:02 by hyungjpa          #+#    #+#             */
-/*   Updated: 2023/02/22 14:40:04 by hyungjpa         ###   ########.fr       */
+/*   Updated: 2023/03/02 19:57:50 by chanson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/test.h"
+#include "../include/test.h"
 
 int	check_digit(char *str)
 {
@@ -24,20 +24,20 @@ int	check_digit(char *str)
 	return (0);
 }
 
-int	do_exit(t_info *info)
+int	do_exit(t_tree *info)
 {
 	int	size;
 
-	if (!ft_strscmp(info->cmd[0], "exit"))
+	if (!ft_strscmp(info->cmd.cmd_arr[0], "exit"))
 		return (1);
-	size = str_size(info->cmd);
+	size = str_size(info->cmd.cmd_arr);
 	printf("exit");
-	if (size == 1 || (size == 2 && check_digit(info->cmd[1])))
+	if (size == 1 || (size == 2 && check_digit(info->cmd.cmd_arr[1])))
 		printf("\n");
 	else if (size > 2)
 		return (print_error_1(": too many arguments"));
-	else if (size > 1 && !check_digit(info->cmd[1]))
-		return (print_error_3(": ", info->cmd[1], \
+	else if (size > 1 && !check_digit(info->cmd.cmd_arr[1]))
+		return (print_error_3(": ", info->cmd.cmd_arr[1], \
 		": numeric arguments required"));
 	return (0);
 }

@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   bulitin_export.c                                   :+:      :+:    :+:   */
+/*   builtin_export_2.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hyungjpa <hyungjpa@student.42seoul.>       +#+  +:+       +#+        */
+/*   By: chanson <chanson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 16:49:56 by hyungjpa          #+#    #+#             */
-/*   Updated: 2023/02/17 16:49:57 by hyungjpa         ###   ########.fr       */
+/*   Updated: 2023/03/04 14:09:14 by chanson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/test.h"
+#include "../include/test.h"
 
 t_env	*sort_export_list(t_env *export_list)
 {
@@ -25,7 +25,7 @@ t_env	*sort_export_list(t_env *export_list)
 		tmp_next = tmp->next;
 		while (tmp_next)
 		{
-			if (ft_strscmp(tmp->key, tmp_next->key))
+			if (ft_strncmp(tmp->key, tmp_next->key, ft_strlen(tmp->key)) > 0)
 			{
 				key_tmp = tmp->key;
 				value_tmp = tmp->value;
@@ -87,7 +87,7 @@ int	valid_check(char *str)
 	idx++;
 	while (str[idx])
 	{
-		if (!ft_isalnum(str[idx]))
+		if (!ft_isalnum(str[idx]) && (str[idx] != '='))
 			return (0);
 		idx++;
 	}

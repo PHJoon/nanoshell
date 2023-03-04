@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   builtin_export_2.c                                 :+:      :+:    :+:   */
+/*   builtin_export_1.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hyungjpa <hyungjpa@student.42seoul.>       +#+  +:+       +#+        */
+/*   By: chanson <chanson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 14:52:20 by hyungjpa          #+#    #+#             */
-/*   Updated: 2023/02/22 14:52:22 by hyungjpa         ###   ########.fr       */
+/*   Updated: 2023/03/02 19:54:32 by chanson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/test.h"
+#include "../include/test.h"
 
 int	check_equal(char *str)
 {
@@ -91,19 +91,20 @@ int	export_args(char **cmd, t_env **export_list, t_env **env_list)
 	return (0);
 }
 
-int	do_export(t_info *info)
+int	do_export(t_tree *info)
 {
 	int	check_args;
 
-	if (!ft_strscmp(info->cmd[0], "export"))
+	if (!ft_strscmp(info->cmd.cmd_arr[0], "export"))
 		return (1);
-	if (info->cmd[1])
+	if (info->cmd.cmd_arr[1])
 	{
-		check_args = export_args(info->cmd, &(info->export_list), &(info->env_list));
+		check_args = export_args(info->cmd.cmd_arr, \
+			&(info->export_list), &(info->env_list));
 		if (check_args)
-			return (print_error_3("export: \'", info->cmd[check_args], \
+			return (print_error_3("export: \'", info->cmd.cmd_arr[check_args], \
 			"\': not a valid identifier"));
-		info->new_envp = env_to_envp(info->env_list);
+		info->envp_val = env_to_envp(info->env_list);
 	}	
 	else
 		print_export(info->export_list);

@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   env.c                                              :+:      :+:    :+:   */
+/*   builtin_env_2.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hyungjpa <hyungjpa@student.42seoul.>       +#+  +:+       +#+        */
+/*   By: chanson <chanson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 15:46:48 by hyungjpa          #+#    #+#             */
-/*   Updated: 2023/02/17 15:46:49 by hyungjpa         ###   ########.fr       */
+/*   Updated: 2023/03/03 19:41:34 by chanson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/test.h"
+#include "../include/test.h"
 
 t_env	*make_new_env_list(char *key, char *value)
 {
@@ -60,17 +60,19 @@ t_env	*split_env(t_env *env_list, char *str)
 t_env	*make_env_list(char **envp)
 {
 	t_env	*env_list;
+	int		i;
 
+	i = 0;
 	env_list = NULL;
-	while (*envp)
+	while (envp[i])
 	{
-		env_list = split_env(env_list, *envp);
-		envp++;
+		env_list = split_env(env_list, envp[i]);
+		i++;
 	}
 	return (env_list);
 }
 
-char	*find_path(t_info *info)
+char	*find_path(t_tree *info)
 {
 	t_env	*tmp;
 

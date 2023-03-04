@@ -3,23 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hyungjpa <hyungjpa@student.42seoul.>       +#+  +:+       +#+        */
+/*   By: chanson <chanson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/22 19:25:51 by hyungjpa          #+#    #+#             */
-/*   Updated: 2023/02/22 19:25:52 by hyungjpa         ###   ########.fr       */
+/*   Created: 2023/02/22 21:22:16 by chanson           #+#    #+#             */
+/*   Updated: 2023/03/01 18:11:14 by chanson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/test.h"
+#include "../include/test.h"
 
-int	ft_strlen(const char *s)
+int	ft_strlen(char *str)
 {
-	int	i;
+	int	cnt;
 
-	i = 0;
-	while (s[i] != '\0')
-	{
-		i++;
-	}
-	return (i);
+	if (str == NULL)
+		return (0);
+	cnt = 0;
+	while (str[cnt])
+		cnt++;
+	return (cnt);
 }

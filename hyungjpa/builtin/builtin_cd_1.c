@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   builtin_cd.c                                       :+:      :+:    :+:   */
+/*   builtin_cd_1.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hyungjpa <hyungjpa@student.42seoul.>       +#+  +:+       +#+        */
+/*   By: chanson <chanson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/18 17:54:11 by hyungjpa          #+#    #+#             */
-/*   Updated: 2023/02/18 17:54:13 by hyungjpa         ###   ########.fr       */
+/*   Updated: 2023/03/02 19:58:49 by chanson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/test.h"
+#include "../include/test.h"
 
 char	*cd_dot_dot(char *buf_tmp, char *slash, int *i)
 {
@@ -79,7 +79,7 @@ char	*check_cd_argv(char *str, char *cwd_buf)
 	int		i;
 
 	i = 0;
-	buf_tmp = ft_strdup(cwd_buf);
+	buf_tmp = ft_strcpy(cwd_buf);
 	free(cwd_buf);
 	while (str[i])
 	{
@@ -97,25 +97,26 @@ char	*check_cd_argv(char *str, char *cwd_buf)
 	return (buf_tmp);
 }
 
-int	do_cd(t_info *info)
+int	do_cd(t_tree *info)
 {
 	char	*cwd_buf;
 
-	if (!ft_strscmp(info->cmd[0], "cd"))
+	if (!ft_strscmp(info->cmd.cmd_arr[0], "cd"))
 		return (1);
-	if (str_size(info->cmd) > 2)
-		return (print_error_2("cd: string not in: ", info->cmd[2]));
+	if (str_size(info->cmd.cmd_arr) > 2)
+		return (print_error_2("cd: string not in: ", info->cmd.cmd_arr[2]));
 	cwd_buf = (char *)malloc(sizeof(char) * 1024);
 	if (!cwd_buf)
 		return (print_error_1("malloc_error"));
 	cwd_buf = getcwd(cwd_buf, 1024);
-	if (info->cmd[1])
+	if (info->cmd.cmd_arr[1])
 	{
-		cwd_buf = check_cd_argv(info->cmd[1], cwd_buf);
+		cwd_buf = check_cd_argv(info->cmd.cmd_arr[1], cwd_buf);
 		if (check_dir(cwd_buf))
 			chdir(cwd_buf);
 		else
-			return (print_error_2("cd : not a directory: ", info->cmd[1]));
+			return (print_error_2("cd : not a directory: "\
+				, info->cmd.cmd_arr[1]));
 	}
 	else
 		cd_home(info->env_list);

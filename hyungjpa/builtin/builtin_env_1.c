@@ -1,25 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   builtin_env_2.c                                    :+:      :+:    :+:   */
+/*   builtin_env_1.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hyungjpa <hyungjpa@student.42seoul.>       +#+  +:+       +#+        */
+/*   By: chanson <chanson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 14:52:09 by hyungjpa          #+#    #+#             */
-/*   Updated: 2023/02/22 14:52:11 by hyungjpa         ###   ########.fr       */
+/*   Updated: 2023/03/02 20:36:57 by chanson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/test.h"
+#include "../include/test.h"
 
-int	do_env(t_info *info)
+int	do_env(t_tree *info)
 {
 	t_env	*tmp;
 
-	if (!ft_strscmp(info->cmd[0], "env"))
+	if (!ft_strscmp(info->cmd.cmd_arr[0], "env"))
 		return (1);
-	if (info->cmd[1])
-		return (print_error_3("env: ", info->cmd[1], \
+	if (info->cmd.cmd_arr[1])
+		return (print_error_3("env: ", info->cmd.cmd_arr[1], \
 		": No such file or directory"));
 	tmp = info->env_list;
 	while (tmp)
@@ -72,5 +72,29 @@ char	**env_to_envp(t_env *env_list)
 	if (!new_envp)
 		return (NULL);
 	new_envp = make_envp(new_envp, size, env_list);
+	return (new_envp);
+}
+
+char	**envp_copy(char **envp)
+{
+	int		i;
+	int		size;
+	char	**new_envp;
+
+	i = -1;
+	size = str_size(envp);
+	new_envp = (char **)malloc(sizeof(char *) * (size + 1));
+	if (!new_envp)
+		return (NULL);
+	while (++i < size)
+	{
+		new_envp[i] = ft_strcpy(envp[i]);
+		if (!new_envp)
+		{
+			ft_free_str(new_envp);
+			return (NULL);
+		}
+	}
+	new_envp[i] = NULL;
 	return (new_envp);
 }

@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   builtin_main.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hyungjpa <hyungjpa@student.42seoul.>       +#+  +:+       +#+        */
+/*   By: chanson <chanson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 11:17:42 by hyungjpa          #+#    #+#             */
-/*   Updated: 2023/02/24 11:17:43 by hyungjpa         ###   ########.fr       */
+/*   Updated: 2023/03/02 21:58:54 by chanson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/test.h"
+#include "../include/test.h"
 
-int	cd_echo_env_check(t_info *info)
+int	cd_echo_env_check(t_tree *info)
 {
 	int	cd_check;
 	int	echo_check;
@@ -30,7 +30,7 @@ int	cd_echo_env_check(t_info *info)
 	return (1);
 }
 
-int	export_pwd_unset_check(t_info *info)
+int	export_pwd_unset_check(t_tree *info)
 {
 	int	export_check;
 	int	pwd_check;
@@ -48,18 +48,19 @@ int	export_pwd_unset_check(t_info *info)
 	return (1);
 }
 
-int	builtin(t_info *info)
+int	builtin(t_tree *info)
 {
 	int	exit_check;
 	int	check_1;
 	int	check_2;
 
+	exit_check = 0;
 	check_1 = cd_echo_env_check(info);
 	if (check_1 != 1)
 		return (check_1);
 	check_2 = export_pwd_unset_check(info);
 	if (check_2 != 1)
-		return (check_1);
+		return (check_2);
 	exit_check = do_exit(info);
 	if (exit_check != 0)
 		return (exit_check);

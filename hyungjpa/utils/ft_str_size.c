@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_str_size.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hyungjpa <hyungjpa@student.42seoul.>       +#+  +:+       +#+        */
+/*   By: chanson <chanson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 19:26:03 by hyungjpa          #+#    #+#             */
-/*   Updated: 2023/02/22 19:26:05 by hyungjpa         ###   ########.fr       */
+/*   Updated: 2023/03/02 15:17:11 by chanson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/test.h"
+#include "../include/test.h"
 
 int	str_size(char **str)
 {

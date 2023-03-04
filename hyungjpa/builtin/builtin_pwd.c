@@ -3,20 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   builtin_pwd.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hyungjpa <hyungjpa@student.42seoul.>       +#+  +:+       +#+        */
+/*   By: chanson <chanson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/18 17:54:01 by hyungjpa          #+#    #+#             */
-/*   Updated: 2023/02/18 17:54:03 by hyungjpa         ###   ########.fr       */
+/*   Updated: 2023/03/02 19:56:44 by chanson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/test.h"
+#include "../include/test.h"
 
-int	do_pwd(t_info *info)
+int	do_pwd(t_tree *info)
 {
 	char	*cwd_buf;
 
-	if (!ft_strscmp(info->cmd[0], "pwd"))
+	if (!ft_strscmp(info->cmd.cmd_arr[0], "pwd"))
 		return (1);
 	cwd_buf = (char *)malloc(sizeof(char) * 1024);
 	if (!cwd_buf)

@@ -6,11 +6,11 @@
 /*   By: chanson <chanson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 14:52:43 by chanson           #+#    #+#             */
-/*   Updated: 2023/02/13 17:32:03 by chanson          ###   ########.fr       */
+/*   Updated: 2023/03/03 16:32:44 by chanson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/test.h"
+#include "../include/test.h"
 
 char	**ft_strsjoin(char **str1, char *str)
 {
@@ -32,7 +32,7 @@ char	**ft_strsjoin(char **str1, char *str)
 	temp[cnt + 1] = NULL;
 	idx = -1;
 	while (++idx < cnt)
-		temp[idx] = ft_strdup(str1[idx]);
+		temp[idx] = ft_strcpy(str1[idx]);
 	temp[idx] = str;
 	ft_free_str(str1);
 	return (temp);

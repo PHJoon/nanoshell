@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strrchr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hyungjpa <hyungjpa@student.42seoul.>       +#+  +:+       +#+        */
+/*   By: chanson <chanson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/22 19:26:41 by hyungjpa          #+#    #+#             */
-/*   Updated: 2023/02/22 19:26:42 by hyungjpa         ###   ########.fr       */
+/*   Created: 2023/03/01 18:30:07 by chanson           #+#    #+#             */
+/*   Updated: 2023/03/02 15:18:41 by chanson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/test.h"
+#include "../include/test.h"
 
-int	ft_strrchr(const char *s, int c)
+int	ft_strrchr(char *s, int c)
 {
 	int	i;
 
