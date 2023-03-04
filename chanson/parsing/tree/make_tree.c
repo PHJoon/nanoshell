@@ -6,7 +6,7 @@
 /*   By: chanson <chanson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 20:53:51 by chanson           #+#    #+#             */
-/*   Updated: 2023/03/02 13:55:23 by chanson          ###   ########.fr       */
+/*   Updated: 2023/03/04 17:50:15 by chanson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,20 +37,22 @@ static void	set_tree(t_tree *tree)
 	tree->cmd.envp_path = NULL;
 	tree->cmd.cmd_head = NULL;
 	tree->cmd.cmd_arr = NULL;
+	tree->pipe_fd = NULL;
+	tree->envp_val = NULL;
+	tree->pid = NULL;
 	tree->here_doc = 0;
 	tree->here_doc_cnt = 0;
 	tree->pipe_cnt = 0;
+	tree->heredoc_idx = 0;
 }
 
-t_tree	*init_tree(char **temp)
+t_tree	*init_tree(char **temp, t_tree *tree)
 {
-	t_tree	*tree;
 	t_list	*list;
 	t_token	*pre;
 
 	list = (t_list *)malloc(sizeof(t_list));
-	tree = (t_tree *)malloc(sizeof(t_tree));
-	if (!list || !tree)
+	if (!list)
 		return (FALSE);
 	list->first = NULL;
 	list->last = NULL;

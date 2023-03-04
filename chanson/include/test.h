@@ -6,7 +6,7 @@
 /*   By: chanson <chanson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/12 15:59:58 by chanson           #+#    #+#             */
-/*   Updated: 2023/03/03 20:10:06 by chanson          ###   ########.fr       */
+/*   Updated: 2023/03/04 17:49:16 by chanson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,6 +97,7 @@ typedef struct s_tree
 	int			outfile;
 	int			child_status;
 	int			next_pipe_or_file;
+	int			heredoc_idx;
 	int			**pipe_fd;
 	char		**here_documets;
 	char		**envp_val;
@@ -153,7 +154,7 @@ int		check_str_valid(char *str);
 int		syntax_err_check(char **temp);
 
 //parsing/tree
-t_tree	*init_tree(char **temp);
+t_tree	*init_tree(char **temp, t_tree *tree);
 t_token	*add_node(t_list *list, t_tree *tree, int d, t_token **pre);
 int		make_list(char **temp, t_list *list);
 int		decide_type(char *str);
@@ -218,5 +219,6 @@ void	display_tree(t_token *root, char c);
 void	display_acc_str(char *str);
 void	show_node_list(t_token *token);
 void	display_list_envp(t_env *node);
+void	display_tree_all(t_tree *tree);
 
 #endif

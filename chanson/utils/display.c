@@ -6,7 +6,7 @@
 /*   By: chanson <chanson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/16 17:48:49 by chanson           #+#    #+#             */
-/*   Updated: 2023/03/03 19:48:34 by chanson          ###   ########.fr       */
+/*   Updated: 2023/03/04 16:41:39 by chanson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,27 @@ void	display_list_envp(t_env *node)
 	temp = node;
 	while (temp)
 	{
-		printf("key: %s val: %s\n", node->key, node->value);
+		printf("key: %s val: %s\n",	temp->key, temp->value);
 		temp = temp->next;
 	}
+}
+
+void	display_tree_all(t_tree *tree)
+{
+	display_tree(tree->top, 's');
+	printf("cmd cmd_head: %s\n", tree->cmd.cmd_head);
+	printf("\ncmd arr\n");
+	display_str(tree->cmd.cmd_arr);
+	printf("\npipe fd\n");
+	for (int i = 0; i < tree->pipe_cnt; i++)
+		printf("fd[0]: %d  , fd[1]: %d\n", tree->pipe_fd[i][0], tree->pipe_fd[i][1]);
+	printf("\nheredocuments\n");
+	display_str(tree->here_documets);
+	printf("\npid\n");
+	for (int i = 0; i < tree->pipe_cnt + 1; i++)
+		printf("pid: %d\n", tree->pid[i]);
+	printf("\nenv_list\n");
+	display_list_envp(tree->env_list);
+	printf("\nexport_list\n");
+	display_list_envp(tree->export_list);
 }

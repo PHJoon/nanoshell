@@ -6,7 +6,7 @@
 /*   By: chanson <chanson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 16:29:35 by chanson           #+#    #+#             */
-/*   Updated: 2023/03/01 18:11:14 by chanson          ###   ########.fr       */
+/*   Updated: 2023/03/04 19:44:50 by chanson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,25 +61,26 @@ int	ft_heredoc(t_tree *tree, char *limit)
 {
 	char		*temp;
 	char		*name;
-	static int	index;
+	int			index;
 	pid_t		pid;
 
 	name = NULL;
 	name = ft_strstr(name, "heredoc");
-	temp = ft_itoa(index);
+	temp = ft_itoa(tree->heredoc_idx);
 	name = ft_strstr(name, temp);
 	free(temp);
 	tree->infile = open(name, O_WRONLY | O_CREAT | O_TRUNC, 0644);
 	if (tree->infile < 0)
 		ft_error("file error\n");
-	tree->here_documets[index] = name;
+	tree->here_documets[tree->heredoc_idx] = name;
 	pid = fork();
 	if (pid < 0)
 		ft_error("fork error\n");
 	if (pid == 0)
 		heredoc_fill(tree, limit);
 	waitpid(pid, 0, 0);
-	index++;
+	tree->heredoc_idx++;
+	index = tree->heredoc_idx;
 	return (index);
 }
 

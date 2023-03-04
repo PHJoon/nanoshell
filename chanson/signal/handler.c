@@ -6,7 +6,7 @@
 /*   By: chanson <chanson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/28 14:04:50 by chanson           #+#    #+#             */
-/*   Updated: 2023/03/01 18:11:14 by chanson          ###   ########.fr       */
+/*   Updated: 2023/03/04 14:34:05 by chanson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,9 @@ void	parent_sig_handler(int signo)
 {
 	if (signo == SIGINT)
 	{
+		rl_replace_line("", 1);
 		printf("\n");
 		rl_on_new_line();
-		rl_replace_line("", 1);
 		rl_redisplay();
 	}
 }

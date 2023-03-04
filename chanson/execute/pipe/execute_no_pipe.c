@@ -6,7 +6,7 @@
 /*   By: chanson <chanson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 13:34:55 by chanson           #+#    #+#             */
-/*   Updated: 2023/03/03 21:22:06 by chanson          ###   ########.fr       */
+/*   Updated: 2023/03/04 18:18:13 by chanson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ static void	_execute_cmd(t_tree *tree)
 {
 	int	builtin_num;
 
+	do_signal_handle(CHILD);
 	if (tree->infile != 0)
 	{
 		if (dup2(tree->infile, STDIN_FILENO) == -1)

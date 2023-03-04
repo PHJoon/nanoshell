@@ -6,7 +6,7 @@
 /*   By: chanson <chanson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 16:49:56 by hyungjpa          #+#    #+#             */
-/*   Updated: 2023/03/03 19:19:03 by chanson          ###   ########.fr       */
+/*   Updated: 2023/03/04 14:09:14 by chanson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ t_env	*sort_export_list(t_env *export_list)
 		tmp_next = tmp->next;
 		while (tmp_next)
 		{
-			if (ft_strscmp(tmp->key, tmp_next->key))
+			if (ft_strncmp(tmp->key, tmp_next->key, ft_strlen(tmp->key)) > 0)
 			{
 				key_tmp = tmp->key;
 				value_tmp = tmp->value;

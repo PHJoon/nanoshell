@@ -6,7 +6,7 @@
 /*   By: chanson <chanson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 14:18:40 by chanson           #+#    #+#             */
-/*   Updated: 2023/03/03 21:21:26 by chanson          ###   ########.fr       */
+/*   Updated: 2023/03/04 20:08:17 by chanson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ void	execute_pipe(char **temp, t_tree *tree)
 				break ;
 		}
 		else
-			cmd = ft_strsjoin(cmd, temp[i]);
+			cmd = ft_strsjoin(cmd, ft_strcpy(temp[i]));
 		i++;
 	}
 	close_pipe_all(tree);

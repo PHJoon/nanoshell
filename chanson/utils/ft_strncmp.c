@@ -6,7 +6,7 @@
 /*   By: chanson <chanson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 18:01:20 by chanson           #+#    #+#             */
-/*   Updated: 2023/03/01 18:11:14 by chanson          ###   ########.fr       */
+/*   Updated: 2023/03/04 14:06:51 by chanson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,11 @@ int	ft_strncmp(const char *s1, const char *s2, int n)
 	while (s1[i] != '\0' && s2[i] != '\0' && i < n)
 	{
 		if (s1[i] != s2[i])
-			return (TRUE);
+			return (s1[i] - s2[i]);
 		i++;
 	}
 	if (i == n)
 		return (FALSE);
 	else
-		return (TRUE);
+		return (s1[i] - s2[i]);
 }
