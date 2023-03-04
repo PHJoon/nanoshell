@@ -6,7 +6,7 @@
 /*   By: chanson <chanson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 18:56:44 by chanson           #+#    #+#             */
-/*   Updated: 2023/03/04 20:16:05 by chanson          ###   ########.fr       */
+/*   Updated: 2023/03/04 21:16:14 by chanson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ static void	_init_heredoc_and_pipe(t_tree *tree, char ***temp, char **envp)
 	ft_free_str(*temp);
 	*temp = NULL;
 	heredoc_sum(tree->top, temp);
-	display_tree(tree->top, 's');
 	start_cmd(tree, *temp);
 	ft_free_tree(tree);
 	ft_free_str(*temp);

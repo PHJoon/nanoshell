@@ -6,7 +6,7 @@
 /*   By: chanson <chanson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 14:18:40 by chanson           #+#    #+#             */
-/*   Updated: 2023/03/04 20:19:07 by chanson          ###   ########.fr       */
+/*   Updated: 2023/03/04 21:20:11 by chanson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,6 @@ void	execute_cmd(char **cmd, int index, t_tree *tree)
 	set_execute_cmd(tree);
 	pure_cmd = cmd_get(cmd);
 	cmd_check(tree, pure_cmd);
-	if (tree->cmd.cmd_head == NULL)
-		printf("cmd not valid: %s\n", tree->cmd.cmd_arr[0]);
 	tree->infile = get_ird(cmd);
 	tree->outfile = get_ord(cmd);
 	if (pure_cmd[0] == NULL)

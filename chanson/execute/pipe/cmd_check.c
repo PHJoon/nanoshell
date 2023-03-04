@@ -6,7 +6,7 @@
 /*   By: chanson <chanson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 16:48:03 by chanson           #+#    #+#             */
-/*   Updated: 2023/03/04 20:12:54 by chanson          ###   ########.fr       */
+/*   Updated: 2023/03/04 21:13:10 by chanson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,7 @@ void	cmd_check(t_tree *tree, char **cmd)
 	int		i;
 	char	*temp;
 
-	printf("hello %s\n", tree->envp_val[0]);
 	temp = str_find(tree->envp_val, "PATH");
-	printf("temp: %s\n", temp);
 	if (tree->cmd.envp_path == NULL)
 		tree->cmd.envp_path = ft_split_char(temp, ':');
 	free(temp);
