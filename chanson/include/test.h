@@ -17,9 +17,10 @@
 # define TRUE 1
 # define READ 0
 # define WRITE 1
-# define PARENT 4
-# define CHILD 5
-# define HEREDOC 6
+# define PARENT	4
+# define CHILD	5
+# define WAIT_CHILD 6
+# define HEREDOC 7
 
 # define PIPE 1
 # define N_FILE 2
@@ -106,6 +107,8 @@ typedef struct s_tree
 	t_env		*export_list;
 }	t_tree;
 
+extern int	g_signal_flag;
+
 // utils
 char	*ft_strcjoin(char *s, char c);
 char	*ft_str_change(char *old, char *new);
@@ -189,6 +192,7 @@ int		check_dir(char *cwd_buf);
 int		do_echo(t_tree *info);
 int		do_env(t_tree *info);
 char	**env_to_envp(t_env *env_list);
+char	**envp_copy(char **envp);
 t_env	*add_env_list(t_env *env_list, char *key, char *value);
 t_env	*make_env_list(char **envp);
 t_env	*sort_export_list(t_env *export_list);
@@ -221,4 +225,12 @@ void	show_node_list(t_token *token);
 void	display_list_envp(t_env *node);
 void	display_tree_all(t_tree *tree);
 
+// set_tree.c
+t_tree	*tree_preset(char **envp);
+t_tree	*tree_set_re(t_tree *tree);
+// start_minishell.c
+void	start_minishell(t_tree *tree);
+
+// init_heredoc_and_pipe.c
+void	_init_heredoc_and_pipe(t_tree *tree, char ***temp);
 #endif

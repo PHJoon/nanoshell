@@ -74,3 +74,27 @@ char	**env_to_envp(t_env *env_list)
 	new_envp = make_envp(new_envp, size, env_list);
 	return (new_envp);
 }
+
+char	**envp_copy(char **envp)
+{
+	int		i;
+	int		size;
+	char	**new_envp;
+
+	i = -1;
+	size = str_size(envp);
+	new_envp = (char **)malloc(sizeof(char *) * (size + 1));
+	if (!new_envp)
+		return (NULL);
+	while (++i < size)
+	{
+		new_envp[i] = ft_strcpy(envp[i]);
+		if (!new_envp)
+		{
+			ft_free_str(new_envp);
+			return (NULL);
+		}
+	}
+	new_envp[i] = NULL;
+	return (new_envp);
+}

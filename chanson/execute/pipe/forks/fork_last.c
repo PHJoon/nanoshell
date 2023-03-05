@@ -29,6 +29,15 @@ static void	fork_in(t_tree *tree, int idx)
 	}
 }
 
+static void	last_outfile_check(t_tree *tree)
+{
+	if (tree->outfile != 0)
+	{
+		if (dup2(tree->outfile, STDOUT_FILENO) == -1)
+			ft_error("dup2 error10\n");
+	}
+}
+
 void	fork_last(t_tree *tree)
 {
 	int	builtin_num;
@@ -43,11 +52,7 @@ void	fork_last(t_tree *tree)
 	}
 	fork_in(tree, tree->pipe_cnt - 1);
 	close(tree->pipe_fd[tree->pipe_cnt - 1][WRITE]);
-	if (tree->outfile != 0)
-	{
-		if (dup2(tree->outfile, STDOUT_FILENO) == -1)
-			ft_error("dup2 error10\n");
-	}
+	last_outfile_check(tree);
 	builtin_num = builtin(tree);
 	if (builtin_num != 1)
 		exit(builtin_num);

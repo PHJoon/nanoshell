@@ -87,7 +87,7 @@ int	valid_check(char *str)
 	idx++;
 	while (str[idx])
 	{
-		if (!ft_isalnum(str[idx]))
+		if (!ft_isalnum(str[idx]) && (str[idx] != '='))
 			return (0);
 		idx++;
 	}

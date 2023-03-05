@@ -69,6 +69,9 @@ SRCS_NAME =  ./test \
 		./builtin/builtin_main \
 		./builtin/builtin_pwd \
 		./builtin/builtin_unset \
+		./init_heredoc_and_pipe \
+		./set_tree \
+		./start_minishell \
 
 SRCS = $(addsuffix .c, $(SRCS_NAME))
 
@@ -81,6 +84,10 @@ FLAGS = -Wall -Wextra -Werror -g3
 LDFLAGS = -L/Users/chanson/.brew/opt/readline/lib -lreadline -lncurses
 
 CPPFLAGS = -I/Users/chanson/.brew/opt/readline/include
+
+# LDFLAGS = -L/Users/hyungjpa/.brew/opt/readline/lib -lreadline -lncurses
+
+# CPPFLAGS = -I/Users/hyungjpa/.brew/opt/readline/include
 
 all:		$(NAME)
 ######################################################### srcs objs로 바바꾸꾸기

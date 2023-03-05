@@ -49,12 +49,8 @@ static void	close_pipe_not_use(t_tree *tree, int index)
 	}
 }
 
-void	fork_mid(t_tree *tree, int index)
+static void	infile_outfile_check(t_tree *tree, int index)
 {
-	int	builtin_num;
-
-	close_pipe_not_use(tree, index);
-	fork_in(tree, index - 1);
 	if (tree->outfile != 0)
 	{
 		close(tree->pipe_fd[index][WRITE]);
@@ -68,6 +64,15 @@ void	fork_mid(t_tree *tree, int index)
 		if (dup2(tree->pipe_fd[index][WRITE], STDOUT_FILENO) == -1)
 			ft_error("dup2 error7\n");
 	}
+}
+
+void	fork_mid(t_tree *tree, int index)
+{
+	int	builtin_num;
+
+	close_pipe_not_use(tree, index);
+	fork_in(tree, index - 1);
+	infile_outfile_check(tree, index);
 	builtin_num = builtin(tree);
 	if (builtin_num != 1)
 		exit(builtin_num);

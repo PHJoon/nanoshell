@@ -6,7 +6,7 @@
 /*   By: chanson <chanson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 16:29:35 by chanson           #+#    #+#             */
-/*   Updated: 2023/03/04 19:44:50 by chanson          ###   ########.fr       */
+/*   Updated: 2023/03/05 21:19:04 by chanson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,9 @@ static void	heredoc_fill(t_tree *tree, char *limit)
 	char	*temp;
 	int		index;
 
-	signal(SIGINT, SIG_DFL);
-	signal(SIGQUIT, SIG_DFL);
+	g_signal_flag = 1;
+	do_signal_handle(HEREDOC);
+	on_off_catch_signals(0);
 	while (1)
 	{
 		temp = readline("heredoc> ");
@@ -53,7 +54,7 @@ static void	heredoc_fill(t_tree *tree, char *limit)
 		free(temp);
 		temp = NULL;
 	}
-	close(tree->infile);
+	printf("hello");
 	exit(0);
 }
 
@@ -78,7 +79,8 @@ int	ft_heredoc(t_tree *tree, char *limit)
 		ft_error("fork error\n");
 	if (pid == 0)
 		heredoc_fill(tree, limit);
-	waitpid(pid, 0, 0);
+	do_signal_handle(WAIT_CHILD);
+	waitpid(pid, &tree->child_status, 0);
 	tree->heredoc_idx++;
 	index = tree->heredoc_idx;
 	return (index);

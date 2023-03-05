@@ -29,23 +29,6 @@ static void	_make_tree(t_list *list, t_tree *tree, int d, t_token **pre)
 	_make_tree(list, tree, 0, pre);
 }
 
-static void	set_tree(t_tree *tree)
-{
-	tree->top = NULL;
-	tree->last = NULL;
-	tree->here_documets = NULL;
-	tree->cmd.envp_path = NULL;
-	tree->cmd.cmd_head = NULL;
-	tree->cmd.cmd_arr = NULL;
-	tree->pipe_fd = NULL;
-	tree->envp_val = NULL;
-	tree->pid = NULL;
-	tree->here_doc = 0;
-	tree->here_doc_cnt = 0;
-	tree->pipe_cnt = 0;
-	tree->heredoc_idx = 0;
-}
-
 t_tree	*init_tree(char **temp, t_tree *tree)
 {
 	t_list	*list;
@@ -56,7 +39,6 @@ t_tree	*init_tree(char **temp, t_tree *tree)
 		return (FALSE);
 	list->first = NULL;
 	list->last = NULL;
-	set_tree(tree);
 	pre = NULL;
 	if (make_list(temp, list) == FALSE)
 		return (FALSE);
