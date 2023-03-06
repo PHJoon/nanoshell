@@ -6,7 +6,7 @@
 /*   By: chanson <chanson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 13:42:41 by chanson           #+#    #+#             */
-/*   Updated: 2023/03/06 18:31:30 by chanson          ###   ########.fr       */
+/*   Updated: 2023/03/06 21:22:25 by chanson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	sig_handler_ctrl_c(int signo)
 
 	(void)signo;
 	pid = 0;
-	write(1, "\n", 1);
+	write(1, "\n\n", 1);
 	rl_on_new_line();
 	rl_replace_line("", 0);
 	kill(pid, SIGCONT);

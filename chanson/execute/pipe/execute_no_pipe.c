@@ -6,7 +6,7 @@
 /*   By: chanson <chanson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 13:34:55 by chanson           #+#    #+#             */
-/*   Updated: 2023/03/06 21:18:21 by chanson          ###   ########.fr       */
+/*   Updated: 2023/03/06 21:43:06 by chanson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,19 @@ static void	_execute_cmd(t_tree *tree)
 	}
 }
 
+void	change_env_val(char **pure_cmd, t_tree *tree)
+{
+	int	i;
+
+	i = 0;
+	while (pure_cmd[i])
+	{
+		if (ft_str_find_c(pure_cmd[i], '$') > -1)
+			pure_cmd[i] = change_env(tree->envp_val, pure_cmd[i]);
+		i++;
+	}
+}
+
 void	execute_no_pipe(char **temp, t_tree *tree)
 {
 	int		pid;
@@ -45,6 +58,7 @@ void	execute_no_pipe(char **temp, t_tree *tree)
 
 	pure_cmd = cmd_get(temp);
 	pure_cmd = ft_erase_null(pure_cmd);
+	change_env_val(pure_cmd, tree);
 	cmd_check(tree, pure_cmd);
 	if (tree->cmd.cmd_head == NULL)
 		printf("cmd not valid: %s\n", tree->cmd.cmd_arr[0]);

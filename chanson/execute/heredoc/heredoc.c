@@ -6,7 +6,7 @@
 /*   By: chanson <chanson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 16:29:35 by chanson           #+#    #+#             */
-/*   Updated: 2023/03/06 20:46:31 by chanson          ###   ########.fr       */
+/*   Updated: 2023/03/06 21:26:57 by chanson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,10 @@
 void	sig_heredoc_ctrl_c(int signo)
 {
 	(void)signo;
-	g_signal_flag = 2;
+	g_signal_flag = 1;
 	write(1, "\b", 1);
-	// write(1, "heredoc> \n", 10);
-	// write(1, "\b", 1);
+	write(1, "\n", 1);
+	write(1, "\b", 1);
 	exit(130);
 }
 
