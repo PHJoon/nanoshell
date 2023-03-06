@@ -6,7 +6,7 @@
 /*   By: chanson <chanson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 14:18:40 by chanson           #+#    #+#             */
-/*   Updated: 2023/03/05 16:02:53 by chanson          ###   ########.fr       */
+/*   Updated: 2023/03/06 21:17:05 by chanson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ void	execute_cmd(char **cmd, int index, t_tree *tree)
 
 	set_execute_cmd(tree);
 	pure_cmd = cmd_get(cmd);
+	pure_cmd = ft_erase_null(pure_cmd);
 	cmd_check(tree, pure_cmd);
 	if (pure_cmd[0] == NULL)
 		return ;

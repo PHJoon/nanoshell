@@ -6,7 +6,7 @@
 /*   By: chanson <chanson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 13:34:55 by chanson           #+#    #+#             */
-/*   Updated: 2023/03/06 14:15:16 by chanson          ###   ########.fr       */
+/*   Updated: 2023/03/06 21:18:21 by chanson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ void	execute_no_pipe(char **temp, t_tree *tree)
 	char	**pure_cmd;
 
 	pure_cmd = cmd_get(temp);
+	pure_cmd = ft_erase_null(pure_cmd);
 	cmd_check(tree, pure_cmd);
 	if (tree->cmd.cmd_head == NULL)
 		printf("cmd not valid: %s\n", tree->cmd.cmd_arr[0]);

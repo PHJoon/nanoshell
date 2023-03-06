@@ -6,7 +6,7 @@
 /*   By: chanson <chanson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/12 15:59:58 by chanson           #+#    #+#             */
-/*   Updated: 2023/03/06 18:18:47 by chanson          ###   ########.fr       */
+/*   Updated: 2023/03/06 21:09:09 by chanson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,6 +131,7 @@ char	**ft_strsjoin_2(char **str1, char *str);
 char	**ft_split(char *s);
 char	**ft_split_char(char *str, char c);
 char	**remove_quote(char **temp);
+char	**ft_erase_null(char **cmd);
 int		ft_split_and(char ***temp, char *str, int idx);
 int		ft_split_par(char ***temp, char *str, int idx);
 int		ft_strscmp(char *str1, char *str2);

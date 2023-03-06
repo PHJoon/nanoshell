@@ -35,6 +35,7 @@ SRCS_NAME =  ./test \
 		./utils/ft_strstr_no_free \
 		./utils/ft_free_tree \
 		./utils/ft_strsjoin_2 \
+		./utils/ft_erase_null \
 		./parsing/syntax_check/syntax_check \
 		./parsing/syntax_check/check_pattern \
 		./parsing/syntax_check/check_str_valid \
