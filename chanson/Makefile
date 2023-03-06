@@ -56,7 +56,9 @@ SRCS_NAME =  ./test \
 		./execute/heredoc/heredoc_env \
 		./execute/heredoc/mini_heredoc \
 		./execute/heredoc/heredoc_sum \
+		./execute/heredoc/unlink_heredoc \
 		./signal/handler \
+		./signal/do_signal_handle \
 		./builtin/builtin_cd_1 \
 		./builtin/builtin_cd_2 \
 		./builtin/builtin_echo \

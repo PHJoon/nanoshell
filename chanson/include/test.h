@@ -6,7 +6,7 @@
 /*   By: chanson <chanson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/12 15:59:58 by chanson           #+#    #+#             */
-/*   Updated: 2023/03/04 17:49:16 by chanson          ###   ########.fr       */
+/*   Updated: 2023/03/06 18:18:47 by chanson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@
 # include <stdlib.h>
 # include <string.h>
 # include <fcntl.h>
+# include <sys/ioctl.h>
 # include <sys/types.h>
 # include <sys/wait.h>
 # include <termios.h>
@@ -184,6 +185,8 @@ void	*change_env(char **envp, char *temp);
 void	mini_heredoc(t_token *node, t_tree *tree);
 int		ft_heredoc(t_tree *tree, char *limit);
 void	heredoc_sum(t_token *node, char ***temp);
+void	sig_heredoc_ctrl_c(int signo);
+void	unlink_heredoc(t_tree *tree);
 
 // execute/builtin
 int		do_cd(t_tree *info);
@@ -211,10 +214,9 @@ int		print_error_3(char *str1, char *str2, char *str3);
 
 //signal
 void	on_off_catch_signals(int on_off);
-void	parent_sig_handler(int signo);
 void	do_signal_handle(int status);
 void	signal_sigterm(char *str);
-void	child_signal_handle(void);
+void	main_sigint(int signo);
 
 // utils->display.c
 void	show_list(t_list	*list);

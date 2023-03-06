@@ -6,11 +6,21 @@
 /*   By: chanson <chanson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 16:29:35 by chanson           #+#    #+#             */
-/*   Updated: 2023/03/05 21:19:04 by chanson          ###   ########.fr       */
+/*   Updated: 2023/03/06 20:46:31 by chanson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/test.h"
+
+void	sig_heredoc_ctrl_c(int signo)
+{
+	(void)signo;
+	g_signal_flag = 2;
+	write(1, "\b", 1);
+	// write(1, "heredoc> \n", 10);
+	// write(1, "\b", 1);
+	exit(130);
+}
 
 static int	heredoc_cmp_limit(char *str, char *limit)
 {
@@ -35,11 +45,10 @@ static void	heredoc_fill(t_tree *tree, char *limit)
 
 	g_signal_flag = 1;
 	do_signal_handle(HEREDOC);
-	on_off_catch_signals(0);
 	while (1)
 	{
 		temp = readline("heredoc> ");
-		if (temp == 0)
+		if (temp == NULL || g_signal_flag == 2)
 			break ;
 		temp = ft_strcjoin(temp, '\n');
 		if (heredoc_cmp_limit(temp, limit) == TRUE)
@@ -54,7 +63,6 @@ static void	heredoc_fill(t_tree *tree, char *limit)
 		free(temp);
 		temp = NULL;
 	}
-	printf("hello");
 	exit(0);
 }
 
