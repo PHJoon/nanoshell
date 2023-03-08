@@ -6,7 +6,7 @@
 /*   By: chanson <chanson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 14:18:40 by chanson           #+#    #+#             */
-/*   Updated: 2023/03/08 16:21:04 by chanson          ###   ########.fr       */
+/*   Updated: 2023/03/08 18:42:23 by chanson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,10 +47,12 @@ void	execute_cmd(char **cmd, int index, t_tree *tree)
 	pure_cmd = ft_erase_null(pure_cmd);
 	change_env_val(pure_cmd, tree);
 	cmd_check(tree, pure_cmd);
+	tree->infile = get_ird(cmd);
+	if (tree->infile == -1)
+		return ;
+	tree->outfile = get_ord(cmd);
 	if (pure_cmd[0] == NULL)
 		return ;
-	tree->infile = get_ird(cmd);
-	tree->outfile = get_ord(cmd);
 	tree->pid[index] = fork();
 	if (tree->pid[index] == 0)
 		child_execute(tree, index);

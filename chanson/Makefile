@@ -48,6 +48,7 @@ SRCS_NAME =  ./test \
 		./execute/pipe/execute_no_pipe \
 		./execute/pipe/cmd_check \
 		./execute/pipe/get_cmd_redir \
+		./execute/pipe/get_cmd_redir_ord \
 		./execute/pipe/forks/fork_first \
 		./execute/pipe/forks/fork_mid \
 		./execute/pipe/forks/fork_last \
@@ -76,7 +77,7 @@ SRCS_NAME =  ./test \
 		./start_minishell \
 		./get_next_line/get_next_line \
 		./get_next_line/get_next_line_utils \
-		# ./utils/display
+		./utils/display
 
 SRCS = $(addsuffix .c, $(SRCS_NAME))
 

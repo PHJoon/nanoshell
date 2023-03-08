@@ -6,11 +6,34 @@
 /*   By: chanson <chanson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 17:05:13 by chanson           #+#    #+#             */
-/*   Updated: 2023/03/01 18:11:14 by chanson          ###   ########.fr       */
+/*   Updated: 2023/03/08 19:13:31 by chanson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/test.h"
+
+static int	quote_check(char *str)
+{
+	int	end;
+
+	end = ft_strlen(str) - 1;
+	if (str[0] == '\'' && str[end] != '\'')
+		return (FALSE);
+	if (str[0] == '\"' && str[end] != '\"')
+		return (FALSE);
+	if (end == 0)
+		return (FALSE);
+	return (TRUE);
+}
+
+static int	check_quote_par(int par, int single_q, int double_q, char *str)
+{
+	if (par != 0)
+		return (FALSE);
+	if (single_q % 2 != 0 || double_q % 2 != 0)
+		return (quote_check(str));
+	return (TRUE);
+}
 
 int	check_str_valid(char *str)
 {
@@ -35,8 +58,6 @@ int	check_str_valid(char *str)
 			double_quote_flag++;
 		idx++;
 	}
-	if (parentheses_flag != 0 || single_quote_flag % 2 != 0 \
-		|| double_quote_flag % 2 != 0)
-		return (FALSE);
-	return (TRUE);
+	return (check_quote_par(parentheses_flag, single_quote_flag, \
+		double_quote_flag, str));
 }

@@ -6,7 +6,7 @@
 /*   By: chanson <chanson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 13:34:55 by chanson           #+#    #+#             */
-/*   Updated: 2023/03/08 16:22:57 by chanson          ###   ########.fr       */
+/*   Updated: 2023/03/08 18:55:58 by chanson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,9 +46,22 @@ void	change_env_val(char **pure_cmd, t_tree *tree)
 	}
 }
 
+static void	_execute_pipe_fork(t_tree *tree)
+{
+	int	pid;
+
+	pid = fork();
+	if (pid == 0)
+		_execute_cmd(tree);
+	else
+	{
+		do_signal_handle(WAIT_CHILD);
+		waitpid(pid, &tree->child_status, 0);
+	}
+}
+
 void	execute_no_pipe(char **temp, t_tree *tree)
 {
-	int		pid;
 	char	**pure_cmd;
 	int		builtin_num;
 
@@ -58,19 +71,14 @@ void	execute_no_pipe(char **temp, t_tree *tree)
 	change_env_val(pure_cmd, tree);
 	cmd_check(tree, pure_cmd);
 	tree->infile = get_ird(temp);
+	if (tree->infile == -1)
+		return ;
 	tree->outfile = get_ord(temp);
 	if (pure_cmd[0] == NULL)
 		return ;
 	builtin_num = builtin(tree);
 	if (builtin_num == 1)
 	{
-		pid = fork();
-		if (pid == 0)
-			_execute_cmd(tree);
-		else
-		{
-			do_signal_handle(WAIT_CHILD);
-			waitpid(pid, &tree->child_status, 0);
-		}
+		_execute_pipe_fork(tree);
 	}
 }

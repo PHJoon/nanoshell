@@ -6,7 +6,7 @@
 /*   By: chanson <chanson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/12 15:59:58 by chanson           #+#    #+#             */
-/*   Updated: 2023/03/08 16:21:44 by chanson          ###   ########.fr       */
+/*   Updated: 2023/03/08 18:46:06 by chanson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -198,6 +198,7 @@ void	execute_no_pipe(char **temp, t_tree *tree);
 void	close_pipe_all(t_tree *tree);
 void	change_env_val(char **pure_cmd, t_tree *tree);
 void	set_execute_cmd(t_tree *tree);
+void	close_fd(int *cnt, int fd);
 
 //execute/heredoc
 void	cnt_heredoc(t_token *node, t_tree *tree);
@@ -255,9 +256,19 @@ void	reset_terminal(t_tree *tree);
 // set_tree.c
 t_tree	*tree_preset(char **envp);
 t_tree	*tree_set_re(t_tree *tree);
+
 // start_minishell.c
 void	start_minishell(t_tree *tree);
 
 // init_heredoc_and_pipe.c
 void	_init_heredoc_and_pipe(t_tree *tree, char ***temp);
+
+// display
+void	show_list(t_list	*list);
+void	show_node_list(t_token *token);
+void	display_str(char **str);
+void	display_tree(t_token *root, char c);
+void	display_acc_str(char *str);
+void	display_list_envp(t_env *node);
+void	display_tree_all(t_tree *tree);
 #endif
