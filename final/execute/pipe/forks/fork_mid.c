@@ -6,7 +6,7 @@
 /*   By: chanson <chanson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 14:45:28 by chanson           #+#    #+#             */
-/*   Updated: 2023/03/04 21:21:50 by chanson          ###   ########.fr       */
+/*   Updated: 2023/03/08 21:16:32 by chanson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ void	fork_mid(t_tree *tree, int index)
 	if (builtin_num == 1)
 	{
 		if (tree->cmd.cmd_head == NULL)
-			printf("cmd not valid: %s\n", tree->cmd.cmd_arr[0]);
+			print_error_2("cmd not valid: ", tree->cmd.cmd_arr[0]);
 		if (execve(tree->cmd.cmd_head, tree->cmd.cmd_arr, tree->envp_val) == -1)
 			ft_error("cmd option error child\n");
 	}

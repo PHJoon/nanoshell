@@ -6,7 +6,7 @@
 /*   By: chanson <chanson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/04 23:24:11 by hyungjpa          #+#    #+#             */
-/*   Updated: 2023/03/08 19:14:12 by chanson          ###   ########.fr       */
+/*   Updated: 2023/03/08 19:27:08 by chanson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,19 @@ static char	**split_and_syntax_check(char *str)
 		temp = NULL;
 	}
 	return (temp);
+}
+
+static int	_start_minishell(t_tree *tree, char ***temp, char *str)
+{
+	if (*temp == NULL)
+	{
+		free(str);
+		return (FALSE);
+	}
+	free(str);
+	tree = init_tree(*temp, tree);
+	_init_heredoc_and_pipe(tree, temp);
+	return (TRUE);
 }
 
 void	start_minishell(t_tree *tree)
@@ -46,14 +59,8 @@ void	start_minishell(t_tree *tree)
 		}
 		tree->history = ft_strsjoin(tree->history, ft_strcpy(str));
 		temp = split_and_syntax_check(str);
-		if (temp == NULL)
-		{
-			free(str);
+		if (_start_minishell(tree, &temp, str) == FALSE)
 			continue ;
-		}
-		free(str);
-		tree = init_tree(temp, tree);
-		_init_heredoc_and_pipe(tree, &temp);
 		g_signal_flag = 0;
 	}
 }
