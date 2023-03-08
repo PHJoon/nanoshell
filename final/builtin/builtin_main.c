@@ -1,0 +1,89 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   builtin_main.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: chanson <chanson@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/02/24 11:17:42 by hyungjpa          #+#    #+#             */
+/*   Updated: 2023/03/02 21:58:54 by chanson          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "../include/test.h"
+
+int	cd_echo_env_check(t_tree *info)
+{
+	int	cd_check;
+	int	echo_check;
+	int	env_check;
+
+	cd_check = do_cd(info);
+	echo_check = do_echo(info);
+	env_check = do_env(info);
+	if (cd_check != 1)
+		return (cd_check);
+	if (echo_check != 1)
+		return (echo_check);
+	if (env_check != 1)
+		return (env_check);
+	return (1);
+}
+
+int	export_pwd_unset_check(t_tree *info)
+{
+	int	export_check;
+	int	pwd_check;
+	int	unset_check;
+
+	export_check = do_export(info);
+	pwd_check = do_pwd(info);
+	unset_check = do_unset(info);
+	if (export_check != 1)
+		return (export_check);
+	if (pwd_check != 1)
+		return (pwd_check);
+	if (unset_check != 1)
+		return (unset_check);
+	return (1);
+}
+
+int	builtin_pipe(t_tree *info)
+{
+	int	exit_check;
+	int	check_1;
+	int	check_2;
+
+	exit_check = 0;
+	check_1 = cd_echo_env_check(info);
+	if (check_1 != 1)
+		return (check_1);
+	check_2 = export_pwd_unset_check(info);
+	if (check_2 != 1)
+		return (check_2);
+	exit_check = do_exit(info);
+	if (exit_check != 0)
+		return (exit_check);
+	exit(0);
+	return (exit_check);
+}
+
+int	builtin_one_cmd(t_tree *info)
+{
+	int	exit_check;
+	int	check_1;
+	int	check_2;
+
+	exit_check = 0;
+	check_1 = cd_echo_env_check(info);
+	if (check_1 != 1)
+		return (check_1);
+	check_2 = export_pwd_unset_check(info);
+	if (check_2 != 1)
+		return (check_2);
+	exit_check = do_exit_one_cmd(info);
+	if (exit_check != 0)
+		return (exit_check);
+	exit(0);
+	return (exit_check);
+}
