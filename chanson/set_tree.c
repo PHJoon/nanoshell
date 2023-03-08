@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   set_tree.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hyungjpa <hyungjpa@student.42seoul.>       +#+  +:+       +#+        */
+/*   By: chanson <chanson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/04 23:18:48 by hyungjpa          #+#    #+#             */
-/*   Updated: 2023/03/04 23:18:49 by hyungjpa         ###   ########.fr       */
+/*   Updated: 2023/03/07 17:03:41 by chanson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ t_tree	*tree_preset(char **envp)
 	tree = preset_token_cmd(tree);
 	tree = preset_pipe_heredoc_fd(tree);
 	tree = preset_envp(tree, envp);
+	tree->history = NULL;
 	return (tree);
 }
 

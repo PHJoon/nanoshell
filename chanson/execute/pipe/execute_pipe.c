@@ -6,7 +6,7 @@
 /*   By: chanson <chanson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 14:18:40 by chanson           #+#    #+#             */
-/*   Updated: 2023/03/06 21:43:29 by chanson          ###   ########.fr       */
+/*   Updated: 2023/03/08 14:12:36 by chanson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,19 @@ static void	set_execute_cmd(t_tree *tree)
 	tree->child_status = 0;
 }
 
+static void	child_execute(t_tree *tree, int index)
+{
+	g_signal_flag = 1;
+	set_child_mode(tree);
+	do_signal_handle(CHILD);
+	if (index == 0)
+		fork_first(tree);
+	else if (index == tree->pipe_cnt)
+		fork_last(tree);
+	else
+		fork_mid(tree, index);
+}
+
 void	execute_cmd(char **cmd, int index, t_tree *tree)
 {
 	char	**pure_cmd;
@@ -40,16 +53,7 @@ void	execute_cmd(char **cmd, int index, t_tree *tree)
 	tree->outfile = get_ord(cmd);
 	tree->pid[index] = fork();
 	if (tree->pid[index] == 0)
-	{
-		g_signal_flag = 1;
-		do_signal_handle(CHILD);
-		if (index == 0)
-			fork_first(tree);
-		else if (index == tree->pipe_cnt)
-			fork_last(tree);
-		else
-			fork_mid(tree, index);
-	}
+		child_execute(tree, index);
 	else
 		do_signal_handle(WAIT_CHILD);
 }

@@ -6,7 +6,7 @@
 /*   By: chanson <chanson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/12 15:59:58 by chanson           #+#    #+#             */
-/*   Updated: 2023/03/06 21:42:54 by chanson          ###   ########.fr       */
+/*   Updated: 2023/03/08 14:22:52 by chanson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,13 @@
 
 # define PIPE 1
 # define N_FILE 2
+
+# define LEFT_ARROW 4479771
+# define RIGHT_ARROW 4414235
+# define UP_ARROW 4283163
+# define DOWN_ARRAOW 4348699
+# define BACKSPACE 127
+# define CTRL_D 4
 
 # include <stdio.h>
 # include <readline/readline.h>
@@ -86,10 +93,18 @@ typedef struct s_cmd
 	char	**envp_path;
 }	t_cmd;
 
+typedef struct s_cusor
+{
+	struct termios	org_term;
+	struct termios	new_term;
+	struct termios	child_term;
+}	t_cursor;
+
 typedef struct s_tree
 {
 	t_token		*top;
 	t_token		*last;
+	t_cursor	cursor;
 	t_cmd		cmd;
 	int			pipe_cnt;
 	int			here_doc;
@@ -103,6 +118,7 @@ typedef struct s_tree
 	int			**pipe_fd;
 	char		**here_documets;
 	char		**envp_val;
+	char		**history;
 	pid_t		*pid;
 	t_env		*env_list;
 	t_env		*export_list;
@@ -126,6 +142,7 @@ char	*fr_strdel_one(char *str, int index);
 char	*str_find(char **strs, char *find);
 char	*ft_strstr_no_free(char *str_origin, char *str_new);
 char	*ft_strjoin(char *str1, char *str2);
+char	*fr_strdel_one(char *str, int index);
 char	**ft_strsjoin(char **str1, char *str);
 char	**ft_strsjoin_2(char **str1, char *str);
 char	**ft_split(char *s);
@@ -219,6 +236,9 @@ void	on_off_catch_signals(int on_off);
 void	do_signal_handle(int status);
 void	signal_sigterm(char *str);
 void	main_sigint(int signo);
+void	set_terminal(t_tree *tree);
+void	set_mode(t_tree *tree);
+void	set_child_mode(t_tree *tree);
 
 // utils->display.c
 void	show_list(t_list	*list);
@@ -228,6 +248,7 @@ void	display_acc_str(char *str);
 void	show_node_list(t_token *token);
 void	display_list_envp(t_env *node);
 void	display_tree_all(t_tree *tree);
+void	reset_terminal(t_tree *tree);
 
 // set_tree.c
 t_tree	*tree_preset(char **envp);

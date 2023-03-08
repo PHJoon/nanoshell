@@ -6,7 +6,7 @@
 /*   By: chanson <chanson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/28 14:04:50 by chanson           #+#    #+#             */
-/*   Updated: 2023/03/06 13:44:53 by chanson          ###   ########.fr       */
+/*   Updated: 2023/03/08 14:02:39 by chanson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,4 +38,18 @@ void	signal_sigterm(char *str)
 	write(1, "\033[12C", 5);
 	write(1, "exit\n", 6);
 	exit(0);
+}
+
+void	set_terminal(t_tree *tree)
+{
+	tcgetattr(STDIN_FILENO, &tree->cursor.org_term);
+	tcgetattr(STDIN_FILENO, &tree->cursor.new_term);
+	tcgetattr(STDIN_FILENO, &tree->cursor.child_term);
+}
+
+void	set_mode(t_tree *tree)
+{
+	set_terminal(tree);
+	tree->cursor.new_term.c_lflag &= ~(ECHOCTL);
+	tcsetattr(STDIN_FILENO, TCSANOW, &tree->cursor.new_term);
 }

@@ -6,7 +6,7 @@
 /*   By: chanson <chanson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 16:29:35 by chanson           #+#    #+#             */
-/*   Updated: 2023/03/06 21:26:57 by chanson          ###   ########.fr       */
+/*   Updated: 2023/03/08 13:49:59 by chanson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,12 @@
 
 void	sig_heredoc_ctrl_c(int signo)
 {
+	extern int	rl_done;
+
+	rl_done = 1;
 	(void)signo;
 	g_signal_flag = 1;
-	write(1, "\b", 1);
 	write(1, "\n", 1);
-	write(1, "\b", 1);
 	exit(130);
 }
 
@@ -45,10 +46,11 @@ static void	heredoc_fill(t_tree *tree, char *limit)
 
 	g_signal_flag = 1;
 	do_signal_handle(HEREDOC);
+	signal(SIGINT, sig_heredoc_ctrl_c);
 	while (1)
 	{
 		temp = readline("heredoc> ");
-		if (temp == NULL || g_signal_flag == 2)
+		if (temp == NULL)
 			break ;
 		temp = ft_strcjoin(temp, '\n');
 		if (heredoc_cmp_limit(temp, limit) == TRUE)

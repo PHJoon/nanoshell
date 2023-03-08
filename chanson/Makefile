@@ -1,4 +1,4 @@
-NAME = test
+NAME = minishell
 
 SRCS_NAME =  ./test \
 		./utils/ft_split \
