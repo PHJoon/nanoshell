@@ -6,7 +6,7 @@
 /*   By: chanson <chanson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/12 15:59:58 by chanson           #+#    #+#             */
-/*   Updated: 2023/03/08 14:22:52 by chanson          ###   ########.fr       */
+/*   Updated: 2023/03/08 14:59:50 by chanson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@
 # include <termcap.h>
 # include <signal.h>
 # include <dirent.h>
+# include "../get_next_line/get_next_line.h"
 
 enum e_token
 {

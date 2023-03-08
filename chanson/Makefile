@@ -9,7 +9,6 @@ SRCS_NAME =  ./test \
 		./utils/ft_strsjoin \
 		./utils/ft_strcpy \
 		./utils/ft_strscmp \
-		./utils/display \
 		./utils/ft_strstr \
 		./utils/ft_strtrim \
 		./utils/ft_str_change \
@@ -75,6 +74,9 @@ SRCS_NAME =  ./test \
 		./init_heredoc_and_pipe \
 		./set_tree \
 		./start_minishell \
+		./get_next_line/get_next_line \
+		./get_next_line/get_next_line_utils \
+		# ./utils/display
 
 SRCS = $(addsuffix .c, $(SRCS_NAME))
 
@@ -98,7 +100,7 @@ $(NAME):	$(OBJS)
 			@$(CC) $(FLAGS) $(LDFLAGS) $(CPPFLAGS) $(OBJS) -o $(NAME)
 
 %.o : %.c
-			@$(CC) $(FLAGS) $(CPPFLAGS) -c $< -o $@
+			$(CC) $(FLAGS) $(CPPFLAGS) -c $< -o $@
 
 clean:		
 			rm -rf $(OBJS)
