@@ -6,7 +6,7 @@
 /*   By: chanson <chanson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 13:34:55 by chanson           #+#    #+#             */
-/*   Updated: 2023/03/08 14:17:25 by chanson          ###   ########.fr       */
+/*   Updated: 2023/03/08 16:22:57 by chanson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ void	execute_no_pipe(char **temp, t_tree *tree)
 	char	**pure_cmd;
 	int		builtin_num;
 
+	set_execute_cmd(tree);
 	pure_cmd = cmd_get(temp);
 	pure_cmd = ft_erase_null(pure_cmd);
 	change_env_val(pure_cmd, tree);

@@ -6,13 +6,13 @@
 /*   By: chanson <chanson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 14:18:40 by chanson           #+#    #+#             */
-/*   Updated: 2023/03/08 14:12:36 by chanson          ###   ########.fr       */
+/*   Updated: 2023/03/08 16:21:04 by chanson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/test.h"
 
-static void	set_execute_cmd(t_tree *tree)
+void	set_execute_cmd(t_tree *tree)
 {
 	if (tree->cmd.cmd_head)
 		free(tree->cmd.cmd_head);

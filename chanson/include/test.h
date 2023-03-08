@@ -6,7 +6,7 @@
 /*   By: chanson <chanson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/12 15:59:58 by chanson           #+#    #+#             */
-/*   Updated: 2023/03/08 15:39:26 by chanson          ###   ########.fr       */
+/*   Updated: 2023/03/08 16:21:44 by chanson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -197,6 +197,7 @@ void	execute_pipe(char **temp, t_tree *tree);
 void	execute_no_pipe(char **temp, t_tree *tree);
 void	close_pipe_all(t_tree *tree);
 void	change_env_val(char **pure_cmd, t_tree *tree);
+void	set_execute_cmd(t_tree *tree);
 
 //execute/heredoc
 void	cnt_heredoc(t_token *node, t_tree *tree);
