@@ -6,7 +6,7 @@
 /*   By: chanson <chanson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/24 15:29:59 by chanson           #+#    #+#             */
-/*   Updated: 2023/03/08 15:03:50 by chanson          ###   ########.fr       */
+/*   Updated: 2023/03/08 15:21:19 by chanson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,4 +28,5 @@ char	*ft_strjoin_gnl(char *s1, char *s2);
 int		ft_strllen_gnl(char const *s);
 char	*ft_strdup_gnl(const char *s1, int end);
 void	free_pointer_gnl(char *ptr);
+char	*get_next_line(int fd);
 #endif

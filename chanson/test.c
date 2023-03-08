@@ -6,7 +6,7 @@
 /*   By: chanson <chanson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 18:56:44 by chanson           #+#    #+#             */
-/*   Updated: 2023/03/08 14:59:10 by chanson          ###   ########.fr       */
+/*   Updated: 2023/03/08 15:40:52 by chanson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,13 @@ void	show_start_page(void)
 	line = get_next_line(fd);
 	while (line)
 	{
-		printf("\033[34;1m%s\n", line);
+		write(1, "\033[34;1m", 7);
+		write(1, line, ft_strlen(line));
 		free(line);
 		line = NULL;
 		line = get_next_line(fd);
 	}
+	write(1, "\n", 1);
 	close(fd);
 	free(line);
 }
