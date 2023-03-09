@@ -6,7 +6,7 @@
 /*   By: chanson <chanson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 14:18:40 by chanson           #+#    #+#             */
-/*   Updated: 2023/03/09 20:17:47 by chanson          ###   ########.fr       */
+/*   Updated: 2023/03/09 21:05:58 by chanson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,6 @@ void	execute_pipe(char **temp, t_tree *tree)
 	index = 0;
 	cmd = NULL;
 	setting_pipe(tree);
-	display_tree(tree->top, 's');
 	while (1)
 	{
 		if (temp[i] == NULL || ft_strscmp(temp[i], "|") == TRUE)

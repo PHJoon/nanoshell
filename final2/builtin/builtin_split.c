@@ -6,7 +6,7 @@
 /*   By: chanson <chanson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 18:53:35 by chanson           #+#    #+#             */
-/*   Updated: 2023/03/09 20:08:03 by chanson          ###   ########.fr       */
+/*   Updated: 2023/03/09 21:20:11 by chanson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,50 @@ static void	cut_space_first(char ***result)
 	}
 }
 
+static void	case_split(char **temp, int *flag, int i, char *str)
+{
+	if (*flag == 0 && str[i] == '\"')
+	{
+		*flag = 1;
+		*temp = ft_strcjoin(*temp, str[i]);
+	}
+	else if (*flag == 0 && str[i] == '\'')
+	{
+		*flag = 2;
+		*temp = ft_strcjoin(*temp, str[i]);
+	}
+	else if (*flag == 1 && str[i] == '\"')
+	{
+		*flag = 0;
+		*temp = ft_strcjoin(*temp, str[i]);
+	}
+	else if (*flag == 2 && str[i] == '\'')
+	{
+		*flag = 0;
+		*temp = ft_strcjoin(*temp, str[i]);
+	}
+	else
+		*temp = ft_strcjoin(*temp, str[i]);
+}
+
+static void	case_end(char **temp, char ***result)
+{
+	if (*temp != NULL)
+	{
+		*result = ft_strsjoin(*result, ft_strcpy(*temp));
+		free(*temp);
+		*temp = NULL;
+	}
+}
+
+static void	builtin_split_set(int *i, char ***result, int *flag, char **temp)
+{
+	*result = NULL;
+	*flag = 0;
+	*temp = NULL;
+	*i = 0;
+}
+
 char	**builtin_split(char *str)
 {
 	int		i;
@@ -44,10 +88,7 @@ char	**builtin_split(char *str)
 	char	**result;
 	char	*temp;
 
-	result = NULL;
-	flag = 0;
-	temp = NULL;
-	i = 0;
+	builtin_split_set(&i, &result, &flag, &temp);
 	while (1)
 	{
 		if (flag == 0 && str[i] == '|')
@@ -58,36 +99,11 @@ char	**builtin_split(char *str)
 		}
 		else if (str[i] == '\0')
 		{
-			if (temp != NULL)
-			{
-				result = ft_strsjoin(result, ft_strcpy(temp));
-				free(temp);
-				temp = NULL;
-			}
+			case_end(&temp, &result);
 			break ;
 		}
-		else if (flag == 0 && str[i] == '\"')
-		{
-			flag = 1;
-			temp = ft_strcjoin(temp, str[i]);
-		}
-		else if (flag == 0 && str[i] == '\'')
-		{
-			flag = 2;
-			temp = ft_strcjoin(temp, str[i]);
-		}
-		else if (flag == 1 && str[i] == '\"')
-		{
-			flag = 0;
-			temp = ft_strcjoin(temp, str[i]);
-		}
-		else if (flag == 2 && str[i] == '\'')
-		{
-			flag = 0;
-			temp = ft_strcjoin(temp, str[i]);
-		}
 		else
-			temp = ft_strcjoin(temp, str[i]);
+			case_split(&temp, &flag, i, str);
 		i++;
 	}
 	cut_space_first(&result);

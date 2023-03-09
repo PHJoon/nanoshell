@@ -6,7 +6,7 @@
 /*   By: chanson <chanson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 13:09:22 by hyungjpa          #+#    #+#             */
-/*   Updated: 2023/03/09 20:23:57 by chanson          ###   ########.fr       */
+/*   Updated: 2023/03/09 20:25:14 by chanson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,5 @@ t_tree	*change_q_mark(t_tree *tree, int value)
 	}
 	free(tmp->value);
 	tmp->value = value_itoa(value);
-	printf("flag\n");
 	return (tree);
 }

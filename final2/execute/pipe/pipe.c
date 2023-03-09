@@ -6,7 +6,7 @@
 /*   By: chanson <chanson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 15:06:18 by chanson           #+#    #+#             */
-/*   Updated: 2023/03/04 21:12:06 by chanson          ###   ########.fr       */
+/*   Updated: 2023/03/09 21:05:18 by chanson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,9 @@ void	setting_pipe(t_tree *tree)
 			ft_error("malloc error //pipe.c\n");
 	}
 	tree->pid = (pid_t *)malloc(sizeof(pid_t) * (tree->pipe_cnt + 1));
+	i = -1;
+	while (++i < tree->pipe_cnt + 1)
+		tree->pid[i] = -1;
 	if (tree->pid == NULL)
 		ft_error("malloc error //pipe.c\n");
 	i = -1;
