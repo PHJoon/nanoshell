@@ -12,7 +12,7 @@
 
 #include "../include/test.h"
 
-static int	echo_option(char *str)
+int	echo_option(char *str)
 {
 	int	i;
 

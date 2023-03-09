@@ -82,6 +82,8 @@ SRCS_NAME =  ./test \
 		./start_minishell \
 		./get_next_line/get_next_line \
 		./get_next_line/get_next_line_utils \
+		./utils/display \
+		./builtin_export_split \
 
 SRCS = $(addsuffix .c, $(SRCS_NAME))
 

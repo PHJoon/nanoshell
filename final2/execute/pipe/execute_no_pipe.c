@@ -80,7 +80,6 @@ void	execute_no_pipe(char **temp, t_tree *tree)
 	if (builtin_num == 1)
 	{
 		_execute_pipe_fork(tree);
-		parent_unset_export(tree);
 		tree = change_q_mark(tree, tree->child_status);
 	}
 	tree = change_q_mark(tree, tree->child_status);

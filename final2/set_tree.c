@@ -44,8 +44,10 @@ static t_tree	*preset_envp(t_tree *tree, char **envp)
 	tree->envp_val = envp_copy(envp);
 	tree->env_list = make_env_list(envp);
 	tree->export_list = make_export_list(envp);
-	add_env_list(tree->env_list, ft_strcpy("?"), ft_strcpy("0"));
-	add_env_list(tree->export_list, ft_strcpy("?"), ft_strcpy("0"));
+	tree->env_list = add_env_list(tree->env_list, \
+	ft_strcpy("?"), ft_strcpy("0"));
+	tree->export_list = add_env_list(tree->export_list, \
+	ft_strcpy("?"), ft_strcpy("0"));
 	return (tree);
 }
 

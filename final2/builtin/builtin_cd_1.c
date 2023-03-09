@@ -46,6 +46,11 @@ char	*cd_not_dot(char *buf_tmp, char *str, int *i)
 	slash_idx = ft_strchr(&str[*i], '/');
 	if (slash_idx == 0)
 	{
+		if (*i == 0)
+		{
+			(*i)++;
+			return (ft_strcpy("/"));
+		}
 		buf_tmp = ft_strcjoin(buf_tmp, '/');
 		(*i)++;
 		slash_idx = ft_strchr(&str[*i], '/');
@@ -110,15 +115,7 @@ int	do_cd(t_tree *info)
 		return (print_error_1("malloc_error"));
 	cwd_buf = getcwd(cwd_buf, 1024);
 	if (info->cmd.cmd_arr[1])
-	{
-		cwd_buf = check_cd_argv(info->cmd.cmd_arr[1], cwd_buf);
-		printf("%s\n", cwd_buf);
-		if (check_dir(cwd_buf))
-			chdir(cwd_buf);
-		else
-			return (print_error_2("cd : not a directory: "\
-				, info->cmd.cmd_arr[1]));
-	}
+		return (change_dir(info, cwd_buf));
 	else
 		cd_home(info->env_list);
 	free(cwd_buf);

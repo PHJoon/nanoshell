@@ -22,7 +22,8 @@ char	**ft_erase_null(char **cmd)
 	cnt = 0;
 	while (cmd[++i])
 	{
-		if (ft_strscmp(cmd[i], "\"\"") == FALSE)
+		if (ft_strscmp(cmd[i], "\"\"") == FALSE \
+		&& ft_strscmp(cmd[i], "\'\'") == FALSE)
 			cnt++;
 	}
 	temp = (char **)malloc(sizeof(char *) * (cnt + 1));
@@ -31,7 +32,7 @@ char	**ft_erase_null(char **cmd)
 	cnt = 0;
 	while (cmd[++i])
 	{
-		if (ft_strscmp(cmd[i], "\"\"") == TRUE)
+		if (ft_strscmp(cmd[i], "\"\"") || ft_strscmp(cmd[i], "\'\'"))
 			continue ;
 		temp[cnt] = ft_strcpy(cmd[i]);
 		cnt++;

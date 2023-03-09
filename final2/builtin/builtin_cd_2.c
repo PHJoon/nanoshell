@@ -30,15 +30,29 @@ void	cd_home(t_env *env_list)
 
 int	check_dir(char *cwd_buf)
 {
-	DIR	*dir_info;
+	int	check_exist;
+	int	res;
 
-	dir_info = opendir(cwd_buf);
-	if (dir_info)
-	{
-		closedir(dir_info);
-		return (1);
-	}
-	closedir(dir_info);
+	res = 1;
+	check_exist = access(cwd_buf, F_OK);
+	if (check_exist == -1)
+		res = 0;
 	free(cwd_buf);
-	return (0);
+	return (res);
+}
+
+int	change_dir(t_tree *info, char *cwd_buf)
+{
+	cwd_buf = check_cd_argv(info->cmd.cmd_arr[1], cwd_buf);
+	if (chdir(cwd_buf) == -1)
+	{
+		if (check_dir(cwd_buf) == 0)
+			return (print_error_3("cd : ", info->cmd.cmd_arr[1], \
+				": No such file or directory"));
+		else
+			return (print_error_3("cd : ", info->cmd.cmd_arr[1], \
+				": Not a directory"));
+	}
+	free(cwd_buf);
+	return (2);
 }

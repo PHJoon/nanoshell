@@ -12,26 +12,6 @@
 
 #include "../include/test.h"
 
-int	check_equal(char *str)
-{
-	int	i;
-	int	flag;
-
-	i = 0;
-	flag = 0;
-	while (str[i])
-	{
-		if (str[i] == '=')
-		{
-			if (str[i + 1] && flag == 0 && str[i + 1] == '=')
-				return (0);
-			flag = 1;
-		}
-		i++;
-	}
-	return (1);
-}
-
 void	find_key_value(char *str, char **key, char **value)
 {
 	int	i;
@@ -54,8 +34,11 @@ int	find_dup_key(t_env *env_list, char *key, char *value)
 	tmp = env_list;
 	while (tmp)
 	{
-		if (tmp->key == key)
+		if (ft_strscmp(tmp->key, key))
 		{
+			free(tmp->key);
+			tmp->key = key;
+			free(tmp->value);
 			tmp->value = value;
 			return (1);
 		}
@@ -75,15 +58,16 @@ int	export_args(char **cmd, t_env **export_list, t_env **env_list)
 	value = NULL;
 	while (cmd[i])
 	{
-		if (!check_equal(cmd[i]))
-			return (0);
-		if (!valid_check(cmd[i]))
-			return (i);
 		find_key_value(cmd[i], &key, &value);
+		printf("%s %s\n", key, value);
+		if (!valid_check(&key))
+			return (i);
 		if (!find_dup_key(*export_list, key, value))
 		{
-			add_env_list(*export_list, key, value);
-			add_env_list(*env_list, key, value);
+			add_env_list(*export_list, ft_strcpy(key), ft_strcpy(value));
+			add_env_list(*env_list, ft_strcpy(key), ft_strcpy(value));
+			free(key);
+			free(value);
 		}
 		i++;
 	}
@@ -93,21 +77,27 @@ int	export_args(char **cmd, t_env **export_list, t_env **env_list)
 
 int	do_export(t_tree *info)
 {
-	int	check_args;
+	int		check_args;
+	char	**temp;
 
 	if (!ft_strscmp(info->cmd.cmd_arr[0], "export"))
 		return (1);
-	if (info->cmd.cmd_arr[1])
+	temp = export_split(info->origin);
+	if (temp[1])
 	{
-		check_args = export_args(info->cmd.cmd_arr, \
-			&(info->export_list), &(info->env_list));
+		check_args = export_args(temp, &(info->export_list), &(info->env_list));
 		if (check_args)
-			return (print_error_3("export: \'", info->cmd.cmd_arr[check_args], \
-			"\': not a valid identifier"));
+		{
+			print_error_3("export: \'", temp[check_args], \
+			"\': not a valid identifier");
+			ft_free_str(temp);
+			return (2);
+		}
 		ft_free_str(info->envp_val);
 		info->envp_val = env_to_envp(info->env_list);
 	}	
 	else
 		print_export(info->export_list);
+	ft_free_str(temp);
 	return (0);
 }

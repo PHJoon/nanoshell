@@ -26,41 +26,12 @@ t_env	*make_new_env_list(char *key, char *value)
 	return (new);
 }
 
-int	check_key_exist(t_env *env_list, char *key, char *value)
-{
-	t_env	*tmp;
-	int		flag;
-
-	tmp = env_list;
-	flag = 0;
-	while (tmp)
-	{
-		if (ft_strscmp(tmp->key, key))
-		{
-			flag = 1;
-			break ;
-		}
-		tmp = tmp->next;
-	}
-	if (flag == 1)
-	{
-		free(tmp->key);
-		tmp->key = key;
-		free(tmp->value);
-		tmp->value = value;
-		return (1);
-	}
-	return (0);
-}
-
 t_env	*add_env_list(t_env *env_list, char *key, char *value)
 {
 	t_env	*new;
 	t_env	*tmp;
 
 	tmp = env_list;
-	if (check_key_exist(env_list, key, value))
-		return (env_list);
 	new = make_new_env_list(key, value);
 	if (env_list == NULL)
 		return (new);
@@ -78,10 +49,13 @@ t_env	*split_env(t_env *env_list, char *str)
 	char	*value;
 
 	i = 0;
-	while (str[i] != '=')
+	while (str[i] && str[i] != '=')
 		i++;
 	key = ft_strcpy_index(str, 0, i - 1);
-	value = ft_strcpy_index(str, i + 1, ft_strlen(str));
+	if (i == ft_strlen(str))
+		value = NULL;
+	else
+		value = ft_strcpy_index(str, i + 1, ft_strlen(str));
 	env_list = add_env_list(env_list, key, value);
 	return (env_list);
 }

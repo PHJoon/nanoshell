@@ -46,12 +46,15 @@ t_env	*free_last(t_env *export_list)
 	t_env	*tmp;
 
 	tmp = export_list;
-	while (tmp->next->next)
+	while (tmp->next)
 		tmp = tmp->next;
-	free(tmp->next->key);
-	free(tmp->next->value);
-	free(tmp->next);
-	tmp->next = NULL;
+	tmp->prev->next = NULL;
+	free(tmp->key);
+	free(tmp->value);
+	free(tmp);
+	tmp->key = NULL;
+	tmp->value = NULL;
+	tmp = NULL;
 	return (export_list);
 }
 
@@ -78,19 +81,24 @@ void	print_export(t_env *export_list)
 	}
 }
 
-int	valid_check(char *str)
+int	valid_check(char **str)
 {
-	int	idx;
+	char	*tmp;
 
-	idx = 0;
-	if (!ft_isalpha(str[idx]))
-		return (0);
-	idx++;
-	while (str[idx])
+	tmp = NULL;
+	if (*str[0] == '\'')
 	{
-		if (!ft_isalnum(str[idx]) && (str[idx] != '='))
-			return (0);
-		idx++;
+		tmp = ft_strtrim(*str, '\'');
+		free(*str);
+		*str = tmp;
 	}
+	else if (*str[0] == '"')
+	{
+		tmp = ft_strtrim(*str, '"');
+		free(*str);
+		*str = tmp;
+	}
+	if (!ft_isalpha(*str[0]))
+		return (0);
 	return (1);
 }

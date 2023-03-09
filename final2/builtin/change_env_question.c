@@ -12,7 +12,7 @@
 
 #include "../include/test.h"
 
-static int	get_size(int n)
+int	get_size(int n)
 {
 	int	i;
 
@@ -25,7 +25,7 @@ static int	get_size(int n)
 	return (i);
 }
 
-static char	*do_itoa(char *arr, int n, int size)
+char	*do_itoa(char *arr, int n, int size)
 {
 	int	minus;
 
@@ -51,7 +51,7 @@ static char	*do_itoa(char *arr, int n, int size)
 	return (arr);
 }
 
-static char	*value_itoa(int n)
+char	*value_itoa(int n)
 {
 	char	*arr;
 	int		size;

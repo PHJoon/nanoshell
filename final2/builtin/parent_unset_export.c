@@ -40,6 +40,7 @@ void	set_unset(t_tree *info)
 	if (res1 > 0)
 		return ;
 	res2 = list_unset(info->cmd.cmd_arr, &(info->export_list));
+	ft_free_str(info->envp_val);
 	info->envp_val = env_to_envp(info->env_list);
 }
 

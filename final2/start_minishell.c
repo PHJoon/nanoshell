@@ -65,8 +65,8 @@ void	start_minishell(t_tree *tree)
 			free(str);
 			continue ;
 		}
-		free(str);
 		tree = init_tree(temp, tree);
 		_init_heredoc_and_pipe(tree, &temp);
+		free(str);
 	}
 }

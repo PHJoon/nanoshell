@@ -12,7 +12,7 @@
 
 #include "../include/test.h"
 
-static char	*split_space(char *str, int *i, int *flag)
+char	*split_space(char *str, int *i, int *flag)
 {
 	char	*tmp;
 
@@ -23,7 +23,7 @@ static char	*split_space(char *str, int *i, int *flag)
 	return (tmp);
 }
 
-static char	*split_char(char *str, int *i, int *flag)
+char	*split_char(char *str, int *i, int *flag)
 {
 	char	*tmp;
 
@@ -37,7 +37,7 @@ static char	*split_char(char *str, int *i, int *flag)
 	return (tmp);
 }
 
-static char	*split_quote(char *str, int *i, int *flag)
+char	*split_quote(char *str, int *i, int *flag)
 {
 	char	*tmp;
 
@@ -66,7 +66,7 @@ static char	*split_quote(char *str, int *i, int *flag)
 	return (tmp);
 }
 
-static char	**do_echo_split(char *str, char **new_temp, char *tmp, int flag)
+char	**do_echo_split(char *str, char **new_temp, char *tmp, int flag)
 {
 	int	i;
 
