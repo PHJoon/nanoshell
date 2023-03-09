@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   builtin_export_split.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hyungjpa <hyungjpa@student.42seoul.>       +#+  +:+       +#+        */
+/*   By: chanson <chanson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 14:39:30 by hyungjpa          #+#    #+#             */
-/*   Updated: 2023/03/09 14:39:31 by hyungjpa         ###   ########.fr       */
+/*   Updated: 2023/03/09 18:49:24 by chanson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/test.h"
 
-int	split_while(char *str, char *tmp, int *i, int *flag)
+void	split_while(char *str, char *tmp, int *i, int *flag)
 {
 	while (str[*i])
 	{

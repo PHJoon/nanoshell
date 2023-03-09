@@ -6,7 +6,7 @@
 /*   By: chanson <chanson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/04 23:24:11 by hyungjpa          #+#    #+#             */
-/*   Updated: 2023/03/08 19:14:12 by chanson          ###   ########.fr       */
+/*   Updated: 2023/03/09 19:21:13 by chanson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ void	start_minishell(t_tree *tree)
 			continue ;
 		}
 		tree = init_tree(temp, tree);
-		_init_heredoc_and_pipe(tree, &temp);
+		_init_heredoc_and_pipe(tree, &temp, str);
 		free(str);
 	}
 }

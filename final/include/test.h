@@ -6,7 +6,7 @@
 /*   By: chanson <chanson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/12 15:59:58 by chanson           #+#    #+#             */
-/*   Updated: 2023/03/08 18:46:06 by chanson          ###   ########.fr       */
+/*   Updated: 2023/03/09 15:04:26 by chanson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,6 +121,7 @@ typedef struct s_tree
 	char		**here_documets;
 	char		**envp_val;
 	char		**history;
+	char		**echo_arr;
 	pid_t		*pid;
 	t_env		*env_list;
 	t_env		*export_list;

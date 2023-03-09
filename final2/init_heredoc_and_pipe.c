@@ -6,7 +6,7 @@
 /*   By: chanson <chanson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/04 23:29:59 by hyungjpa          #+#    #+#             */
-/*   Updated: 2023/03/06 20:52:40 by chanson          ###   ########.fr       */
+/*   Updated: 2023/03/09 20:18:43 by chanson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,10 +35,12 @@ static t_tree	*init_heredoc(t_tree *tree, char ***temp)
 	return (tree);
 }
 
-void	_init_heredoc_and_pipe(t_tree *tree, char ***temp)
+void	_init_heredoc_and_pipe(t_tree *tree, char ***temp, char *str)
 {
 	tree = init_heredoc(tree, temp);
 	tree->pipe_cnt = count_pipe(*temp);
+	tree->echo_export_arr = builtin_split(str);
+	display_str(tree->echo_export_arr);
 	start_cmd(tree, *temp);
 	unlink_heredoc(tree);
 	ft_free_tree(tree);

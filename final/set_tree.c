@@ -6,7 +6,7 @@
 /*   By: chanson <chanson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/04 23:18:48 by hyungjpa          #+#    #+#             */
-/*   Updated: 2023/03/07 17:03:41 by chanson          ###   ########.fr       */
+/*   Updated: 2023/03/09 15:44:52 by chanson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ static t_tree	*preset_pipe_heredoc_fd(t_tree *tree)
 	tree->pipe_fd = NULL;
 	tree->here_documets = NULL;
 	tree->pid = NULL;
+	// tree->echo_arr = NULL;
 	return (tree);
 }
 

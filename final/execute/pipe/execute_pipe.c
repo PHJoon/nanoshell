@@ -6,7 +6,7 @@
 /*   By: chanson <chanson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 14:18:40 by chanson           #+#    #+#             */
-/*   Updated: 2023/03/08 18:42:23 by chanson          ###   ########.fr       */
+/*   Updated: 2023/03/09 17:15:18 by chanson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ void	execute_cmd(char **cmd, int index, t_tree *tree)
 	char	**pure_cmd;
 
 	set_execute_cmd(tree);
+	display_str(cmd);
 	pure_cmd = cmd_get(cmd);
 	pure_cmd = ft_erase_null(pure_cmd);
 	change_env_val(pure_cmd, tree);
@@ -53,11 +54,17 @@ void	execute_cmd(char **cmd, int index, t_tree *tree)
 	tree->outfile = get_ord(cmd);
 	if (pure_cmd[0] == NULL)
 		return ;
+	printf("index: %d\n", index);
+	printf("hihi %d %d\n", tree->pipe_cnt, tree->pid[index]);
 	tree->pid[index] = fork();
 	if (tree->pid[index] == 0)
+	{
+		printf("hello child\n");
 		child_execute(tree, index);
+	}
 	else
 	{
+		printf("%d\n", tree->pid[index]);
 		do_signal_handle(WAIT_CHILD);
 		parent_unset_export(tree);
 	}
@@ -72,6 +79,7 @@ void	execute_pipe(char **temp, t_tree *tree)
 	i = 0;
 	index = 0;
 	cmd = NULL;
+	// ft_free_str(tree->echo_arr);
 	setting_pipe(tree);
 	while (1)
 	{
@@ -86,6 +94,7 @@ void	execute_pipe(char **temp, t_tree *tree)
 		}
 		else
 			cmd = ft_strsjoin(cmd, ft_strcpy(temp[i]));
+		printf("%s\n", temp[i]);
 		i++;
 	}
 	close_pipe_all(tree);

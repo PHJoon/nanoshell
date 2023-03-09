@@ -83,7 +83,8 @@ SRCS_NAME =  ./test \
 		./get_next_line/get_next_line \
 		./get_next_line/get_next_line_utils \
 		./utils/display \
-		./builtin_export_split \
+		./builtin/builtin_export_split \
+		./builtin/builtin_split \
 
 SRCS = $(addsuffix .c, $(SRCS_NAME))
 
@@ -93,9 +94,13 @@ CC = cc
 
 FLAGS = -Wall -Wextra -Werror
 
-LDFLAGS = -L/Users/hyungjpa/.brew/opt/readline/lib -lreadline -lncurses
+LDFLAGS = -L/Users/chanson/.brew/opt/readline/lib -lreadline -lncurses
 
-CPPFLAGS = -I/Users/hyungjpa/.brew/opt/readline/include
+CPPFLAGS = -I/Users/chanson/.brew/opt/readline/include
+
+# LDFLAGS = -L/Users/hyungjpa/.brew/opt/readline/lib -lreadline -lncurses
+
+# CPPFLAGS = -I/Users/hyungjpa/.brew/opt/readline/include
 
 all:		$(NAME)
 

@@ -6,7 +6,7 @@
 /*   By: chanson <chanson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/12 15:59:58 by chanson           #+#    #+#             */
-/*   Updated: 2023/03/08 18:46:06 by chanson          ###   ########.fr       */
+/*   Updated: 2023/03/09 19:31:00 by chanson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,6 +121,7 @@ typedef struct s_tree
 	char		**here_documets;
 	char		**envp_val;
 	char		**history;
+	char		**echo_export_arr;
 	pid_t		*pid;
 	t_env		*env_list;
 	t_env		*export_list;
@@ -246,6 +247,7 @@ t_tree	*change_q_mark(t_tree *tree, int value);
 void	parent_unset_export(t_tree *info);
 void	remove_quote_and_print(char *s, t_env *env_list);
 char	**echo_split(char *str);
+char	**builtin_split(char *str);
 
 //signal
 void	on_off_catch_signals(int on_off);
@@ -274,7 +276,7 @@ t_tree	*tree_set_re(t_tree *tree);
 void	start_minishell(t_tree *tree);
 
 // init_heredoc_and_pipe.c
-void	_init_heredoc_and_pipe(t_tree *tree, char ***temp);
+void	_init_heredoc_and_pipe(t_tree *tree, char ***temp, char *str);
 
 // display
 void	show_list(t_list	*list);

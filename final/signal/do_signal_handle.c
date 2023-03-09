@@ -6,7 +6,7 @@
 /*   By: chanson <chanson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 13:42:41 by chanson           #+#    #+#             */
-/*   Updated: 2023/03/08 14:15:27 by chanson          ###   ########.fr       */
+/*   Updated: 2023/03/09 16:47:11 by chanson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,5 +62,5 @@ void	reset_terminal(t_tree *tree)
 void	set_child_mode(t_tree *tree)
 {
 	tree->cursor.child_term.c_lflag &= ~(ECHOCTL);
-	tcsetattr(STDIN_FILENO, TCSANOW, &tree->cursor.new_term);
+	tcsetattr(STDIN_FILENO, TCSANOW, &tree->cursor.child_term);
 }

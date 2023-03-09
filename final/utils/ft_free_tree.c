@@ -6,7 +6,7 @@
 /*   By: chanson <chanson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 14:34:25 by chanson           #+#    #+#             */
-/*   Updated: 2023/03/04 21:16:06 by chanson          ###   ########.fr       */
+/*   Updated: 2023/03/09 16:28:26 by chanson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,5 +66,6 @@ void	ft_free_tree(t_tree *tree)
 	free(tree->pid);
 	free(tree->origin);
 	ft_free_int(tree->pipe_fd, tree);
+	// ft_free_str(tree->echo_arr);
 	_ft_free_tree(tree->top);
 }

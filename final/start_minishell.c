@@ -6,7 +6,7 @@
 /*   By: chanson <chanson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/04 23:24:11 by hyungjpa          #+#    #+#             */
-/*   Updated: 2023/03/09 14:04:48 by chanson          ###   ########.fr       */
+/*   Updated: 2023/03/09 16:13:55 by chanson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ void	start_minishell(t_tree *tree)
 		tree->history = ft_strsjoin(tree->history, ft_strcpy(str));
 		temp = split_and_syntax_check(str);
 		tree->origin = ft_strcpy(str);
+		tree->echo_arr = ft_split_char(str, '|');
 		if (temp == NULL)
 		{
 			free(str);
