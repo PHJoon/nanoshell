@@ -6,7 +6,7 @@
 /*   By: chanson <chanson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 14:18:40 by chanson           #+#    #+#             */
-/*   Updated: 2023/03/09 17:15:18 by chanson          ###   ########.fr       */
+/*   Updated: 2023/03/10 14:17:51 by chanson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,6 @@ void	execute_pipe(char **temp, t_tree *tree)
 	i = 0;
 	index = 0;
 	cmd = NULL;
-	// ft_free_str(tree->echo_arr);
 	setting_pipe(tree);
 	while (1)
 	{
@@ -94,7 +93,6 @@ void	execute_pipe(char **temp, t_tree *tree)
 		}
 		else
 			cmd = ft_strsjoin(cmd, ft_strcpy(temp[i]));
-		printf("%s\n", temp[i]);
 		i++;
 	}
 	close_pipe_all(tree);

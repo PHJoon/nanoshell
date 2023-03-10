@@ -1,0 +1,1 @@
+a > b | cat | cat | head -1

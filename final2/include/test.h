@@ -6,7 +6,7 @@
 /*   By: chanson <chanson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/12 15:59:58 by chanson           #+#    #+#             */
-/*   Updated: 2023/03/09 21:40:16 by chanson          ###   ########.fr       */
+/*   Updated: 2023/03/10 14:26:54 by chanson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -213,17 +213,15 @@ void	sig_heredoc_ctrl_c(int signo);
 void	unlink_heredoc(t_tree *tree);
 
 // execute/builtin
-char	*check_cd_argv(char *str, char *cwd_buf);
 int		do_cd(t_tree *info);
 void	cd_home(t_env *env_list);
 int		check_dir(char *cwd_buf);
-int		change_dir(t_tree *info, char *cwd_buf);
 int		do_echo(t_tree *info);
-int		check_echo_option(char **temp, int *i, int *flag);
 int		print_env_value(char *s, int start, t_env *env_list);
 int		do_env(t_tree *info);
 char	**env_to_envp(t_env *env_list);
 char	**envp_copy(char **envp);
+char	**builtin_split(char *str);
 t_env	*add_env_list(t_env *env_list, char *key, char *value);
 t_env	*make_env_list(char **envp);
 t_env	*sort_export_list(t_env *export_list);
@@ -234,7 +232,7 @@ int		do_exit_one_cmd(t_tree *info);
 int		do_export(t_tree *info);
 int		export_args(char **cmd, t_env **export_list, t_env **env_list);
 void	print_export(t_env *export_list);
-int		valid_check(char **str);
+int		valid_check(char *str);
 int		do_pwd(t_tree *info);
 int		list_unset(char **cmd, t_env **env_list);
 int		do_unset(t_tree *info);
@@ -247,7 +245,6 @@ t_tree	*change_q_mark(t_tree *tree, int value);
 void	parent_unset_export(t_tree *info);
 void	remove_quote_and_print(char *s, t_env *env_list);
 char	**echo_split(char *str);
-char	**builtin_split(char *str);
 
 //signal
 void	on_off_catch_signals(int on_off);
@@ -286,5 +283,4 @@ void	display_tree(t_token *root, char c);
 void	display_acc_str(char *str);
 void	display_list_envp(t_env *node);
 void	display_tree_all(t_tree *tree);
-char	**export_split(char *str);
 #endif

@@ -6,7 +6,7 @@
 /*   By: chanson <chanson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 14:34:25 by chanson           #+#    #+#             */
-/*   Updated: 2023/03/09 20:32:32 by chanson          ###   ########.fr       */
+/*   Updated: 2023/03/10 14:35:10 by chanson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,10 +62,10 @@ void	ft_free_tree(t_tree *tree)
 	ft_free_str(tree->here_documets);
 	ft_free_str(tree->cmd.cmd_arr);
 	ft_free_str(tree->cmd.envp_path);
+	ft_free_str(tree->echo_export_arr);
 	free(tree->cmd.cmd_head);
 	free(tree->pid);
 	free(tree->origin);
 	ft_free_int(tree->pipe_fd, tree);
 	_ft_free_tree(tree->top);
-	ft_free_str(tree->echo_export_arr);
 }
