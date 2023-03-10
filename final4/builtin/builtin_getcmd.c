@@ -6,22 +6,19 @@
 /*   By: hyungjpa <hyungjpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 21:30:12 by hyungjpa          #+#    #+#             */
-/*   Updated: 2023/03/10 16:03:01 by hyungjpa         ###   ########.fr       */
+/*   Updated: 2023/03/10 16:54:28 by hyungjpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/test.h"
 
-char	*cmd_strjoin(char *str1, char *str2)
+char	*do_cmd_strjoin(char *str1, char *str2, char **temp)
 {
-	char	*temp;
-	int		i;
-	int		j;
+	int	i;
+	int	j;
 
-	i = ft_strlen(str1);
-	j = ft_strlen(str2);
-	temp = (char *)malloc(i + j + 1);
 	i = 0;
+	j = 0;
 	if (str1)
 	{
 		while (str1[i])
@@ -40,6 +37,21 @@ char	*cmd_strjoin(char *str1, char *str2)
 		}
 	}
 	temp[i + j] = '\0';
+	return (temp);
+}
+
+char	*cmd_strjoin(char *str1, char *str2)
+{
+	char	*temp;
+	int		i;
+	int		j;
+
+	i = ft_strlen(str1);
+	j = ft_strlen(str2);
+	temp = (char *)malloc(i + j + 1);
+	if (!temp)
+		return (NULL);
+	temp = do_cmd_strjoin(str1, str2, temp);
 	free(str1);
 	return (temp);
 }

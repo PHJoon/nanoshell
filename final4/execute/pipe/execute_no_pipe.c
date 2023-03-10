@@ -6,7 +6,7 @@
 /*   By: hyungjpa <hyungjpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 13:34:55 by chanson           #+#    #+#             */
-/*   Updated: 2023/03/10 15:56:46 by hyungjpa         ###   ########.fr       */
+/*   Updated: 2023/03/10 16:57:27 by hyungjpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,25 +69,11 @@ static void	_execute_pipe_fork(t_tree *tree)
 	}
 }
 
-void	execute_no_pipe(char **temp, t_tree *tree)
+void	start_execute(t_tree *tree)
 {
-	char	**pure_cmd;
-	int		builtin_num;
-	int		old_fd;
+	int	old_fd;
+	int	builtin_num;
 
-	set_execute_cmd(tree);
-	pure_cmd = cmd_get(temp);
-	tree->pure = envp_copy(pure_cmd);
-	tree->origin = builtin_getcmd(tree->pure, tree->echo_export_arr[0]);
-	pure_cmd = ft_erase_null(pure_cmd);
-	change_env_val(pure_cmd, tree);
-	cmd_check(tree, pure_cmd);
-	tree->infile = get_ird(temp);
-	if (tree->infile == -1)
-		return ;
-	tree->outfile = get_ord(temp);
-	if (pure_cmd[0] == NULL)
-		return ;
 	if (tree->outfile != 0)
 		old_fd = dup(STDOUT_FILENO);
 	builtin_num = builtin_one_cmd(tree);
@@ -103,4 +89,24 @@ void	execute_no_pipe(char **temp, t_tree *tree)
 		close(old_fd);
 	}
 	tree = change_q_mark(tree, tree->child_status);
+}
+
+void	execute_no_pipe(char **temp, t_tree *tree)
+{
+	char	**pure_cmd;
+
+	set_execute_cmd(tree);
+	pure_cmd = cmd_get(temp);
+	tree->pure = envp_copy(pure_cmd);
+	tree->origin = builtin_getcmd(tree->pure, tree->echo_export_arr[0]);
+	pure_cmd = ft_erase_null(pure_cmd);
+	change_env_val(pure_cmd, tree);
+	cmd_check(tree, pure_cmd);
+	tree->infile = get_ird(temp);
+	if (tree->infile == -1)
+		return ;
+	tree->outfile = get_ord(temp);
+	if (pure_cmd[0] == NULL)
+		return ;
+	start_execute(tree);
 }
