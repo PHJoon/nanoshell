@@ -6,7 +6,7 @@
 /*   By: hyungjpa <hyungjpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/04 23:24:11 by hyungjpa          #+#    #+#             */
-/*   Updated: 2023/03/10 15:19:24 by hyungjpa         ###   ########.fr       */
+/*   Updated: 2023/03/10 15:26:24 by hyungjpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ static char	**split_and_syntax_check(char *str)
 	char	**temp;
 
 	temp = ft_split(str);
+	if (!temp)
+		return (NULL);
 	if (syntax_err_check(temp) == FALSE)
 	{
 		printf("syntax error\n");
