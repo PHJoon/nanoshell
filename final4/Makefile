@@ -95,13 +95,13 @@ CC = cc
 
 FLAGS = -Wall -Wextra -Werror
 
-# LDFLAGS = -L/Users/chanson/.brew/opt/readline/lib -lreadline -lncurses
+LDFLAGS = -L/Users/chanson/.brew/opt/readline/lib -lreadline -lncurses
 
-# CPPFLAGS = -I/Users/chanson/.brew/opt/readline/include
+CPPFLAGS = -I/Users/chanson/.brew/opt/readline/include
 
-LDFLAGS = -L/Users/hyungjpa/.brew/opt/readline/lib -lreadline -lncurses
+# LDFLAGS = -L/Users/hyungjpa/.brew/opt/readline/lib -lreadline -lncurses
 
-CPPFLAGS = -I/Users/hyungjpa/.brew/opt/readline/include
+# CPPFLAGS = -I/Users/hyungjpa/.brew/opt/readline/include
 
 all:		$(NAME)
 

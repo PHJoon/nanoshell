@@ -6,7 +6,7 @@
 /*   By: chanson <chanson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/12 15:59:58 by chanson           #+#    #+#             */
-/*   Updated: 2023/03/10 14:26:54 by chanson          ###   ########.fr       */
+/*   Updated: 2023/03/10 14:45:05 by chanson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -232,7 +232,7 @@ int		do_exit_one_cmd(t_tree *info);
 int		do_export(t_tree *info);
 int		export_args(char **cmd, t_env **export_list, t_env **env_list);
 void	print_export(t_env *export_list);
-int		valid_check(char *str);
+int		valid_check(char **str);
 int		do_pwd(t_tree *info);
 int		list_unset(char **cmd, t_env **env_list);
 int		do_unset(t_tree *info);
@@ -241,10 +241,14 @@ int		builtin_one_cmd(t_tree *info);
 int		print_error_1(char *str);
 int		print_error_2(char *str1, char *str2);
 int		print_error_3(char *str1, char *str2, char *str3);
+int		change_dir(t_tree *info, char *cwd_buf);
 t_tree	*change_q_mark(t_tree *tree, int value);
 void	parent_unset_export(t_tree *info);
 void	remove_quote_and_print(char *s, t_env *env_list);
 char	**echo_split(char *str);
+char	*check_cd_argv(char *str, char *cwd_buf);
+int		check_echo_option(char **temp, int *i, int *flag);
+char	**export_split(char *str);
 
 //signal
 void	on_off_catch_signals(int on_off);

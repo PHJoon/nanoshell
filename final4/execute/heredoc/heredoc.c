@@ -6,7 +6,7 @@
 /*   By: chanson <chanson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 16:29:35 by chanson           #+#    #+#             */
-/*   Updated: 2023/03/08 13:49:59 by chanson          ###   ########.fr       */
+/*   Updated: 2023/03/10 16:47:04 by chanson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,6 +102,7 @@ void	execute_heredoc(t_token *node, t_tree *tree, char c)
 
 	if (node == NULL)
 		return ;
+	execute_heredoc(node->left, tree, 'l');
 	if (ft_strscmp(node->val, "<<") == TRUE)
 	{
 		tree->here_doc += 1;
@@ -120,6 +121,5 @@ void	execute_heredoc(t_token *node, t_tree *tree, char c)
 			mini_heredoc(node, tree);
 		return ;
 	}
-	execute_heredoc(node->left, tree, 'l');
 	execute_heredoc(node->right, tree, 'r');
 }

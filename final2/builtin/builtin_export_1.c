@@ -6,7 +6,7 @@
 /*   By: chanson <chanson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 14:52:20 by hyungjpa          #+#    #+#             */
-/*   Updated: 2023/03/02 19:54:32 by chanson          ###   ########.fr       */
+/*   Updated: 2023/03/10 14:43:19 by chanson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,6 @@ int	export_args(char **cmd, t_env **export_list, t_env **env_list)
 	while (cmd[i])
 	{
 		find_key_value(cmd[i], &key, &value);
-		printf("%s %s\n", key, value);
 		if (!valid_check(&key))
 			return (i);
 		if (!find_dup_key(*export_list, key, value))

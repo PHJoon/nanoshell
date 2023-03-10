@@ -6,7 +6,7 @@
 /*   By: chanson <chanson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/04 23:29:59 by hyungjpa          #+#    #+#             */
-/*   Updated: 2023/03/10 14:36:46 by chanson          ###   ########.fr       */
+/*   Updated: 2023/03/10 15:32:42 by chanson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,4 +47,6 @@ void	_init_heredoc_and_pipe(t_tree *tree, char ***temp, char *str)
 	ft_free_str(*temp);
 	*temp = NULL;
 	g_signal_flag = 0;
+	free(str);
+	str = NULL;
 }
