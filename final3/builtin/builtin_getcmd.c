@@ -6,7 +6,7 @@
 /*   By: hyungjpa <hyungjpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 21:30:12 by hyungjpa          #+#    #+#             */
-/*   Updated: 2023/03/10 14:15:51 by hyungjpa         ###   ########.fr       */
+/*   Updated: 2023/03/10 16:03:01 by hyungjpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,6 @@ char	*cmd_strjoin(char *str1, char *str2)
 
 	i = ft_strlen(str1);
 	j = ft_strlen(str2);
-	if (!i && !j)
-		return (0);
 	temp = (char *)malloc(i + j + 1);
 	i = 0;
 	if (str1)

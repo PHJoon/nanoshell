@@ -6,7 +6,7 @@
 /*   By: hyungjpa <hyungjpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/04 23:24:11 by hyungjpa          #+#    #+#             */
-/*   Updated: 2023/03/10 15:26:24 by hyungjpa         ###   ########.fr       */
+/*   Updated: 2023/03/10 16:05:19 by hyungjpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,6 @@ char	**readline_to_tree(t_tree *tree, char *str)
 
 	tree->history = ft_strsjoin(tree->history, ft_strcpy(str));
 	temp = split_and_syntax_check(str);
-	tree->origin = ft_strcpy(str);
 	return (temp);
 }
 
@@ -69,6 +68,5 @@ void	start_minishell(t_tree *tree)
 		}
 		tree = init_tree(temp, tree);
 		_init_heredoc_and_pipe(tree, &temp, str);
-		free(str);
 	}
 }

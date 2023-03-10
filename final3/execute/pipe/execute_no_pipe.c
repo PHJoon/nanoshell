@@ -6,7 +6,7 @@
 /*   By: hyungjpa <hyungjpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 13:34:55 by chanson           #+#    #+#             */
-/*   Updated: 2023/03/10 15:21:57 by hyungjpa         ###   ########.fr       */
+/*   Updated: 2023/03/10 15:56:46 by hyungjpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,8 +88,7 @@ void	execute_no_pipe(char **temp, t_tree *tree)
 	tree->outfile = get_ord(temp);
 	if (pure_cmd[0] == NULL)
 		return ;
-	old_fd = 0;
-	if (tree->outfile != -1)
+	if (tree->outfile != 0)
 		old_fd = dup(STDOUT_FILENO);
 	builtin_num = builtin_one_cmd(tree);
 	if (builtin_num == 1)
@@ -97,7 +96,7 @@ void	execute_no_pipe(char **temp, t_tree *tree)
 		_execute_pipe_fork(tree);
 		tree = change_q_mark(tree, tree->child_status);
 	}
-	if (tree->outfile != -1)
+	if (tree->outfile != 0)
 	{
 		close(tree->outfile);
 		dup2(old_fd, STDOUT_FILENO);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_free_tree.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chanson <chanson@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hyungjpa <hyungjpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 14:34:25 by chanson           #+#    #+#             */
-/*   Updated: 2023/03/10 14:35:10 by chanson          ###   ########.fr       */
+/*   Updated: 2023/03/10 16:00:47 by hyungjpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,7 @@ void	ft_free_tree(t_tree *tree)
 	ft_free_str(tree->cmd.cmd_arr);
 	ft_free_str(tree->cmd.envp_path);
 	ft_free_str(tree->echo_export_arr);
+	ft_free_str(tree->pure);
 	free(tree->cmd.cmd_head);
 	free(tree->pid);
 	free(tree->origin);

@@ -6,7 +6,7 @@
 /*   By: hyungjpa <hyungjpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 11:17:42 by hyungjpa          #+#    #+#             */
-/*   Updated: 2023/03/10 15:18:00 by hyungjpa         ###   ########.fr       */
+/*   Updated: 2023/03/10 15:53:43 by hyungjpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ int	builtin_one_cmd(t_tree *info)
 	int	check_2;
 
 	exit_check = 0;
-	if (info->outfile != -1)
+	if (info->outfile != 0)
 		dup2(info->outfile, STDOUT_FILENO);
 	check_1 = cd_echo_env_check(info);
 	if (check_1 != 1)

@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   builtin_export_split.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chanson <chanson@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hyungjpa <hyungjpa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 14:39:30 by hyungjpa          #+#    #+#             */
-/*   Updated: 2023/03/09 18:49:24 by chanson          ###   ########.fr       */
+/*   Updated: 2023/03/10 16:04:30 by hyungjpa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/test.h"
 
-void	split_while(char *str, char *tmp, int *i, int *flag)
+void	split_while(char *str, char **tmp, int *i, int *flag)
 {
 	while (str[*i])
 	{
@@ -21,7 +21,7 @@ void	split_while(char *str, char *tmp, int *i, int *flag)
 			(*i)++;
 			break ;
 		}
-		tmp = ft_strcjoin(tmp, str[*i]);
+		*tmp = ft_strcjoin(*tmp, str[*i]);
 		if (str[*i] == '"')
 		{
 			if (*flag == 1)
@@ -47,13 +47,13 @@ static char	**do_export_split(char *str, char **new_temp, char *tmp, int flag)
 	i = 0;
 	while (str[i])
 	{
-		if (str[i] == ' ' && flag == 0)
+		if (str[i] && str[i] == ' ' && flag == 0)
 		{
 			i++;
 			continue ;
 		}
 		else
-			split_while(str, tmp, &i, &flag);
+			split_while(str, &tmp, &i, &flag);
 		new_temp = ft_strsjoin(new_temp, ft_strcpy(tmp));
 		free(tmp);
 		tmp = NULL;
