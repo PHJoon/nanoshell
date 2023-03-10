@@ -6,7 +6,7 @@
 /*   By: chanson <chanson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 13:34:55 by chanson           #+#    #+#             */
-/*   Updated: 2023/03/09 20:22:51 by chanson          ###   ########.fr       */
+/*   Updated: 2023/03/10 13:24:30 by chanson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,12 +36,21 @@ static void	_execute_cmd(t_tree *tree)
 void	change_env_val(char **pure_cmd, t_tree *tree)
 {
 	int	i;
+	int	idx;
 
 	i = 0;
 	while (pure_cmd[i])
 	{
-		if (ft_str_find_c(pure_cmd[i], '$') > -1)
-			pure_cmd[i] = change_env(tree->envp_val, pure_cmd[i]);
+		idx = ft_str_find_c(pure_cmd[i], '$');
+		if (idx > -1)
+		{
+			if (pure_cmd[i][idx + 1] == '?')
+			{
+				pure_cmd[i] = change_env(tree->envp_val, pure_cmd[i]);
+			}
+			else
+				pure_cmd[i] = change_env(tree->envp_val, pure_cmd[i]);
+		}
 		i++;
 	}
 }
