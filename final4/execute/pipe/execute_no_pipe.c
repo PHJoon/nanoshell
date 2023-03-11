@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execute_no_pipe.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hyungjpa <hyungjpa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: chanson <chanson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 13:34:55 by chanson           #+#    #+#             */
-/*   Updated: 2023/03/10 16:57:27 by hyungjpa         ###   ########.fr       */
+/*   Updated: 2023/03/10 17:17:42 by chanson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,4 +109,5 @@ void	execute_no_pipe(char **temp, t_tree *tree)
 	if (pure_cmd[0] == NULL)
 		return ;
 	start_execute(tree);
+	free(tree->origin);
 }

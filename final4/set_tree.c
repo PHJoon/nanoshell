@@ -6,7 +6,7 @@
 /*   By: chanson <chanson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/04 23:18:48 by hyungjpa          #+#    #+#             */
-/*   Updated: 2023/03/09 20:07:22 by chanson          ###   ########.fr       */
+/*   Updated: 2023/03/10 17:43:50 by chanson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ static t_tree	*preset_token_cmd(t_tree *tree)
 	tree->cmd.envp_path = NULL;
 	tree->cmd.cmd_head = NULL;
 	tree->cmd.cmd_arr = NULL;
+	tree->origin = NULL;
+	tree->pure = NULL;
 	return (tree);
 }
 

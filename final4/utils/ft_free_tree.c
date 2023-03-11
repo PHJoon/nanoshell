@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_free_tree.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hyungjpa <hyungjpa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: chanson <chanson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 14:34:25 by chanson           #+#    #+#             */
-/*   Updated: 2023/03/10 16:00:47 by hyungjpa         ###   ########.fr       */
+/*   Updated: 2023/03/10 17:17:26 by chanson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,6 @@ void	ft_free_tree(t_tree *tree)
 	ft_free_str(tree->pure);
 	free(tree->cmd.cmd_head);
 	free(tree->pid);
-	free(tree->origin);
 	ft_free_int(tree->pipe_fd, tree);
 	_ft_free_tree(tree->top);
 }

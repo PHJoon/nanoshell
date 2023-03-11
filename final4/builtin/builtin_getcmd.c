@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   builtin_getcmd.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hyungjpa <hyungjpa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: chanson <chanson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 21:30:12 by hyungjpa          #+#    #+#             */
-/*   Updated: 2023/03/10 16:54:28 by hyungjpa         ###   ########.fr       */
+/*   Updated: 2023/03/10 17:02:11 by chanson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/test.h"
 
-char	*do_cmd_strjoin(char *str1, char *str2, char **temp)
+char	*do_cmd_strjoin(char *str1, char *str2, char *temp)
 {
 	int	i;
 	int	j;

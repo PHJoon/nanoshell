@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fork_mid.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hyungjpa <hyungjpa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: chanson <chanson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 14:45:28 by chanson           #+#    #+#             */
-/*   Updated: 2023/03/10 14:44:10 by hyungjpa         ###   ########.fr       */
+/*   Updated: 2023/03/11 17:06:29 by chanson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ static void	fork_in(t_tree *tree, int idx)
 	{
 		if (dup2(tree->pipe_fd[idx][READ], STDIN_FILENO) == -1)
 			ft_error("dup2 error5\n");
+		close(tree->pipe_fd[idx][READ]);
 	}
 	close(tree->pipe_fd[idx + 1][READ]);
 }
@@ -63,6 +64,7 @@ static void	infile_outfile_check(t_tree *tree, int index)
 		tree->next_pipe_or_file = PIPE;
 		if (dup2(tree->pipe_fd[index][WRITE], STDOUT_FILENO) == -1)
 			ft_error("dup2 error7\n");
+		close(tree->pipe_fd[index][WRITE]);
 	}
 }
 

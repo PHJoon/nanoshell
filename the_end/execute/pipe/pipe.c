@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipe.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hyungjpa <hyungjpa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: chanson <chanson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 15:06:18 by chanson           #+#    #+#             */
-/*   Updated: 2023/03/10 18:17:49 by hyungjpa         ###   ########.fr       */
+/*   Updated: 2023/03/11 17:08:00 by chanson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,11 +57,18 @@ void	setting_pipe(t_tree *tree)
 
 void	wait_pid(t_tree *tree)
 {
-	int	i;
+	int		i;
+	int		last_status;
+	pid_t	pid;
 
 	i = -1;
 	while (++i < tree->pipe_cnt + 1)
-		waitpid(tree->pid[i], &tree->child_status, 0);
+	{
+		pid = waitpid(0, &tree->child_status, 0);
+		if (pid == tree->pid[tree->pipe_cnt])
+			last_status = tree->child_status;
+	}
+	tree->child_status = last_status;
 	tree = change_q_mark(tree, tree->child_status, 1);
 }
 

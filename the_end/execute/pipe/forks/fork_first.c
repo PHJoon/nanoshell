@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fork_first.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hyungjpa <hyungjpa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: chanson <chanson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 13:43:24 by chanson           #+#    #+#             */
-/*   Updated: 2023/03/10 14:43:29 by hyungjpa         ###   ########.fr       */
+/*   Updated: 2023/03/11 17:05:23 by chanson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ static void	_fork_in(t_tree *tree)
 		tree->next_pipe_or_file = PIPE;
 		if (dup2(tree->pipe_fd[0][WRITE], STDOUT_FILENO) == -1)
 			ft_error("dup2 error3\n");
+		close(tree->pipe_fd[0][WRITE]);
 	}
 }
 

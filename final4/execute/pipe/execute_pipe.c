@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execute_pipe.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hyungjpa <hyungjpa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: chanson <chanson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 14:18:40 by chanson           #+#    #+#             */
-/*   Updated: 2023/03/10 14:47:22 by hyungjpa         ###   ########.fr       */
+/*   Updated: 2023/03/10 17:44:15 by chanson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ void	execute_cmd(char **cmd, int index, t_tree *tree)
 
 	set_execute_cmd(tree);
 	pure_cmd = cmd_get(cmd);
+	ft_free_str(tree->pure);
 	tree->pure = envp_copy(pure_cmd);
 	pure_cmd = ft_erase_null(pure_cmd);
 	change_env_val(pure_cmd, tree);
