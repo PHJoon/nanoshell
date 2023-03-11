@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   test.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hyungjpa <hyungjpa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: chanson <chanson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/12 15:59:58 by chanson           #+#    #+#             */
-/*   Updated: 2023/03/10 18:17:00 by hyungjpa         ###   ########.fr       */
+/*   Updated: 2023/03/11 18:38:36 by chanson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,7 +116,7 @@ typedef struct s_tree
 	int			infile;
 	int			outfile;
 	int			child_status;
-	int			next_pipe_or_file;
+	// int			next_pipe_or_file;
 	int			heredoc_idx;
 	int			**pipe_fd;
 	char		**here_documets;

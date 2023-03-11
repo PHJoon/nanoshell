@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   set_tree.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hyungjpa <hyungjpa@student.42.fr>          +#+  +:+       +#+        */
+/*   By: chanson <chanson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/04 23:18:48 by hyungjpa          #+#    #+#             */
-/*   Updated: 2023/03/10 17:45:51 by hyungjpa         ###   ########.fr       */
+/*   Updated: 2023/03/11 18:38:02 by chanson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static t_tree	*preset_pipe_heredoc_fd(t_tree *tree)
 	tree->infile = 0;
 	tree->outfile = 0;
 	tree->child_status = 0;
-	tree->next_pipe_or_file = 0;
+	// tree->next_pipe_or_file = 0;
 	tree->heredoc_idx = 0;
 	tree->pipe_fd = NULL;
 	tree->here_documets = NULL;

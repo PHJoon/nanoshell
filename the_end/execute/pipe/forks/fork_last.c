@@ -6,7 +6,7 @@
 /*   By: chanson <chanson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 13:57:16 by chanson           #+#    #+#             */
-/*   Updated: 2023/03/11 17:07:03 by chanson          ###   ########.fr       */
+/*   Updated: 2023/03/11 18:36:25 by chanson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@ static void	fork_in(t_tree *tree, int idx)
 		if (dup2(tree->infile, STDIN_FILENO) == -1)
 			ft_error("dup2 error8\n");
 	}
-	else if (tree->next_pipe_or_file == N_FILE)
-		close(tree->pipe_fd[idx][READ]);
+	// else if (tree->next_pipe_or_file == N_FILE)
+	// 	close(tree->pipe_fd[idx][READ]);
 	else
 	{
 		if (dup2(tree->pipe_fd[idx][READ], STDIN_FILENO) == -1)

@@ -6,7 +6,7 @@
 /*   By: chanson <chanson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 14:45:28 by chanson           #+#    #+#             */
-/*   Updated: 2023/03/11 17:06:29 by chanson          ###   ########.fr       */
+/*   Updated: 2023/03/11 18:37:25 by chanson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@ static void	fork_in(t_tree *tree, int idx)
 		if (dup2(tree->infile, STDIN_FILENO) == -1)
 			ft_error("dup2 error4\n");
 	}
-	else if (tree->next_pipe_or_file == N_FILE)
-		close(tree->pipe_fd[idx][READ]);
+	// else if (tree->next_pipe_or_file == N_FILE)
+	// 	close(tree->pipe_fd[idx][READ]);
 	else
 	{
 		if (dup2(tree->pipe_fd[idx][READ], STDIN_FILENO) == -1)
@@ -55,13 +55,13 @@ static void	infile_outfile_check(t_tree *tree, int index)
 	if (tree->outfile != 0)
 	{
 		close(tree->pipe_fd[index][WRITE]);
-		tree->next_pipe_or_file = N_FILE;
+		// tree->next_pipe_or_file = N_FILE;
 		if (dup2(tree->outfile, STDOUT_FILENO) == -1)
 			ft_error("dup2 error6\n");
 	}
 	else
 	{
-		tree->next_pipe_or_file = PIPE;
+		// tree->next_pipe_or_file = PIPE;
 		if (dup2(tree->pipe_fd[index][WRITE], STDOUT_FILENO) == -1)
 			ft_error("dup2 error7\n");
 		close(tree->pipe_fd[index][WRITE]);
