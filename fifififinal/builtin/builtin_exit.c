@@ -6,7 +6,7 @@
 /*   By: chanson <chanson@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 14:40:02 by hyungjpa          #+#    #+#             */
-/*   Updated: 2023/03/02 19:57:50 by chanson          ###   ########.fr       */
+/*   Updated: 2023/03/13 13:30:08 by chanson          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ int	check_exit_argu(t_tree *info, int size)
 	{
 		print_error_3("exit: ", info->cmd.cmd_arr[1], \
 		": numeric argument required");
+		info->exit_code = 255;
 	}
 	return (0);
 }
