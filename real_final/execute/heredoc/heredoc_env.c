@@ -52,8 +52,7 @@ static char	*change_env_2(char **envp, char *temp, int index)
 		free(str);
 		return (str2);
 	}
-	str = ft_strcpy_index(temp, 0, index - 1);
-	return (ft_strcjoin(str, '\n'));
+	return (NULL);
 }
 
 static char	*find_dollar(char *string, char **envp, int *flag)

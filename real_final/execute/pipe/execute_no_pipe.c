@@ -111,6 +111,11 @@ void	execute_no_pipe(char **temp, t_tree *tree)
 	pure_cmd = ft_erase_null(pure_cmd);
 	change_env_val(pure_cmd, tree);
 	cmd_check(tree, pure_cmd);
+	if (pure_cmd[0] == NULL && tree->origin == NULL)
+	{
+		free(tree->origin);
+		return ;
+	}
 	start_execute(tree, temp);
 	free(tree->origin);
 }
