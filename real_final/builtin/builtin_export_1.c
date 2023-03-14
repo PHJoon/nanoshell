@@ -12,6 +12,8 @@
 
 #include "../include/test.h"
 
+int	args_check()
+
 int	export_args(t_tree *info, char **cmd)
 {
 	int		i;
